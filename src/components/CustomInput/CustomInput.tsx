@@ -7,7 +7,7 @@ interface Props {
 
 const CustomInput: React.FC<Props> = (props) => {
   return (
-    <StylesWrapper width={630} placeholder={props.placeholder}>
+    <StylesWrapper width={558} placeholder={props.placeholder}>
     </StylesWrapper>
   )
 }

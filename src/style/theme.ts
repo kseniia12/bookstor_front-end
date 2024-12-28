@@ -1,5 +1,5 @@
 import { ITheme } from '../interfaces/styled'
-export const baseTheme: ITheme  ={
+export const baseTheme: ITheme = {
   colors: {
     darkBlue: '#344966',
     dark: '#0D1821',
@@ -10,4 +10,5 @@ export const baseTheme: ITheme  ={
     white: '#FFFFFF',
     darkGreen: '#8D9F4F',
   },
+
 }
