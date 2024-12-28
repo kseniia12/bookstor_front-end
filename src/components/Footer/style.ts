@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StylesWrapper = styled.div`
-padding: 73px 80px;
 display: flex;
 justify-content: space-between;
 background-color: ${({ theme }) => theme.colors.dark};
@@ -22,4 +21,8 @@ color: ${({ theme }) => theme.colors.light};
   width: 413px;
   height: 160px;
 }
+@media (max-width: 564px) {
+  flex-direction: column;
+  gap: 40px;
+  }
 `;

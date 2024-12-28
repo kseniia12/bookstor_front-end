@@ -8,5 +8,11 @@ export interface ITheme {
     darkGrey: string,
     white: string,
     darkGreen: string,
+  },
+  media: {
+    desktop: string,
+    tablet: string,
+    mobile: string,
   }
+
 }

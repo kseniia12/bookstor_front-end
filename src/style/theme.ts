@@ -10,5 +10,10 @@ export const baseTheme: ITheme = {
     white: '#FFFFFF',
     darkGreen: '#8D9F4F',
   },
+  media: {
+    desktop: '(max-width: 1140px)',
+    tablet: '(max-width: 960px)',
+    mobile: '(max-width: 720px)',
+  },
 
 }

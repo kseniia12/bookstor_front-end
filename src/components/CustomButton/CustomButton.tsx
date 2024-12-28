@@ -3,12 +3,13 @@ import { StylesWrapper } from './style';
 
 interface Props {
   text: string;
+  className?: string;
 }
 
 const CustomButton: React.FC<Props> = (props) => {
-  const { text } = props;
+  const { text, className } = props;
   return (
-    <StylesWrapper>{text}</StylesWrapper>
+    <StylesWrapper className={className}>{text}</StylesWrapper>
   )
 }
 

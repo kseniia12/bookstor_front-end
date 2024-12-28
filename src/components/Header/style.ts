@@ -1,15 +1,15 @@
 import styled from "styled-components";
 
 export const StylesWrapper = styled.div`
+  padding-top: 24px;
   display: grid;
   align-items: center;
-  padding: 24px 76px 0px 80px;
   grid-template-columns: auto 1fr auto;
   gap: 43px;
   .logo{
     display: flex;
-    gap: 250px;
     align-items: center;
+    gap: 128px;
   }
   .search{
     display: flex;
