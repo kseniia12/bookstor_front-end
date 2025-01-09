@@ -17,4 +17,9 @@ padding-left: 24px;
   width: 24px;
   height: 24px;
 }
+@media (max-width: 564px) {
+    .input{
+      width:290px;
+    }
+  }
 `;

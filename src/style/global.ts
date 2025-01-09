@@ -15,9 +15,6 @@ export default createGlobalStyle`
     font-weight: medium;
     font-size: 20px;
   }
-  body {
-    max-width: 1280px;
-    margin: 0 auto;
-  }
+
 
 `

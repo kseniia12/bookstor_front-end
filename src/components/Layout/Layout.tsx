@@ -9,14 +9,14 @@ import { PropsCustomForm } from "../../typing";
 const Layout: React.FC<PropsCustomForm> = (props) => {
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Main>
         <div className="form">
           <h1 className="form-title">{props.title}</h1>
           <CustomForm fields={props.fields} width={props.width} />
         </div>
         <div className="search">
-          <img src={imgMan} alt="Logo" />
+          <img src={imgMan} alt="Logo" className="search_icon" />
         </div>
       </Main>
       <Footer />

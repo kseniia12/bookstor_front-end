@@ -11,8 +11,8 @@ const Header = () => {
         <img src={logo} alt="Logo" />
         <div>Catalog</div>
       </div>
-      <CustomInput icon={search} placeholder="Search" width={413} />
-      <CustomButton text="Log In/ Sing Up" />
+      <CustomInput className="search-input" icon={search} placeholder="Search" width={413} />
+      <CustomButton className="button" text="Log In/ Sing Up" />
     </StylesWrapper>
   );
 };

@@ -4,6 +4,7 @@ export interface PropsCustomButton {
 }
 
 export interface PropsCustomInput {
+  className?: string;
   placeholder: string;
   icon?: string;
   width: number;

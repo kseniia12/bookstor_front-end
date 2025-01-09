@@ -19,9 +19,11 @@ const Footer = () => {
         <li>My Account</li>
         <li>Cart</li>
       </ol>
-      <div>
+      <div className="test">
         <div>6391 Elgin St. Celina, Delaware 10299</div>
-        <img className="map" src={map} alt="Map" />
+        <div className="map">
+          <img className="map_icon" src={map} alt="Map" />
+        </div>
       </div>
     </StylesWrapper>
   );
