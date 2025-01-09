@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StylesWrapper = styled.div`
 display: flex;
 justify-content: space-between;
+padding: 73px 0px;
 background-color: ${({ theme }) => theme.colors.dark};
 color: ${({ theme }) => theme.colors.light};
 .contact{

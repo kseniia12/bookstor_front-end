@@ -1,16 +1,11 @@
-import React from 'react'
-import { StylesWrapper } from './style';
+import React from "react";
+import { StylesWrapper } from "./style";
+import { PropsCustomButton } from "../../typing";
 
-interface Props {
-  text: string;
-  className?: string;
-}
-
-const CustomButton: React.FC<Props> = (props) => {
-  const { text, className } = props;
+const CustomButton: React.FC<PropsCustomButton> = (props) => {
   return (
-    <StylesWrapper className={className}>{text}</StylesWrapper>
-  )
-}
+    <StylesWrapper className={props.className}>{props.text}</StylesWrapper>
+  );
+};
 
 export default CustomButton;

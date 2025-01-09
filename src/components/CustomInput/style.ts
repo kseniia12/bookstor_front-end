@@ -1,22 +1,20 @@
 import styled from "styled-components";
 
-interface TitleProps {
-  width: 558;
-}
-
-export const StylesWrapper = styled.div<TitleProps>`
+export const StylesWrapper = styled.div<{ width: number }>`
 display: flex;
 align-items: center;
 gap: 16px;
+background-color: ${({ theme }) => theme.colors.light};
+border-radius: 16px;
+padding-left: 24px;
 .input{
-  background-color: ${({ theme }) => theme.colors.light};
   min-height: 64px;
+  width: ${props => props.width}px;
+  background-color: ${({ theme }) => theme.colors.light};
   border-radius: 16px;
-  width: ${({ width }) => width}px;
 }
-.search__icon{
+.icon{
   width: 24px;
   height: 24px;
 }
-
 `;

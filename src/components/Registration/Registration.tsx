@@ -3,7 +3,7 @@ import emailIcon from "../../img/email.png";
 import searchIcon from "../../img/hide.png";
 import Layout from "../Layout/Layout";
 
-const Login = () => {
+const Registration = () => {
   const formFields = [
     {
       placeholder: "Email",
@@ -15,9 +15,14 @@ const Login = () => {
       icon: searchIcon,
       label: "Enter your password",
     },
+    {
+      placeholder: "Password replay",
+      icon: searchIcon,
+      label: "Repeat your password without errors",
+    },
   ];
 
-  return <Layout title="Log In" width={413} fields={formFields} />;
+  return <Layout title="Sign Up" width={413} fields={formFields} />;
 };
 
-export default Login;
+export default Registration;

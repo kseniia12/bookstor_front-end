@@ -1,27 +1,25 @@
 import React from "react";
 import CustomInput from "../CustomInput/CustomInput";
 import CustomButton from "../CustomButton/CustomButton";
+import { StylesWrapper } from "./style";
+import { PropsCustomForm } from "../../typing";
 
-interface Object {
-  placeholder: string;
-  icon?: string
-}
-
-interface Props {
-  fields: Object[];
-}
-
-const CustomForm: React.FC<Props> = (props) => {
-  const { fields } = props;
+const CustomForm: React.FC<PropsCustomForm> = (props) => {
+  const { fields, width } = props;
   return (
-    <form>
+    <StylesWrapper>
       {fields.map((field, index) => (
-        <div key={index} className="form-field">
-          <CustomInput placeholder={field.placeholder} icon={field.icon}  />
+        <div key={index}>
+          <CustomInput
+            placeholder={field.placeholder}
+            icon={field.icon}
+            width={width}
+          />
+          <div className="label">{field.label}</div>
         </div>
       ))}
-      <CustomButton text="Log In" className="button" />
-    </form>
+      <CustomButton className="button" text="Log In" />
+    </StylesWrapper>
   );
 };
 

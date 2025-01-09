@@ -1,15 +1,11 @@
 import React from "react";
 import { StylesWrapper } from "./style";
+import { PropsCustomInput } from "../../typing";
 
-interface Props {
-  placeholder: string;
-  icon?: string;
-}
-
-const CustomInput: React.FC<Props> = (props) => {
+const CustomInput: React.FC<PropsCustomInput> = (props) => {
   return (
-    <StylesWrapper width={558}>
-      <div className="search__icon">
+    <StylesWrapper width={props.width}>
+      <div className="icon">
         <img src={props.icon} alt="Logo" />
       </div>
       <input type="text" placeholder={props.placeholder} className="input" />
