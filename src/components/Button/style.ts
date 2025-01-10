@@ -1,7 +1,6 @@
 import styled from "styled-components";
 export const StylesWrapper = styled.button`
-  height: 44px;
-  width: 231px;
+  padding: 10px 50px;
   background-color: ${({ theme }) => theme.colors.darkBlue};
   color: ${({ theme }) => theme.colors.white};
   font-size: 16px;

@@ -1,25 +1,24 @@
-export interface PropsCustomButton {
+export interface PropsButton {
   text: string;
-  className?: string;
+  className: string;
 }
 
-export interface PropsCustomInput {
+export interface PropsInput {
   className?: string;
   placeholder: string;
   icon?: string;
-  width: number;
 }
 
-export interface Form {
-  placeholder: string;
-  icon: string;
-  label?: string;
-}
+// export interface Form {
+//   placeholder: string;
+//   icon: string;
+//   label?: string;
+// }
 
-export interface PropsCustomForm {
-  fields: Form[];
-  width: number;
-  title?: string;
-}
+// export interface PropsCustomForm {
+//   fields: Form[];
+
+//   title?: string;
+// }
 
 

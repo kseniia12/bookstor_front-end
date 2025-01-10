@@ -2,8 +2,9 @@ import React from "react";
 import logo from "../../img/logo-dark-theme.png";
 import search from "../../img/search.png";
 import { StylesWrapper } from "./style";
-import CustomButton from "../CustomButton/CustomButton";
-import CustomInput from "../CustomInput/CustomInput";
+import Input from "../Input/Input";
+import Button from "../Button/Button";
+
 const Header = () => {
   return (
     <StylesWrapper>
@@ -11,8 +12,8 @@ const Header = () => {
         <img src={logo} alt="Logo" />
         <div>Catalog</div>
       </div>
-      <CustomInput className="search-input" icon={search} placeholder="Search" width={413} />
-      <CustomButton className="button" text="Log In/ Sing Up" />
+      <Input className="search-input" icon={search} placeholder="Search" />
+      <Button text="Log In/ Sing Up" className="button" />
     </StylesWrapper>
   );
 };

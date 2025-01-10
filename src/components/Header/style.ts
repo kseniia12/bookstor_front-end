@@ -8,9 +8,13 @@ export const StylesWrapper = styled.div`
   align-items: center;
   grid-template-columns: auto 1fr auto;
   gap: 43px;
-  .logo{
+  .logo {
     display: flex;
     align-items: center;
     gap: 128px;
+  }
+  .search-input{
+    width: 100%;
+    background-color: ${({ theme }) => theme.colors.light};
   }
 `;
