@@ -1,31 +1,33 @@
-import React, { useState } from "react";
+import React from "react";
 import emailIcon from "../../img/email.png";
 import searchIcon from "../../img/hide.png";
 import imgMan from "../../img/man-with-book.png";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { StylesWrapper } from "../Login/style";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "../../hooks";
 import { thunkCreateUser } from "../../store/thunk/thunkUser";
-import { IFormInput } from "../../typing";
+import { IFormInput } from "../../lib/typing";
 
 const Registration = () => {
-  const { register, handleSubmit } = useForm<IFormInput>();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<IFormInput>();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
-      const user = await dispatch(
-        thunkCreateUser(data)
-      ).unwrap();
+      const user = await dispatch(thunkCreateUser(data)).unwrap();
       if (user) {
-        // navigate("/todos");
+        navigate("/home");
       }
     } catch (error) {
-      console.log(error)
-      // navigate("/auth/sign-in");
+      navigate("/auth/sign-in");
     }
   };
 
@@ -38,13 +40,15 @@ const Registration = () => {
             <Input
               register={register("email", {
                 required: true,
-                maxLength: 20,
+                pattern: /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i,
               })}
-              className="item__input"
+              className={`${errors.email ? "item__input-error" : "item__input"}`}
               icon={emailIcon}
               placeholder="Email"
             />
-            <div>Enter your email</div>
+            <div className={`${errors.email ? "item__div-error" : "item__div"}`}>
+              {errors.email ? "Email is not correct" : "Enter your email"}
+            </div>
           </div>
           <div className="item">
             <Input
@@ -64,7 +68,7 @@ const Registration = () => {
             />
             <div>Repeat your password without errors</div>
           </div>
-          <Button className="button" text="Log In" />
+          <Button className="button" text="Sign Up" />
         </form>
       </div>
       <div className="search">

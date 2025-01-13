@@ -9,6 +9,9 @@ export const baseTheme: ITheme = {
     darkGrey: '#B9BAC3',
     white: '#FFFFFF',
     darkGreen: '#8D9F4F',
+    errorDefault: '#ED2E7E',
+    errorDark: '#C30052',
+    errorLight: '#FFF2F7',
   },
   media: {
     desktop: '(max-width: 1140px)',

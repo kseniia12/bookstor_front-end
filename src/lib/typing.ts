@@ -1,9 +1,10 @@
-export interface PropsButton {
+export interface IPropsButton {
   text: string;
   className: string;
+  onClick?: any;
 }
 
-export interface PropsInput {
+export interface IPropsInput {
   register?: any;
   className?: string;
   placeholder: string;
@@ -19,7 +20,7 @@ export interface IFormInput {
 
 export interface IAxiosResponse {
   token: string;
-  user: { id: number; fullName: string; email: string};
+  user: { id: number; fullName: string; email: string };
 }
 
 export interface IUser {
@@ -32,16 +33,9 @@ export interface IStateUser {
   user: IUser;
 }
 
-// export interface Form {
-//   placeholder: string;
-//   icon: string;
-//   label?: string;
-// }
+export interface IRouterProps {
+  token?: string | null;
+}
 
-// export interface PropsCustomForm {
-//   fields: Form[];
-
-//   title?: string;
-// }
 
 

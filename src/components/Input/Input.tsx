@@ -1,7 +1,8 @@
 import React from "react";
 import { StylesWrapper } from "./style";
-import { PropsInput } from "../../typing";
-const Input: React.FC<PropsInput> = (props) => {
+import { IPropsInput } from "../../lib/typing";
+
+const Input: React.FC<IPropsInput> = (props) => {
   return (
     <StylesWrapper>
       <img src={props.icon} alt="Logo" className="icon" />
@@ -14,4 +15,5 @@ const Input: React.FC<PropsInput> = (props) => {
     </StylesWrapper>
   );
 };
+
 export default Input;

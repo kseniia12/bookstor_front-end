@@ -8,6 +8,9 @@ export interface ITheme {
     darkGrey: string,
     white: string,
     darkGreen: string,
+    errorDefault: string,
+    errorDark: string,
+    errorLight: string,
   },
   media: {
     desktop: string,
