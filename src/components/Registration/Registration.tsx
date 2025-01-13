@@ -6,20 +6,40 @@ import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { StylesWrapper } from "../Login/style";
 import { Link, useNavigate } from "react-router-dom";
-const Registration = () => {
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useAppDispatch } from "../../hooks";
+import { thunkCreateUser } from "../../store/thunk/thunkUser";
+import { IFormInput } from "../../typing";
 
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [repeatPassword, setRepeatPassword] = useState<string>("");
+const Registration = () => {
+  const { register, handleSubmit } = useForm<IFormInput>();
   const navigate = useNavigate();
- 
+  const dispatch = useAppDispatch();
+  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
+    try {
+      const user = await dispatch(
+        thunkCreateUser(data)
+      ).unwrap();
+      if (user) {
+        // navigate("/todos");
+      }
+    } catch (error) {
+      console.log(error)
+      // navigate("/auth/sign-in");
+    }
+  };
+
   return (
     <StylesWrapper>
       <div>
         <h1 className="title">Sign Up</h1>
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className="item">
             <Input
+              register={register("email", {
+                required: true,
+                maxLength: 20,
+              })}
               className="item__input"
               icon={emailIcon}
               placeholder="Email"
@@ -31,6 +51,7 @@ const Registration = () => {
               className="item__input"
               icon={searchIcon}
               placeholder="Password"
+              register={register("password")}
             />
             <div>Enter your password</div>
           </div>
@@ -39,6 +60,7 @@ const Registration = () => {
               className="item__input"
               icon={searchIcon}
               placeholder="Password replay"
+              register={register("passwordReplay")}
             />
             <div>Repeat your password without errors</div>
           </div>
