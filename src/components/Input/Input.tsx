@@ -11,6 +11,7 @@ const Input: React.FC<IPropsInput> = (props) => {
         type="text"
         placeholder={props.placeholder}
         className={props.className}
+        value={props.value}
       />
     </StylesWrapper>
   );

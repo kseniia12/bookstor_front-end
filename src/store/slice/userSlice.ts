@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { thunkCreateUser, thunkLoginUser } from "../thunk/thunkUser";
-import { IStateUser, IUser } from "../../lib/typing";
+import { thunkCreateUser, thunkGetUser, thunkLoginUser, thunkUploadPhoto } from "../thunk/thunkUser";
+import { IStateUser, IUser, IUseweewer } from "../../lib/typing";
+import imgProfile from "../../img/userPhoto.png";
 const initialState: IStateUser = {
   user: {
     id: 0,
     fullName: "",
     email: "",
+    photo: "../../img/userPhoto.png",
   }
 };
 const userSlice = createSlice({
@@ -15,10 +17,15 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(thunkCreateUser.fulfilled, (state, action: PayloadAction<{ user: IUser, token: string }>) => {
-        console.log(action.payload.user)
         state.user = (action.payload.user);
       })
       .addCase(thunkLoginUser.fulfilled, (state, action: PayloadAction<{ user: IUser, token: string }>) => {
+        state.user = (action.payload.user);
+      })
+      .addCase(thunkUploadPhoto.fulfilled, (state, action: PayloadAction<{ photo: string }>) => {
+        state.user.photo = action.payload.photo;
+      })
+      .addCase(thunkGetUser.fulfilled, (state, action) => {
         state.user = (action.payload.user);
       })
   }

@@ -42,4 +42,5 @@ export const StylesWrapper = styled.div`
       background-color: ${({ theme }) => theme.colors.light};
     }
   }
+  
 `;
