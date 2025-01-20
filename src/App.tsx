@@ -10,6 +10,7 @@ import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
 import PrivateRouter from "./utils/PrivateRouter";
 import UserProfile from "./components/UserProfile/UserProfile";
+import InitializationProject from "./components/InitializationProject";
 
 const App: React.FC = () => {
   return (
@@ -23,12 +24,15 @@ const App: React.FC = () => {
             path={`${constantForAxios.SIGN_UP}`}
             element={<Registration />}
           />
+
           <Route element={<PrivateRouter />}>
             <Route
               path={`${constantForAxios.HOME_PAGE}`}
               element={
                 <div className="App">
-                  <UserProfile />
+                  <InitializationProject>
+                    <UserProfile />
+                  </InitializationProject>
                 </div>
               }
             />

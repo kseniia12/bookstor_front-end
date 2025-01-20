@@ -10,6 +10,7 @@ export interface IPropsInput {
   placeholder?: string;
   icon?: string;
   value?: string;
+  readOnly?: boolean;
 }
 
 export interface IFormInput {
@@ -21,6 +22,11 @@ export interface IFormInput {
 
 export interface IAxiosResponse {
   token: string;
+  user: { id: number; fullName: string; email: string; photo?: string };
+}
+
+export interface IAxiosResponseGetUser {
+  token: string | null;
   user: { id: number; fullName: string; email: string; photo?: string };
 }
 
@@ -43,6 +49,10 @@ export interface IStateUser {
   user: IUser;
 }
 
+export interface IStateUserEror {
+  message: string;
+}
+
 export interface IRouterProps {
   token?: string | null;
 }
@@ -55,3 +65,27 @@ export interface IAxiosRes {
   token: string | null | undefined;
 }
 
+export interface IResp {
+  fullName: string;
+  email: string;
+}
+
+export interface IGetUser {
+  token: string | null;
+  user: IResp;
+}
+
+export interface IRespwwww {
+  user: IResp;
+}
+
+export interface IResponsForm {
+  password: string;
+  newPassword: string;
+  passwordReplay?: string;
+}
+
+export interface IResponsFormPassword {
+  token: string | null;
+  user: IResponsForm;
+}

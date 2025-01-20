@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { thunkCreateUser, thunkGetUser, thunkLoginUser, thunkUploadPhoto } from "../thunk/thunkUser";
+import { thunkCreateUser, thunkGetUser, thunkLoginUser, thunkPatchUser, thunkUploadPhoto } from "../thunk/thunkUser";
 import { IStateUser, IUser, IUseweewer } from "../../lib/typing";
 import imgProfile from "../../img/userPhoto.png";
+import { axiosPatchUserPassword } from "../../API/authApi";
 const initialState: IStateUser = {
   user: {
     id: 0,
@@ -27,6 +28,9 @@ const userSlice = createSlice({
       })
       .addCase(thunkGetUser.fulfilled, (state, action) => {
         state.user = (action.payload.user);
+      })
+      .addCase(thunkPatchUser.fulfilled, (state, action: PayloadAction<{ user: IUser }>) => {
+        state.user = action.payload.user;
       })
   }
 });

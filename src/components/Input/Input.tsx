@@ -9,9 +9,11 @@ const Input: React.FC<IPropsInput> = (props) => {
       <input
         {...props.register}
         type="text"
+        
         placeholder={props.placeholder}
         className={props.className}
-        value={props.value}
+        defaultValue={props.value}
+        disabled={props.readOnly}
       />
     </StylesWrapper>
   );

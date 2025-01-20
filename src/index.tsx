@@ -10,9 +10,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <InitializationProject>
         <App />
-      </InitializationProject>
     </Provider>
   </React.StrictMode>
 );

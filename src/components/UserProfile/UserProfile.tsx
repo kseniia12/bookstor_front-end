@@ -1,57 +1,75 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import Input from "../Input/Input";
 import { StylesWrapper } from "./style";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import emailIcon from "../../img/email.png";
 import searchIcon from "../../img/hide.png";
-import imgProfile from "../../img/img-profile.png";
 import userProfile from "../../img/userProfile.png";
 import buttonPhoto from "../../img/button_photo.png";
-import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { thunkUploadPhoto } from "../../store/thunk/thunkUser";
+import {
+  thunkPatchUser,
+  thunkPatchUserPassword,
+  thunkUploadPhoto,
+} from "../../store/thunk/thunkUser";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { IFormInput } from "../../lib/typing";
+import { IGetUser, IResponsFormPassword } from "../../lib/typing";
+import Button from "../Button/Button";
 function UserProfile() {
-  
   let imgProfile = useAppSelector((state) => state.users.user.photo);
-  const mail = useAppSelector((state) => state.users.user.email);
+  const email = useAppSelector((state) => state.users.user.email);
   const name = useAppSelector((state) => state.users.user.fullName);
-
+  const [isEditable, setIsEditable] = useState(false);
+  const [changePassword, setChangePassword] = useState(false);
+  const token = localStorage.getItem("token");
   const {
     register,
-    formState: { errors },
+    // formState: { errors },
     handleSubmit,
-  } = useForm<IFormInput>()
+  } = useForm<IGetUser>();
 
-  const navigate = useNavigate();
+  const {
+    watch,
+    register: registerPassword,
+    formState: { errors, touchedFields },
+    handleSubmit: handleSubmitPassword,
+  } = useForm<IResponsFormPassword>();
+  const password = watch("user.newPassword");
   const dispatch = useAppDispatch();
 
-  const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    try {
-      const user = await dispatch(thunkCreateUser(data)).unwrap();
-      if (user) {
-        navigate("/home");
-      }
-    } catch (error) {
-      navigate("/auth/sign-in");
-    }
+  const onSubmit: SubmitHandler<IGetUser> = async (data) => {
+    
+    await dispatch(thunkPatchUser({ user: data.user, token })).unwrap();
+    setIsEditable(false);
   };
 
+  const onSubmitForPassword: SubmitHandler<IResponsFormPassword> = async (
+    data
+  ) => {
+    await dispatch(thunkPatchUserPassword({ user: data.user, token })).unwrap();
+  };
 
   const handleUpdateAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
     const photo = e.target.files?.[0];
     if (photo) {
       try {
-        const response = await dispatch(thunkUploadPhoto({ photo })).unwrap();
+        await dispatch(thunkUploadPhoto({ photo })).unwrap();
       } catch (error) {
         console.error("Error uploading avatar:", error);
       }
     }
   };
+  const handleEditClick = () => {
+    setIsEditable(!isEditable);
+  };
+  
+  const handleEditClick1 = () => {
+    setChangePassword(!changePassword);
+  };
+
 
   return (
-    <StylesWrapper>
+    <StylesWrapper isEditable={isEditable} changePassword={changePassword}>
       <div className="icon">
         <img src={imgProfile} alt="Logo" className="icon__profile" />
         <label className="avatar-button">
@@ -67,39 +85,73 @@ function UserProfile() {
           <img src={buttonPhoto} alt="Logo" className="icon__photo" />
         </label>
       </div>
-      <form className="user-profile" onSubmit={handleSubmit(onSubmit)}>
-        <div className="user-profile__section">
-          <div className="user-profile__header">
-            <div>Personal information</div>
-            <Link className="user-profile__link" to="/products">
-              Change information
-            </Link>
+      <div className="user-profile">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="user-profile__section">
+            <div className="user-profile__header">
+              <div>Personal information</div>
+              <div className="d" onClick={handleEditClick}>
+                Change information
+              </div>
+            </div>
+            <Input
+              className="user-profile__input"
+              placeholder="Your name"
+              icon={userProfile}
+              register={register("user.fullName")}
+              value={name}
+            />
+            <Input
+              className="user-profile__input"
+              icon={emailIcon}
+              placeholder="Your email"
+              register={register("user.email")}
+              value={email}
+            />
           </div>
-          <Input
-            className="user-profile__input"
-            placeholder={name}
-            icon={userProfile}
-          />
-          <Input
-            className="user-profile__input"
-            icon={emailIcon}
-            value={mail}
-          />
-        </div>
-        <div className="user-profile__section">
-          <div className="user-profile__header">
-            <div>Password</div>
-            <Link className="user-profile__link" to="/products">
-              Change password
-            </Link>
+          <Button className="button" text="Confirm" />
+        </form>
+        <form onSubmit={handleSubmitPassword(onSubmitForPassword)}>
+          <div className="user-profile__section">
+            <div className="user-profile__header">
+              <div>Password</div>
+              <div className="d" onClick={handleEditClick1}>Change password</div>
+            </div>
+            <Input
+              className="user-profile1__input"
+              placeholder="Your password"
+              icon={searchIcon}
+              register={registerPassword("user.password")}
+            />
+            <div className="item">
+              <Input
+                className="user-profile1__input"
+                icon={searchIcon}
+                placeholder="New password"
+                register={registerPassword("user.newPassword")}
+              />
+              <div>Enter your password</div>
+            </div>
+            <div className="item">
+              <Input
+                className="user-profile1__input"
+                icon={searchIcon}
+                placeholder="Password replay"
+                register={registerPassword("user.passwordReplay", {
+                  required: "Password replay is required",
+                  validate: (value) =>
+                    value === password || "Passwords do not match",
+                })}
+              />
+              <div>Repeat your password without errors</div>
+              {errors.user?.passwordReplay && (
+                <div>{errors.user.passwordReplay.message}</div>
+              )}
+            </div>
           </div>
-          <Input
-            className="user-profile__input"
-            placeholder="Your password"
-            icon={searchIcon}
-          />
-        </div>
-      </form>
+          <Button className="button1" text="Confirm" />
+        </form>
+      </div>
     </StylesWrapper>
   );
 }

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { IAxiosResponse, IFormInput, IResponse, IRouterProps, IUseweewer, t } from '../../lib/typing';
-import { axiosGetUser, axiosPostLoginUser, axiosPostRegistrationUser, axiosUpload } from '../../API/authApi';
+import { IAxiosResponse, IFormInput, IGetUser, IResponse, IResponsFormPassword, IRespwwww, IRouterProps, IStateUser, IStateUserEror, IUseweewer, t } from '../../lib/typing';
+import { axiosGetUser, axiosPatchUser, axiosPatchUserPassword, axiosPostLoginUser, axiosPostRegistrationUser, axiosUpload } from '../../API/authApi';
 
 export const thunkCreateUser = createAsyncThunk<IAxiosResponse, IFormInput>(
   'users/createUser',
@@ -53,6 +53,34 @@ export const thunkGetUser = createAsyncThunk<IResponse, IRouterProps>(
   }: IRouterProps): Promise<IResponse> => {
     const response = await axiosGetUser({
       token,
+    });
+    return response;
+  }
+);
+
+export const thunkPatchUser = createAsyncThunk<IStateUser, IGetUser>(
+  'users/getUser',
+  async ({
+    token,
+    user
+  }: IGetUser): Promise<IStateUser> => {
+    const response = await axiosPatchUser({
+      token,
+      user
+    });
+    return response;
+  }
+);
+
+export const thunkPatchUserPassword = createAsyncThunk<IStateUserEror, IResponsFormPassword>(
+  'users/getUserPassword',
+  async ({
+    token,
+    user
+  }: IResponsFormPassword): Promise<IStateUserEror> => {
+    const response = await axiosPatchUserPassword({
+      token,
+      user
     });
     return response;
   }
