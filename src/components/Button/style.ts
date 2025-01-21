@@ -5,4 +5,5 @@ export const StylesWrapper = styled.button`
   color: ${({ theme }) => theme.colors.white};
   font-size: 16px;
   border-radius: 16px;
+  cursor: pointer;
 `;

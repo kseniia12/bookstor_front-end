@@ -1,7 +1,6 @@
 import React, { ChangeEvent, useState } from "react";
 import Input from "../Input/Input";
 import { StylesWrapper } from "./style";
-import { useNavigate } from "react-router-dom";
 import emailIcon from "../../img/email.png";
 import searchIcon from "../../img/hide.png";
 import userProfile from "../../img/userProfile.png";
@@ -15,30 +14,26 @@ import {
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { IGetUser, IResponsFormPassword } from "../../lib/typing";
 import Button from "../Button/Button";
-function UserProfile() {
-  let imgProfile = useAppSelector((state) => state.users.user.photo);
-  const email = useAppSelector((state) => state.users.user.email);
-  const name = useAppSelector((state) => state.users.user.fullName);
+
+const UserProfile = () => {
+  const user = useAppSelector((state) => state.users.user);
   const [isEditable, setIsEditable] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
+  const [activeForm, setActiveForm] = useState<null | string>(null);
   const token = localStorage.getItem("token");
-  const {
-    register,
-    // formState: { errors },
-    handleSubmit,
-  } = useForm<IGetUser>();
+  const { register, handleSubmit } = useForm<IGetUser>();
 
+  const dispatch = useAppDispatch();
   const {
     watch,
     register: registerPassword,
-    formState: { errors, touchedFields },
+    formState: { errors },
     handleSubmit: handleSubmitPassword,
   } = useForm<IResponsFormPassword>();
+
   const password = watch("user.newPassword");
-  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<IGetUser> = async (data) => {
-    
     await dispatch(thunkPatchUser({ user: data.user, token })).unwrap();
     setIsEditable(false);
   };
@@ -46,7 +41,13 @@ function UserProfile() {
   const onSubmitForPassword: SubmitHandler<IResponsFormPassword> = async (
     data
   ) => {
-    await dispatch(thunkPatchUserPassword({ user: data.user, token })).unwrap();
+    try {
+      await dispatch(
+        thunkPatchUserPassword({ user: data.user, token })
+      ).unwrap();
+    } catch (error) {
+      console.error("The old password was entered incorrectly", error);
+    }
   };
 
   const handleUpdateAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
@@ -59,20 +60,31 @@ function UserProfile() {
       }
     }
   };
+
   const handleEditClick = () => {
     setIsEditable(!isEditable);
-  };
-  
-  const handleEditClick1 = () => {
-    setChangePassword(!changePassword);
+    setActiveForm(isEditable ? null : "profile");
   };
 
+  const handleEditClick1 = () => {
+    setChangePassword(!changePassword);
+    setActiveForm(changePassword ? null : "password");
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (activeForm === "profile") {
+      handleSubmit(onSubmit)();
+    } else if (activeForm === "password") {
+      handleSubmitPassword(onSubmitForPassword)();
+    }
+  };
 
   return (
     <StylesWrapper isEditable={isEditable} changePassword={changePassword}>
-      <div className="icon">
-        <img src={imgProfile} alt="Logo" className="icon__profile" />
-        <label className="avatar-button">
+      <div className="avatar">
+        <img src={user.photo} alt="Logo" className="avatar__image" />
+        <label>
           <input
             type="file"
             id="avatar"
@@ -82,50 +94,53 @@ function UserProfile() {
             style={{ display: "none" }}
             onChange={handleUpdateAvatar}
           />
-          <img src={buttonPhoto} alt="Logo" className="icon__photo" />
+          <img src={buttonPhoto} alt="Logo" className="avatar__icon" />
         </label>
       </div>
-      <div className="user-profile">
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <div className="user-profile__section">
-            <div className="user-profile__header">
+      <div className="form">
+        <form onSubmit={handleFormSubmit}>
+          <div className="form__section">
+            <div className="form__header">
               <div>Personal information</div>
-              <div className="d" onClick={handleEditClick}>
+              <div className="form__editing" onClick={handleEditClick}>
                 Change information
               </div>
             </div>
             <Input
-              className="user-profile__input"
+              type="text"
+              className="form__input info"
               placeholder="Your name"
               icon={userProfile}
               register={register("user.fullName")}
-              value={name}
+              value={user.fullName}
             />
             <Input
-              className="user-profile__input"
+              type="email"
+              className="form__input info"
               icon={emailIcon}
               placeholder="Your email"
               register={register("user.email")}
-              value={email}
+              value={user.email}
             />
           </div>
-          <Button className="button" text="Confirm" />
-        </form>
-        <form onSubmit={handleSubmitPassword(onSubmitForPassword)}>
-          <div className="user-profile__section">
-            <div className="user-profile__header">
+          <div className="form__section">
+            <div className="form__header">
               <div>Password</div>
-              <div className="d" onClick={handleEditClick1}>Change password</div>
+              <div className="form__editing" onClick={handleEditClick1}>
+                Change password
+              </div>
             </div>
             <Input
-              className="user-profile1__input"
+              type="password"
+              className="form__input password"
               placeholder="Your password"
               icon={searchIcon}
               register={registerPassword("user.password")}
             />
             <div className="item">
               <Input
-                className="user-profile1__input"
+                type="password"
+                className="form__input password"
                 icon={searchIcon}
                 placeholder="New password"
                 register={registerPassword("user.newPassword")}
@@ -134,7 +149,8 @@ function UserProfile() {
             </div>
             <div className="item">
               <Input
-                className="user-profile1__input"
+                type="password"
+                className="form__input password"
                 icon={searchIcon}
                 placeholder="Password replay"
                 register={registerPassword("user.passwordReplay", {
@@ -149,11 +165,11 @@ function UserProfile() {
               )}
             </div>
           </div>
-          <Button className="button1" text="Confirm" />
+          {activeForm && <Button className="button" text="Confirm" />}
         </form>
       </div>
     </StylesWrapper>
   );
-}
+};
 
 export default UserProfile;

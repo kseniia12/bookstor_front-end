@@ -8,8 +8,7 @@ const Input: React.FC<IPropsInput> = (props) => {
       <img src={props.icon} alt="Logo" className="icon" />
       <input
         {...props.register}
-        type="text"
-        
+        type={props.type}
         placeholder={props.placeholder}
         className={props.className}
         defaultValue={props.value}

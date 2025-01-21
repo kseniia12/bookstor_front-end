@@ -6,7 +6,6 @@ import {
   IGetUser,
   IResponse,
   IResponsFormPassword,
-  IRespwwww,
   IStateUser,
   IStateUserEror,
   IUseweewer,
@@ -46,7 +45,7 @@ export const axiosPostLoginUser = async ({
 
 export const axiosUpload = async ({ photo }: IUseweewer): Promise<t> => {
   const response = await axiosDefault.post<t>(
-    constantForAxios.UPLOAD,
+    constantForAxios.UPLOAD_USER_PHOTO,
     { picture: photo },
     {
       headers: {
@@ -60,11 +59,14 @@ export const axiosUpload = async ({ photo }: IUseweewer): Promise<t> => {
 export const axiosGetUser = async ({
   token,
 }: IAxiosRes): Promise<IResponse> => {
-  const response = await axiosDefault.get<IResponse>(constantForAxios.UP, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const response = await axiosDefault.get<IResponse>(
+    constantForAxios.GET_USER,
+    {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }
+  );
   return response.data;
 };
 
@@ -89,7 +91,7 @@ export const axiosPatchUserPassword = async ({
   token,
 }: IResponsFormPassword): Promise<IStateUserEror> => {
   const response = await axiosDefault.patch<IStateUserEror>(
-    constantForAxios.PASS,
+    constantForAxios.PASSWORD_CHANGE,
     { user },
     {
       headers: {

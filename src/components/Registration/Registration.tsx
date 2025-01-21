@@ -12,13 +12,17 @@ import { thunkCreateUser } from "../../store/thunk/thunkUser";
 import { IFormInput } from "../../lib/typing";
 
 const Registration = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const {
+    watch,
     register,
     formState: { errors },
     handleSubmit,
   } = useForm<IFormInput>();
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
+
+  const password = watch("password");
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
@@ -38,40 +42,59 @@ const Registration = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="item">
             <Input
+              type="text"
+              className="item__input"
               register={register("email", {
                 required: true,
                 pattern: /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i,
               })}
-              className={`${errors.email ? "item__input-error" : "item__input"}`}
               icon={emailIcon}
               placeholder="Email"
             />
-            <div className={`${errors.email ? "item__div-error" : "item__div"}`}>
+            <div className={`item__text ${errors.email ? "error" : ""}`}>
               {errors.email ? "Email is not correct" : "Enter your email"}
             </div>
           </div>
           <div className="item">
             <Input
+              type="password"
               className="item__input"
               icon={searchIcon}
               placeholder="Password"
-              register={register("password")}
+              register={register("password", {
+                required: true,
+              })}
             />
-            <div>Enter your password</div>
+            <div className={`item__text ${errors.password ? "error" : ""}`}>
+              {errors.password
+                ? "This field is required"
+                : "Enter your password"}
+            </div>
           </div>
           <div className="item">
             <Input
+              type="password"
               className="item__input"
               icon={searchIcon}
               placeholder="Password replay"
-              register={register("passwordReplay")}
+              register={register("passwordReplay", {
+                required: "Password replay is required",
+                validate: (value) =>
+                  value === password || "Passwords do not match",
+              })}
             />
-            <div>Repeat your password without errors</div>
+            <div
+              className={`item__text ${errors.passwordReplay ? "error" : ""}`}
+            >
+              {errors.passwordReplay
+                ? errors.passwordReplay.message
+                : "Repeat your password without errors"}
+            </div>
           </div>
           <Button className="button" text="Sign Up" />
         </form>
       </div>
-      <div className="search">
+      <div>
         <img src={imgMan} alt="Logo" className="search_icon" />
       </div>
     </StylesWrapper>

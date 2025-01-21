@@ -1,30 +1,25 @@
 import styled from "styled-components";
 
-export const StylesWrapper = styled.div<{ isEditable: boolean, changePassword:boolean}>`
+export const StylesWrapper = styled.div<{
+  isEditable: boolean;
+  changePassword: boolean;
+}>`
   display: flex;
   max-width: 1280px;
   margin: 0 auto;
   padding: 60px 0px 110px 0px;
   gap: 128px;
-  .d {
-    color: ${({ theme }) => theme.colors.darkGreen};
-    text-decoration: underline;
-    cursor: pointer;
-  }
   .button {
-    display: ${({ isEditable }) => (isEditable === true ? "" : "none")};
+    margin-top: 50px;
   }
-  .button1{
-    display: ${({ changePassword }) => (changePassword === true ? "" : "none")};
-  }
-  .icon {
+  .avatar {
     position: relative;
     inline-size: 6;
-    &__profile {
+    &__image {
       width: 305px;
       height: 305px;
     }
-    &__photo {
+    &__icon {
       position: absolute;
       top: 237px;
       left: 237px;
@@ -32,7 +27,7 @@ export const StylesWrapper = styled.div<{ isEditable: boolean, changePassword:bo
       height: 48px;
     }
   }
-  .user-profile {
+  .form {
     display: flex;
     flex-direction: column;
     gap: 48px;
@@ -45,24 +40,28 @@ export const StylesWrapper = styled.div<{ isEditable: boolean, changePassword:bo
       display: flex;
       justify-content: space-between;
     }
-    &__link {
+    &__input {
+      &.info {
+        pointer-events: ${({ isEditable }) =>
+          isEditable === true ? "" : "none"};
+        background-color: ${({ theme }) => theme.colors.light};
+        opacity: ${({ isEditable }) => (isEditable === true ? "1" : "0.5")};
+      }
+      &.password {
+        pointer-events: ${({ changePassword }) =>
+          changePassword === true ? "" : "none"};
+        background-color: ${({ theme }) => theme.colors.light};
+        opacity: ${({ changePassword }) =>
+          changePassword === true ? "1" : "0.5"};
+      }
+    }
+    &__editing {
       color: ${({ theme }) => theme.colors.darkGreen};
-      font-size: 14px;
-    }
-    &__input {
-      pointer-events: ${({ isEditable }) => (isEditable === true ? "" : "none")};;
-      background-color: ${({ theme }) => theme.colors.light};
-      opacity: ${({ isEditable }) => (isEditable === true ? "1" : "0.5")};
+      text-decoration: underline;
+      cursor: pointer;
     }
   }
-  .user-profile1{
-    &__input {
-      pointer-events: ${({ changePassword }) => (changePassword === true ? "" : "none")};;
-      background-color: ${({ theme }) => theme.colors.light};
-      opacity: ${({ changePassword }) => (changePassword === true ? "1" : "0.5")};
-    }
-  }
-  .item{
+  .item {
     display: ${({ changePassword }) => (changePassword === true ? "" : "none")};
   }
 `;

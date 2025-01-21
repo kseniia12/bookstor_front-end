@@ -12,11 +12,4 @@ export const StylesWrapper = styled.div`
     width: 24px;
     height: 24px;
   }
-  /* @media (max-width: 564px) {
-    height: 47px;
-    .input {
-      height: 47px;
-      width: 100%;
-    }
-  } */
 `;

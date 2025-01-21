@@ -1,7 +1,8 @@
 export interface IPropsButton {
-  text: string;
-  className: string;
+  text?: string;
+  className?: string;
   onClick?: any;
+  form?: any;
 }
 
 export interface IPropsInput {
@@ -11,6 +12,7 @@ export interface IPropsInput {
   icon?: string;
   value?: string;
   readOnly?: boolean;
+  type: string;
 }
 
 export interface IFormInput {

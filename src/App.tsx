@@ -24,7 +24,6 @@ const App: React.FC = () => {
             path={`${constantForAxios.SIGN_UP}`}
             element={<Registration />}
           />
-
           <Route element={<PrivateRouter />}>
             <Route
               path={`${constantForAxios.HOME_PAGE}`}

@@ -12,10 +12,14 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { thunkLoginUser } from "../../store/thunk/thunkUser";
 
 const Login = () => {
-  
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { register, handleSubmit } = useForm<IFormInput>();
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<IFormInput>();
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
@@ -35,27 +39,40 @@ const Login = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="item">
             <Input
-              register={register("email")}
+              type="text"
               className="item__input"
               icon={emailIcon}
               placeholder="Email"
+              register={register("email", {
+                required: true,
+                pattern: /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i,
+              })}
             />
-            <div>Enter your email</div>
+            <div className={`item__text ${errors.email ? "error" : ""}`}>
+              {errors.email ? "Email is not correct" : "Enter your email"}
+            </div>
           </div>
           <div className="item">
             <Input
-              register={register("password")}
+              type="password"
+              register={register("password", {
+                required: true,
+              })}
               className="item__input"
               icon={searchIcon}
               placeholder="Password"
             />
-            <div>Enter your password</div>
+            <div className={`item__text ${errors.password ? "error" : ""}`}>
+              {errors.password
+                ? "This field is required"
+                : "Enter your password"}
+            </div>
           </div>
           <Button className="button" text="Log In" />
         </form>
       </div>
-      <div className="search">
-        <img src={imgMan} alt="Logo" className="search_icon" />
+      <div>
+        <img src={imgMan} alt="Logo" className="search__icon" />
       </div>
     </StylesWrapper>
   );

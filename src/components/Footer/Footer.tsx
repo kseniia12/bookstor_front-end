@@ -2,28 +2,31 @@ import React from "react";
 import { StylesWrapper } from "./style";
 import logo from "../../img/logo-light-theme.png";
 import map from "../../img/map.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <StylesWrapper>
       <div className="container">
         <div>
-          <img src={logo} alt="Logo" />
-          <div className="container_contact">
-            <div>tranthuy.nute@gmail.com</div>
-            <div>(480) 555-0103</div>
+          <Link to="/home">
+            <img src={logo} alt="Logo" />
+          </Link>
+          <div className="container__contact">
+            <a href="mailto:tranthuy.nute@gmail.com">tranthuy.nute@gmail.com</a>
+            <a href="tel:4805550103">(480) 555-0103</a>
           </div>
         </div>
-        <ol className="container_item">
-          <li>Home Page</li>
-          <li>Catalog</li>
-          <li>My Account</li>
-          <li>Cart</li>
-        </ol>
+        <div className="container__item">
+          <Link to="/home">Home Page</Link>
+          <Link to="/home">Catalog</Link>
+          <Link to="/home">My Account</Link>
+          <Link to="/home">Cart</Link>
+        </div>
         <div>
           <div>6391 Elgin St. Celina, Delaware 10299</div>
-          <div className="container_map">
-            <img className="container_map_icon" src={map} alt="Map" />
+          <div className="container__map">
+            <img className="container__icon" src={map} alt="Map" />
           </div>
         </div>
       </div>

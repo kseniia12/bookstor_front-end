@@ -3,9 +3,9 @@ const constantForAxios = {
   SIGN_UP: "/auth/sign-up",
   GET_ME: "/users/me",
   HOME_PAGE: "/home",
-  UPLOAD: "/users/upload",
-  UP: "/home/g",
-  PASS: "/users/password",
+  UPLOAD_USER_PHOTO: "/users/upload",
+  GET_USER: "/home/get",
+  PASSWORD_CHANGE: "/users/password",
 } as const;
 
 export default constantForAxios;

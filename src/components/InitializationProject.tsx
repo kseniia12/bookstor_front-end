@@ -26,7 +26,6 @@ const InitializationProject: React.FC<PropsWithChildren> = ({ children }) => {
   if (!initialization) {
     return null;
   }
-
   return <>{children}</>;
 };
 
