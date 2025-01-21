@@ -4,7 +4,7 @@ const constantForAxios = {
   GET_ME: "/users/me",
   HOME_PAGE: "/home",
   UPLOAD_USER_PHOTO: "/users/upload",
-  GET_USER: "/home/get",
+  GET_USER: "/home/me",
   PASSWORD_CHANGE: "/users/password",
 } as const;
 

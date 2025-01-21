@@ -33,7 +33,7 @@ const Header = () => {
       {user ? (
         <div className="menu">
           <div className="menu__cart">
-            <div className="menu__count">1</div>
+            <div className="menu__count">0</div>
             <Link to="/home">
               <Button className="menu__button cart" />
             </Link>

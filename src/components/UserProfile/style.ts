@@ -39,6 +39,9 @@ export const StylesWrapper = styled.div<{
     &__header {
       display: flex;
       justify-content: space-between;
+      &.password {
+        margin-top: 40px;
+      }
     }
     &__input {
       &.info {

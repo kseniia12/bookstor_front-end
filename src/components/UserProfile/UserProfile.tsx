@@ -124,7 +124,7 @@ const UserProfile = () => {
             />
           </div>
           <div className="form__section">
-            <div className="form__header">
+            <div className="form__header password">
               <div>Password</div>
               <div className="form__editing" onClick={handleEditClick1}>
                 Change password
