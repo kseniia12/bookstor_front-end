@@ -11,34 +11,40 @@ import Footer from "./components/Footer/Footer";
 import PrivateRouter from "./utils/PrivateRouter";
 import UserProfile from "./components/UserProfile/UserProfile";
 import InitializationProject from "./components/InitializationProject";
+import CatalogBooks from "./components/CatalogBooks/CatalogBooks";
+import { StylesWrapper } from "./components/StylesWrapper";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={baseTheme}>
       <GlobalStyles />
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path={`${constantForAxios.SIGN_IN}`} element={<Login />} />
-          <Route
-            path={`${constantForAxios.SIGN_UP}`}
-            element={<Registration />}
-          />
-          <Route element={<PrivateRouter />}>
-            <Route
-              path={`${constantForAxios.HOME_PAGE}`}
-              element={
-                <div className="App">
-                  <InitializationProject>
+      <InitializationProject>
+        <BrowserRouter>
+          <StylesWrapper>
+            <Header />
+            <Routes>
+              <Route path={constantForAxios.SIGN_IN} element={<Login />} />
+              <Route
+                path={constantForAxios.SIGN_UP}
+                element={<Registration />}
+              />
+              <Route
+                path={constantForAxios.CATALOG_BOOKS}
+                element={<CatalogBooks />}
+              />
+              <Route element={<PrivateRouter />}>
+                <Route
+                  path={constantForAxios.HOME_PAGE}
+                  element={
                     <UserProfile />
-                  </InitializationProject>
-                </div>
-              }
-            />
-          </Route>
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+                  }
+                />
+              </Route>
+            </Routes>
+          </StylesWrapper>
+          <Footer />
+        </BrowserRouter>
+      </InitializationProject>
     </ThemeProvider>
   );
 };

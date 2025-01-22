@@ -5,8 +5,6 @@ export const StylesWrapper = styled.div<{
   changePassword: boolean;
 }>`
   display: flex;
-  max-width: 1280px;
-  margin: 0 auto;
   padding: 60px 0px 110px 0px;
   gap: 128px;
   .button {
@@ -66,5 +64,10 @@ export const StylesWrapper = styled.div<{
   }
   .item {
     display: ${({ changePassword }) => (changePassword === true ? "" : "none")};
+    &__text {
+      &.error {
+        color: red;
+      }
+    }
   }
 `;

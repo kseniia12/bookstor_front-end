@@ -6,6 +6,7 @@ const constantForAxios = {
   UPLOAD_USER_PHOTO: "/users/upload",
   GET_USER: "/home/me",
   PASSWORD_CHANGE: "/users/password",
+  CATALOG_BOOKS: "/catalog"
 } as const;
 
 export default constantForAxios;

@@ -25,14 +25,8 @@ const Registration = () => {
   const password = watch("password");
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    try {
-      const user = await dispatch(thunkCreateUser(data)).unwrap();
-      if (user) {
-        navigate("/home");
-      }
-    } catch (error) {
-      navigate("/auth/sign-in");
-    }
+    const user = await dispatch(thunkCreateUser(data)).unwrap();
+    user ? navigate("/home") : navigate("/auth/sign-in");
   };
 
   return (

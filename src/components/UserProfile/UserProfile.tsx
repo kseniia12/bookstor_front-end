@@ -5,6 +5,7 @@ import emailIcon from "../../img/email.png";
 import searchIcon from "../../img/hide.png";
 import userProfile from "../../img/userProfile.png";
 import buttonPhoto from "../../img/button_photo.png";
+import userPhoto from "../../img/userPhoto.png";
 import { useForm, SubmitHandler } from "react-hook-form";
 import {
   thunkPatchUser,
@@ -22,6 +23,9 @@ const UserProfile = () => {
   const [activeForm, setActiveForm] = useState<null | string>(null);
   const token = localStorage.getItem("token");
   const { register, handleSubmit } = useForm<IGetUser>();
+
+  const lastSegmentPathUserPhoto = user.photo ? user.photo.split("/").pop() : null;
+  const foto = lastSegmentPathUserPhoto === "null" ? userPhoto : user.photo;
 
   const dispatch = useAppDispatch();
   const {
@@ -62,7 +66,7 @@ const UserProfile = () => {
   };
 
   const handleEditClick = () => {
-    setIsEditable(!isEditable);
+    setIsEditable(!isEditable); 
     setActiveForm(isEditable ? null : "profile");
   };
 
@@ -83,7 +87,7 @@ const UserProfile = () => {
   return (
     <StylesWrapper isEditable={isEditable} changePassword={changePassword}>
       <div className="avatar">
-        <img src={user.photo} alt="Logo" className="avatar__image" />
+        <img src={foto} alt="Logo" className="avatar__image" />
         <label>
           <input
             type="file"
@@ -143,9 +147,18 @@ const UserProfile = () => {
                 className="form__input password"
                 icon={searchIcon}
                 placeholder="New password"
-                register={registerPassword("user.newPassword")}
+                register={registerPassword("user.newPassword", {
+                  required: "This field is required",
+                })}
               />
-              <div>Enter your password</div>
+              <div
+                className={`item__text ${errors.user?.newPassword ? "error" : ""
+                  }`}
+              >
+                {errors.user?.newPassword
+                  ? errors.user.newPassword.message
+                  : "Repeat your password without errors"}
+              </div>
             </div>
             <div className="item">
               <Input
@@ -159,10 +172,14 @@ const UserProfile = () => {
                     value === password || "Passwords do not match",
                 })}
               />
-              <div>Repeat your password without errors</div>
-              {errors.user?.passwordReplay && (
-                <div>{errors.user.passwordReplay.message}</div>
-              )}
+              <div
+                className={`item__text ${errors.user?.passwordReplay ? "error" : ""
+                  }`}
+              >
+                {errors.user?.passwordReplay
+                  ? errors.user.passwordReplay.message
+                  : "Repeat your password without errors"}
+              </div>
             </div>
           </div>
           {activeForm && <Button className="button" text="Confirm" />}
