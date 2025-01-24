@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
-  thunkCreateUser,
-  thunkGetUser,
-  thunkLoginUser,
-  thunkPatchUser,
-  thunkUploadPhoto,
+  createUserThunk,
+  getUserThunk,
+  loginUserThunk,
+  patchUserThunk,
+  uploadPhotoThunk,
 } from "../thunk/thunkUser";
 import { IStateUser, IUser } from "../../lib/typing";
 
@@ -13,7 +13,7 @@ const initialState: IStateUser = {
     id: 0,
     fullName: "",
     email: "",
-    photo: "../../img/userProfile.png",
+    photo: "../../assets/userProfile.png",
   },
 };
 
@@ -24,28 +24,28 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(
-        thunkCreateUser.fulfilled,
+        createUserThunk.fulfilled,
         (state, action: PayloadAction<{ user: IUser; token: string }>) => {
           state.user = action.payload.user;
         }
       )
       .addCase(
-        thunkLoginUser.fulfilled,
+        loginUserThunk.fulfilled,
         (state, action: PayloadAction<{ user: IUser; token: string }>) => {
           state.user = action.payload.user;
         }
       )
       .addCase(
-        thunkUploadPhoto.fulfilled,
+        uploadPhotoThunk.fulfilled,
         (state, action: PayloadAction<{ photo: string }>) => {
           state.user.photo = action.payload.photo;
         }
       )
-      .addCase(thunkGetUser.fulfilled, (state, action) => {
+      .addCase(getUserThunk.fulfilled, (state, action) => {
         state.user = action.payload.user;
       })
       .addCase(
-        thunkPatchUser.fulfilled,
+        patchUserThunk.fulfilled,
         (state, action: PayloadAction<{ user: IUser }>) => {
           state.user = action.payload.user;
         }

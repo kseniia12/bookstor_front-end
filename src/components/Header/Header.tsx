@@ -1,24 +1,23 @@
 import React from "react";
-import logo from "../../img/logo-dark-theme.png";
-import search from "../../img/search.png";
+import logo from "../../assets/logo-dark-theme.png";
+import search from "../../assets/search.png";
 import { StylesWrapper } from "./style";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { Link, useNavigate } from "react-router-dom";
-import constantForAxios from "../../constants/constants";
-import cart from "../../img/Cart.png";
-import userProfile from "../../img/user_profile.png";
-import heart from "../../img/Heart.png";
+import constant from "../../constants/constants";
+import cart from "../../assets/Cart.png";
+import userProfile from "../../assets/user_profile.png";
+import heart from "../../assets/Heart.png";
 import { useAppSelector } from "../../hooks";
 
 const Header = () => {
   const navigate = useNavigate();
-  const user = useAppSelector((state) => state.users.user.email);
-
+  const user = useAppSelector((state) => state.users.user);
   const handleButtonClick = () => {
-    window.location.pathname === constantForAxios.SIGN_IN
-      ? navigate(constantForAxios.SIGN_UP)
-      : navigate(constantForAxios.SIGN_IN);
+    window.location.pathname === constant.SIGN_IN
+      ? navigate(constant.SIGN_UP)
+      : navigate(constant.SIGN_IN);
   };
 
   return (

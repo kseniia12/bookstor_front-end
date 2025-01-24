@@ -1,15 +1,16 @@
 import React from "react";
-import emailIcon from "../../img/email.png";
-import searchIcon from "../../img/hide.png";
-import imgMan from "../../img/man-with-book.png";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
+import emailIcon from "../../assets/email.png";
+import searchIcon from "../../assets/hide.png";
+import imgMan from "../../assets/man-with-book.png";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
 import { StylesWrapper } from "../Login/style";
 import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "../../hooks";
-import { thunkCreateUser } from "../../store/thunk/thunkUser";
+import { createUserThunk } from "../../store/thunk/thunkUser";
 import { IFormInput } from "../../lib/typing";
+import constant from "../../constants/constants";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -25,8 +26,8 @@ const Registration = () => {
   const password = watch("password");
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const user = await dispatch(thunkCreateUser(data)).unwrap();
-    user ? navigate("/home") : navigate("/auth/sign-in");
+    const user = await dispatch(createUserThunk(data)).unwrap();
+    user ? navigate(constant.HOME_PAGE) : navigate(constant.SIGN_IN);
   };
 
   return (

@@ -73,7 +73,6 @@ export interface IResp {
 }
 
 export interface IGetUser {
-  token: string | null;
   user: IResp;
 }
 
@@ -88,6 +87,29 @@ export interface IResponsForm {
 }
 
 export interface IResponsFormPassword {
-  token: string | null;
   user: IResponsForm;
+}
+
+export interface IBook{
+  id: string,
+  name: string,
+  priceSoft: number,
+  priceHard: number,
+  description: string,
+  cover: string,
+  countHard: number,
+  countSoft: number,
+  bestseller: boolean,
+}
+
+export interface Book{
+  [key: string]: IBook;
+}
+
+export interface IResponsBook{
+  book: Book;
+}
+
+export interface IReqBook{
+  page: number;
 }

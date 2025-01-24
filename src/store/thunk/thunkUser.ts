@@ -20,7 +20,7 @@ import {
   axiosUpload,
 } from "../../API/authApi";
 
-export const thunkCreateUser = createAsyncThunk<IAxiosResponse, IFormInput>(
+export const createUserThunk = createAsyncThunk<IAxiosResponse, IFormInput>(
   "users/createUser",
   async ({
     email,
@@ -37,7 +37,7 @@ export const thunkCreateUser = createAsyncThunk<IAxiosResponse, IFormInput>(
   }
 );
 
-export const thunkLoginUser = createAsyncThunk<IAxiosResponse, IFormInput>(
+export const loginUserThunk = createAsyncThunk<IAxiosResponse, IFormInput>(
   "users/loginUser",
   async ({ email, password }: IFormInput): Promise<IAxiosResponse> => {
     const response = await axiosPostLoginUser({
@@ -49,7 +49,7 @@ export const thunkLoginUser = createAsyncThunk<IAxiosResponse, IFormInput>(
   }
 );
 
-export const thunkUploadPhoto = createAsyncThunk<t, IUseweewer>(
+export const uploadPhotoThunk = createAsyncThunk<t, IUseweewer>(
   "users/upload",
   async ({ photo }: IUseweewer): Promise<t> => {
     const response = await axiosUpload({
@@ -59,35 +59,31 @@ export const thunkUploadPhoto = createAsyncThunk<t, IUseweewer>(
   }
 );
 
-export const thunkGetUser = createAsyncThunk<IResponse, IRouterProps>(
+export const getUserThunk = createAsyncThunk<IResponse>(
   "users/dUser",
-  async ({ token }: IRouterProps): Promise<IResponse> => {
-    const response = await axiosGetUser({
-      token,
-    });
+  async (): Promise<IResponse> => {
+    const response = await axiosGetUser();
     return response;
   }
 );
 
-export const thunkPatchUser = createAsyncThunk<IStateUser, IGetUser>(
+export const patchUserThunk = createAsyncThunk<IStateUser, IGetUser>(
   "users/getUser",
-  async ({ token, user }: IGetUser): Promise<IStateUser> => {
+  async ({ user }: IGetUser): Promise<IStateUser> => {
     const response = await axiosPatchUser({
-      token,
       user,
     });
     return response;
   }
 );
 
-export const thunkPatchUserPassword = createAsyncThunk<
+export const patchUserPasswordThunk = createAsyncThunk<
   IStateUserEror,
   IResponsFormPassword
 >(
   "users/getUserPassword",
-  async ({ token, user }: IResponsFormPassword): Promise<IStateUserEror> => {
+  async ({ user }: IResponsFormPassword): Promise<IStateUserEror> => {
     const response = await axiosPatchUserPassword({
-      token,
       user,
     });
     return response;

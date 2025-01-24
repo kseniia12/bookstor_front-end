@@ -1,15 +1,16 @@
 import React from "react";
-import emailIcon from "../../img/email.png";
-import searchIcon from "../../img/hide.png";
-import imgMan from "../../img/man-with-book.png";
+import emailIcon from "../../assets/email.png";
+import searchIcon from "../../assets/hide.png";
+import imgMan from "../../assets/man-with-book.png";
 import { useNavigate } from "react-router-dom";
-import Input from "../Input/Input";
-import Button from "../Button/Button";
+import Input from "../../components/Input/Input";
+import Button from "../../components/Button/Button";
 import { StylesWrapper } from "./style";
 import { useAppDispatch } from "../../hooks";
 import { IFormInput } from "../../lib/typing";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { thunkLoginUser } from "../../store/thunk/thunkUser";
+import { loginUserThunk } from "../../store/thunk/thunkUser";
+import constant from "../../constants/constants";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -23,12 +24,12 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
     try {
-      const user = await dispatch(thunkLoginUser(data)).unwrap();
+      const user = await dispatch(loginUserThunk(data)).unwrap();
       if (user) {
-        navigate("/home");
+        navigate(constant.HOME_PAGE)
       }
     } catch (error) {
-      navigate("/auth/sign-in");
+      navigate(constant.SIGN_IN);
     }
   };
 

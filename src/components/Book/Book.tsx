@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StylesWrapper } from "./style";
-import Rectangle from "../../img/Rectangle 1.png";
 
 import Button from "../Button/Button";
 import RatingBook from "../RatingBook/RatingBook";
+import Paginationf from "../Pagination/Pagination";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { getBookThunk } from "../../store/thunk/thunkBook";
+import { IBook } from "../../lib/typing";
 
-const Book = () => {
+interface IBookProps {
+  books: IBook
+}
+
+const Book: React.FC<IBookProps> = ({books}) => {
   const [favorites, setFavorites] = useState<boolean>(false);
-
 
   const AddOrRemoveFavorites = () => {
     setFavorites(!favorites)
@@ -17,16 +23,17 @@ const Book = () => {
     <StylesWrapper src={favorites}>
       <div className="book">
         <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
-        <img src={Rectangle} alt="Book" />
+        <img className="book__img" src={`http://localhost:4000/upload/${books.cover}`} alt="Book" />
       </div>
       <div>
-        <div className="genre">The Chronicles of Narnia</div>
+        <div className="genre">${books.name}</div>
         <div className="author">C. S. Lewis</div>
       </div>
       <div>
         <RatingBook />
-        <Button className="button" text={"USD"} />
+        <Button className="button" text={`$${books.priceHard} USD`} />
       </div>
+      {/* <Paginationf/> */}
     </StylesWrapper>
   );
 };

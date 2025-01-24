@@ -12,7 +12,6 @@ const Input: React.FC<IPropsInput> = (props) => {
         placeholder={props.placeholder}
         className={props.className}
         defaultValue={props.value}
-        disabled={props.readOnly}
       />
     </StylesWrapper>
   );

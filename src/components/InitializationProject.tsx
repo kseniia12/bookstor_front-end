@@ -1,6 +1,6 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 import { useAppDispatch } from "../hooks";
-import { thunkGetUser } from "../store/thunk/thunkUser";
+import { getUserThunk } from "../store/thunk/thunkUser";
 
 const InitializationProject: React.FC<PropsWithChildren> = ({ children }) => {
   const [initialization, setInitialization] = useState(false);
@@ -13,7 +13,7 @@ const InitializationProject: React.FC<PropsWithChildren> = ({ children }) => {
         setInitialization(true);
       }
       try {
-        await dispatch(thunkGetUser({ token }));
+        dispatch(getUserThunk());
       } catch (error) {
         console.error("Initialization failed:", error);
       } finally {

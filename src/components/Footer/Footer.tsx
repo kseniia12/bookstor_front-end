@@ -1,7 +1,7 @@
 import React from "react";
 import { StylesWrapper } from "./style";
-import logo from "../../img/logo-light-theme.png";
-import map from "../../img/map.png";
+import logo from "../../assets/logo-light-theme.png";
+import map from "../../assets/map.png";
 import { Link } from "react-router-dom";
 
 const Footer = () => {

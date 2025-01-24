@@ -1,6 +1,5 @@
-import constantForAxios from "../constants/constants";
+import constant from "../constants/constants";
 import {
-  IAxiosRes,
   IAxiosResponse,
   IFormInput,
   IGetUser,
@@ -18,14 +17,11 @@ export const axiosPostRegistrationUser = async ({
   password,
   fullName,
 }: IFormInput): Promise<IAxiosResponse> => {
-  const response = await axiosDefault.post<IAxiosResponse>(
-    constantForAxios.SIGN_UP,
-    {
-      email,
-      password,
-      fullName,
-    }
-  );
+  const response = await axiosDefault.post<IAxiosResponse>(constant.SIGN_UP, {
+    email,
+    password,
+    fullName,
+  });
   return response.data;
 };
 
@@ -33,19 +29,16 @@ export const axiosPostLoginUser = async ({
   email,
   password,
 }: IFormInput): Promise<IAxiosResponse> => {
-  const response = await axiosDefault.post<IAxiosResponse>(
-    constantForAxios.SIGN_IN,
-    {
-      email,
-      password,
-    }
-  );
+  const response = await axiosDefault.post<IAxiosResponse>(constant.SIGN_IN, {
+    email,
+    password,
+  });
   return response.data;
 };
 
 export const axiosUpload = async ({ photo }: IUseweewer): Promise<t> => {
   const response = await axiosDefault.post<t>(
-    constantForAxios.UPLOAD_USER_PHOTO,
+    constant.UPLOAD_USER_PHOTO,
     { picture: photo },
     {
       headers: {
@@ -56,48 +49,26 @@ export const axiosUpload = async ({ photo }: IUseweewer): Promise<t> => {
   return response.data;
 };
 
-export const axiosGetUser = async ({
-  token,
-}: IAxiosRes): Promise<IResponse> => {
-  const response = await axiosDefault.get<IResponse>(
-    constantForAxios.GET_USER,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+export const axiosGetUser = async (): Promise<IResponse> => {
+  const response = await axiosDefault.get<IResponse>(constant.GET_USER);
   return response.data;
 };
 
 export const axiosPatchUser = async ({
   user,
-  token,
 }: IGetUser): Promise<IStateUser> => {
-  const response = await axiosDefault.patch<IGetUser>(
-    constantForAxios.GET_ME,
-    { user },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const response = await axiosDefault.patch<IGetUser>(constant.GET_ME, {
+    user,
+  });
   return response.data;
 };
 
 export const axiosPatchUserPassword = async ({
   user,
-  token,
 }: IResponsFormPassword): Promise<IStateUserEror> => {
   const response = await axiosDefault.patch<IStateUserEror>(
-    constantForAxios.PASSWORD_CHANGE,
-    { user },
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
+    constant.PASSWORD_CHANGE,
+    { user }
   );
   return response.data;
 };
