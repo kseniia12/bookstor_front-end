@@ -22,8 +22,6 @@ const App: React.FC = () => {
       <InitializationProject>
       <BrowserRouter>
         <StylesWrapper>
-
-        
           <Header />
           <Routes>
             <Route path={constant.SIGN_IN} element={<Login />} />
@@ -39,14 +37,11 @@ const App: React.FC = () => {
               <Route
                 path={constant.HOME_PAGE}
                 element={
-                 
                     <UserProfile />
-                 
                 }
               />
             </Route>
           </Routes>
-
         </StylesWrapper>
         <Footer />
       </BrowserRouter>

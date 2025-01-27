@@ -112,4 +112,5 @@ export interface IResponsBook{
 
 export interface IReqBook{
   page: number;
+  filter: string[];
 }
