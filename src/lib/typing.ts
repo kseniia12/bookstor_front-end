@@ -110,6 +110,15 @@ export interface IResponsBook{
   book: Book;
 }
 
+interface IFilter{
+  id: number;
+  name: string;
+}
+
+export interface IResponsFilter{
+  filter: IFilter[];
+}
+
 export interface IReqBook{
   page: number;
   filter: string[];

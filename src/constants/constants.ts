@@ -8,6 +8,7 @@ const constant = {
   PASSWORD_CHANGE: "/users/password",
   CATALOG_BOOKS: "/catalog",
   GET_BOOK: "/book/pagination",
+  GET_FILTER: "/book/filter",
 } as const;
 
 export default constant;

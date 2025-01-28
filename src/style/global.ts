@@ -7,7 +7,7 @@ export default createGlobalStyle`
     padding: 0;
     border: 0;
     box-sizing: border-box;
-    ol {
+    ul, ol {
       list-style-type:  none;
     }
     a {
