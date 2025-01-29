@@ -1,33 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { useAppSelector, useMultiselect } from "../../hooks";
 import { StylesWrapper } from "./style";
-import SortByGenre from "../Genre/Genre";
-import arrowToOpenForm from "../../assets/arrowToOpenForm.png";
-import { useAppDispatch } from "../../hooks";
-import { getFilterThunk } from "../../store/thunk/thunkBook";
-import Price from "../Price/Price";
+import { useNavigate } from "react-router-dom";
 
-const Sort = () => {
-  const [open, setOpen] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
 
-  const changeStateForm = () => {
-    setOpen(!open);
-    dispatch(getFilterThunk());
+const SortByGenre = () =>{
+  const { selected, isSelected, onChange } = useMultiselect([]);
+  const navigate = useNavigate();
+  const filters = useAppSelector((state) => state.filter.filter);
+
+  const updateURL = () => {
+    const params = new URLSearchParams();
+    selected.forEach((index) =>
+      params.append("filter", (index).toString())
+    );
+    navigate(`/catalog?${params.toString()}`);
   };
 
+  useEffect(() => {
+    updateURL();
+  }, [selected]);
+
   return (
-    <StylesWrapper open={open}>
-      <div className="title-filter">Genre</div>
-      <img
-        src={arrowToOpenForm}
-        alt="Arrow to open form"
-        className="arrow"
-        onClick={changeStateForm}
-      />
-      <SortByGenre className="sort" />
-      <Price className="sort" />
-    </StylesWrapper>
+      <StylesWrapper>
+        <ul className="filter-list">
+          {filters.map((filter) => (
+            <li key={filter.id.toString()}>
+              <input
+                className="filter-list__checkbox"
+                id={filter.id.toString()}
+                type="checkbox"
+                value={filter.id}
+                checked={isSelected(filter.id.toString())}
+                onChange={onChange}
+              />
+              <label htmlFor={filter.name} className="filter-list__label">
+                {filter.name}
+              </label>
+            </li>
+          ))}
+        </ul>
+      </StylesWrapper>
   );
 };
 
-export default Sort;
+export default SortByGenre;

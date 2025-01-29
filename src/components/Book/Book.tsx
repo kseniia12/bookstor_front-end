@@ -5,7 +5,8 @@ import RatingBook from "../RatingBook/RatingBook";
 import { IBook } from "../../lib/typing";
 
 interface IBookProps {
-  books: IBook
+  books: IBook;
+  className: string;
 }
 
 const Book: React.FC<IBookProps> = ({books}) => {
