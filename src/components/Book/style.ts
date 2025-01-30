@@ -39,5 +39,6 @@ export const StylesWrapper = styled.div<{ src: boolean }>`
   }
   .author {
     color: ${({ theme }) => theme.colors.darkGrey};
+    white-space: nowrap;
   }
 `;

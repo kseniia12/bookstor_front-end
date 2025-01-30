@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useAppSelector, useMultiselect } from "../../hooks";
 import { StylesWrapper } from "./style";
 import { useNavigate } from "react-router-dom";
@@ -17,7 +17,7 @@ const SortByGenre = () =>{
     navigate(`/catalog?${params.toString()}`);
   };
 
-  useEffect(() => {
+  useMemo(() => {
     updateURL();
   }, [selected]);
 

@@ -15,8 +15,8 @@ const CatalogBooks = () => {
   const dispatch = useAppDispatch();
   const page = Number(searchParams.get("page")) || 1;
   const filter = searchParams.getAll("filter");
-
-  const data = { page: page, filter: filter };
+  const sort = searchParams.get("sort");
+  const data = { page: page, filter: filter, sort: sort };
 
   useEffect(() => {
     dispatch(getBookThunk(data));

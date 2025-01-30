@@ -15,6 +15,10 @@ const initialState: IResponsBook = {
       countHard: 0,
       countSoft: 0,
       bestseller: false,
+      author: {
+        id: 0,
+        name: ""
+      }
     },
   },
 };

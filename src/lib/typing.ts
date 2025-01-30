@@ -90,36 +90,42 @@ export interface IResponsFormPassword {
   user: IResponsForm;
 }
 
-export interface IBook{
-  id: string,
-  name: string,
-  priceSoft: number,
-  priceHard: number,
-  description: string,
-  cover: string,
-  countHard: number,
-  countSoft: number,
-  bestseller: boolean,
+export interface IBook {
+  id: string;
+  name: string;
+  priceSoft: number;
+  priceHard: number;
+  description: string;
+  cover: string;
+  countHard: number;
+  countSoft: number;
+  bestseller: boolean;
+  author: Author;
 }
 
-export interface Book{
-  [key: string]: IBook;
-}
-
-export interface IResponsBook{
-  book: Book;
-}
-
-interface IFilter{
+interface Author {
   id: number;
   name: string;
 }
 
-export interface IResponsFilter{
+export interface Book {
+  [key: string]: IBook;
+}
+
+export interface IResponsBook {
+  book: Book;
+}
+
+interface IFilter {
+  id: number;
+  name: string;
+}
+
+export interface IResponsFilter {
   filter: IFilter[];
 }
 
-export interface IReqBook{
+export interface IReqBook {
   page: number;
   filter: string[];
 }

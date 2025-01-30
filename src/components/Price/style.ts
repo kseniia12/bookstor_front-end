@@ -9,7 +9,7 @@ export const StylesWrapper = styled.div`
   width: 413px;
   height: 151px;
   border-radius: 16px;
-  .wrapper{
+  .wrapper {
     padding: 40px 17px;
   }
   .css-r64h58-MuiSlider-rail {

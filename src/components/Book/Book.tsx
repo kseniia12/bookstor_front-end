@@ -24,7 +24,7 @@ const Book: React.FC<IBookProps> = ({books}) => {
       </div>
       <div>
         <div className="genre">{books.name}</div>
-        <div className="author">C. S. Lewis</div>
+        <div className="author">{books.author.name}</div>
       </div>
       <div>
         <RatingBook />
