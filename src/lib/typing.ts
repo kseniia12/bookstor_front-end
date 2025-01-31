@@ -114,6 +114,10 @@ export interface Book {
 
 export interface IResponsBook {
   book: Book;
+  price: {
+    minValue: number;
+    maxValue: number;
+  }
 }
 
 interface IFilter {

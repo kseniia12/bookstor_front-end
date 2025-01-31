@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StylesWrapper = styled.div`
+export const StylesWrapper = styled.div<{active: boolean}>`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.light};
   top: 72px;
@@ -16,6 +16,8 @@ export const StylesWrapper = styled.div`
       width: 24px;
       height: 24px;
       border-radius: 16px;
+      background-color: ${({ active }) =>
+      active === true ? "black" : "red"};
     }
     &__label {
       padding-left: 10px;

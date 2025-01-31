@@ -6,10 +6,11 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useAppDispatch: () => AppDispatch = useDispatch;
 export const useMultiselect = (initialValue: string[]) => {
   const [selected, setSelected] = useState<string[]>(initialValue);
-
+  const [active, setActive] = useState(false)
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     const index = selected.indexOf(value);
+    setActive(!active)
     if (index > -1) {
       setSelected([...selected.slice(0, index), ...selected.slice(index + 1)]);
     } else {
@@ -21,7 +22,7 @@ export const useMultiselect = (initialValue: string[]) => {
     return selected.includes(value);
   };
 
-  return { selected, isSelected, onChange };
+  return { selected, isSelected, onChange, active };
 };
 
 

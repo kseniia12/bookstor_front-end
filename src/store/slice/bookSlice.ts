@@ -21,6 +21,10 @@ const initialState: IResponsBook = {
       }
     },
   },
+  price: {
+    minValue: 0,
+    maxValue: 0,
+  }
 };
 
 const bookSlice = createSlice({
@@ -30,6 +34,7 @@ const bookSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(getBookThunk.fulfilled, (state, action) => {
       state.book = action.payload.book;
+      state.price = action.payload.price;
     });
   },
 });

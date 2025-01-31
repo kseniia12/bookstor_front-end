@@ -12,7 +12,7 @@ const PaginationLink = () => {
         renderItem={(item) => (
           <PaginationItem
             component={Link}
-            to={`/catalog${`?page=${item.page}`}`}
+            to={`${`?page=${item.page}`}`}
             {...item}
           />
         )}

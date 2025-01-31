@@ -1,3 +1,4 @@
+
 const constant = {
   SIGN_IN: "/auth/sign-in",
   SIGN_UP: "/auth/sign-up",
@@ -6,7 +7,8 @@ const constant = {
   UPLOAD_USER_PHOTO: "/users/upload",
   GET_USER: "/home/me",
   PASSWORD_CHANGE: "/users/password",
-  CATALOG_BOOKS: "/catalog",
+  CATALOG_BOOKS: "/",
+  CATALOG: `/catalog`,
   GET_BOOK: "/book/pagination",
   GET_FILTER: "/book/filter",
 } as const;

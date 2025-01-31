@@ -11,40 +11,31 @@ import Footer from "./components/Footer/Footer";
 import PrivateRouter from "./utils/PrivateRouter";
 import UserProfile from "./pages/UserProfile/UserProfile";
 
-import CatalogBooks from "./components/CatalogBooks/CatalogBooks";
+import CatalogBooks from "./pages/CatalogBooks/CatalogBooks";
 import { StylesWrapper } from "./components/StylesWrapper";
 import InitializationProject from "./components/InitializationProject";
+import BookPage from "./pages/BookPage/BookPage";
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={baseTheme}>
       <GlobalStyles />
       <InitializationProject>
-      <BrowserRouter>
-        <StylesWrapper>
-          <Header />
-          <Routes>
-            <Route path={constant.SIGN_IN} element={<Login />} />
-            <Route
-              path={constant.SIGN_UP}
-              element={<Registration />}
-            />
-            <Route
-              path={constant.CATALOG_BOOKS}
-              element={<CatalogBooks />}
-            />
-            <Route element={<PrivateRouter />}>
-              <Route
-                path={constant.HOME_PAGE}
-                element={
-                    <UserProfile />
-                }
-              />
-            </Route>
-          </Routes>
-        </StylesWrapper>
-        <Footer />
-      </BrowserRouter>
+        <BrowserRouter>
+          <StylesWrapper>
+            <Header />
+            <Routes>
+              <Route path={constant.SIGN_IN} element={<Login />} />
+              <Route path={constant.SIGN_UP} element={<Registration />} />
+              <Route path={constant.CATALOG_BOOKS} element={<CatalogBooks />} />
+              <Route path={constant.CATALOG} element={<BookPage />} />
+              <Route element={<PrivateRouter />}>
+                <Route path={constant.HOME_PAGE} element={<UserProfile />} />
+              </Route>
+            </Routes>
+          </StylesWrapper>
+          <Footer />
+        </BrowserRouter>
       </InitializationProject>
     </ThemeProvider>
   );
