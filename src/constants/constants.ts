@@ -11,6 +11,10 @@ const constant = {
   CATALOG: `/catalog`,
   GET_BOOK: "/book/pagination",
   GET_FILTER: "/book/filter",
+  BOOK_PAGE: "/book/:id",
+  CART: "/cart",
+  GET_CART: "book/cart",
+
 } as const;
 
 export default constant;

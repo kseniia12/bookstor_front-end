@@ -15,6 +15,7 @@ import CatalogBooks from "./pages/CatalogBooks/CatalogBooks";
 import { StylesWrapper } from "./components/StylesWrapper";
 import InitializationProject from "./components/InitializationProject";
 import BookPage from "./pages/BookPage/BookPage";
+import Cart from "./pages/Cart/Cart";
 
 const App: React.FC = () => {
   return (
@@ -28,9 +29,10 @@ const App: React.FC = () => {
               <Route path={constant.SIGN_IN} element={<Login />} />
               <Route path={constant.SIGN_UP} element={<Registration />} />
               <Route path={constant.CATALOG_BOOKS} element={<CatalogBooks />} />
-              <Route path={constant.CATALOG} element={<BookPage />} />
+              <Route path={constant.BOOK_PAGE} element={<BookPage />} />
               <Route element={<PrivateRouter />}>
                 <Route path={constant.HOME_PAGE} element={<UserProfile />} />
+                <Route path={constant.CART} element={<Cart />} />
               </Route>
             </Routes>
           </StylesWrapper>

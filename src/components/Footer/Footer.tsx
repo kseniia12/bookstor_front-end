@@ -3,6 +3,7 @@ import { StylesWrapper } from "./style";
 import logo from "../../assets/logo-light-theme.png";
 import map from "../../assets/map.png";
 import { Link } from "react-router-dom";
+import constant from "../../constants/constants";
 
 const Footer = () => {
   return (
@@ -21,7 +22,7 @@ const Footer = () => {
           <Link to="/home">Home Page</Link>
           <Link to="/">Catalog</Link>
           <Link to="/home">My Account</Link>
-          <Link to="/home">Cart</Link>
+          <Link to={constant.CART}>Cart</Link>
         </div>
         <div>
           <div>6391 Elgin St. Celina, Delaware 10299</div>

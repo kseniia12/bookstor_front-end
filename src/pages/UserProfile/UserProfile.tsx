@@ -41,7 +41,6 @@ const UserProfile = () => {
   const onSubmitForPassword: SubmitHandler<IResponsFormPassword> = async (
     data
   ) => {
-    console.log("onSubmitForPassword", data)
     try {
       await dispatch(
         patchUserPasswordThunk({ user: data.user})

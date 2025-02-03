@@ -108,19 +108,25 @@ interface Author {
   name: string;
 }
 
-export interface Book {
-  [key: string]: IBook;
-}
-
 export interface IResponsBook {
-  book: Book;
+  book: { [key: string]: IBook };
   price: {
     minValue: number;
     maxValue: number;
   }
 }
 
-interface IFilter {
+export interface ICartSlice {
+  book: { [key: string]: IBook };
+  totalPrice: number;
+}
+
+export interface Price {
+  minValue: number;
+  maxValue: number;
+}
+
+export interface IFilter {
   id: number;
   name: string;
 }
@@ -132,4 +138,14 @@ export interface IResponsFilter {
 export interface IReqBook {
   page: number;
   filter: string[];
+}
+
+export interface IAddBookToCart {
+  bookId: number; 
+  count?: number;
+}
+
+export interface IGetBookToCart {
+  book: IBook[]; 
+  totalPrice: number;
 }

@@ -7,8 +7,6 @@ const SortByGenre = () => {
   const { selected, isSelected, onChange, active } = useMultiselect([]);
   const navigate = useNavigate();
   const filters = useAppSelector((state) => state.filter.filter);
-
-  console.log(active);
   const updateURL = () => {
     const params = new URLSearchParams();
     selected.forEach((index) => params.append("filter", index.toString()));

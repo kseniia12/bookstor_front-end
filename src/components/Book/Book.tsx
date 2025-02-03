@@ -4,8 +4,8 @@ import Button from "../Button/Button";
 import RatingBook from "../RatingBook/RatingBook";
 import { IBook } from "../../lib/typing";
 import { useNavigate } from "react-router-dom";
-import BookPage from "../../pages/BookPage/BookPage";
-import constant from "../../constants/constants";
+import { useAppDispatch } from "../../hooks";
+import { addBookToCartThunk } from "../../store/thunk/thunkBook";
 
 export interface IBookProps {
   books: IBook;
@@ -13,6 +13,8 @@ export interface IBookProps {
 }
 
 const Book: React.FC<IBookProps> = ({ books }) => {
+  const dispatch = useAppDispatch()
+  const bookId = Number(books.id)
   const [favorites, setFavorites] = useState<boolean>(false);
   const navigate = useNavigate();
   const AddOrRemoveFavorites = () => {
@@ -20,7 +22,11 @@ const Book: React.FC<IBookProps> = ({ books }) => {
   };
 
   const sendBookId = () => {
-    return <BookPage/>
+    navigate(`/book/${books.id}`);
+  };
+
+  const addBookToCart = () => {
+    dispatch(addBookToCartThunk({bookId}))
   };
 
   return (
@@ -39,7 +45,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
       </div>
       <div>
         <RatingBook />
-        <Button className="button" text={`$${books.priceHard} USD`} />
+        <Button className="button" text={`$${books.priceHard} USD`} onClick={addBookToCart}/>
       </div>
     </StylesWrapper>
   );

@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { IBook, ICartSlice, IGetBookToCart } from "../../lib/typing";
+import { getBookToCartThunk } from "../thunk/thunkBook";
+import { count } from "console";
 
-import { IBook, IGetBookToCart, IResponsBook } from "../../lib/typing";
-import { getBookThunk, getBookToCartThunk } from "../thunk/thunkBook";
-
-const initialState: IResponsBook = {
+const initialState: ICartSlice = {
   book: {
     key: {
       id: "",
@@ -21,25 +21,24 @@ const initialState: IResponsBook = {
       }
     },
   },
-  price: {
-    minValue: 0,
-    maxValue: 0,
-  }
+  totalPrice: 0,
+ 
 };
 
-const bookSlice = createSlice({
-  name: "book",
+const cartSlice = createSlice({
+  name: "cart",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getBookThunk.fulfilled, (state, action: PayloadAction<IResponsBook>) => {
+    builder.addCase(getBookToCartThunk.fulfilled, (state, action) => {
+      console.log("dsds", action.payload.book)
       if (Array.isArray(action.payload.book)) {
-        const booksObject = action.payload.book.reduce((acc: { [key: string]: IBook }, book: IBook) => {
+        const booksObject = action.payload.book.reduce((acc, book) => {
           acc[book.id] = book; 
           return acc;
         }, {} as Record<string, IBook>);
         state.book = booksObject; 
-        state.price = action.payload.price; 
+        state.totalPrice = action.payload.totalPrice
       } else {
         console.error("Это не массив");
       }
@@ -48,4 +47,4 @@ const bookSlice = createSlice({
   },
 );
 
-export default bookSlice.reducer;
+export default cartSlice.reducer;
