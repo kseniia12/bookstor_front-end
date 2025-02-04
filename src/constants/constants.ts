@@ -14,6 +14,7 @@ const constant = {
   BOOK_PAGE: "/book/:id",
   CART: "/cart",
   GET_CART: "book/cart",
+  DELETE_BOOK_FROM_CART: "/cart/delete",
 
 } as const;
 

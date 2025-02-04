@@ -16,7 +16,7 @@ const BookPage = () => {
     return <div>Book not found</div>;
   }
   const bookId = Number(id)
-  const count = 6;
+
   const book: IBook | undefined = books[id];
   if (!book) {
     return <div>Loading...</div>;
@@ -27,7 +27,7 @@ const BookPage = () => {
   };
 
   const addBookToCart = () => {
-    dispatch(addBookToCartThunk({bookId, count}))
+    dispatch(addBookToCartThunk({bookId}))
   };
 
   return (

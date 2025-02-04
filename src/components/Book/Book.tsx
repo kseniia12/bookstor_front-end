@@ -16,7 +16,9 @@ const Book: React.FC<IBookProps> = ({ books }) => {
   const dispatch = useAppDispatch()
   const bookId = Number(books.id)
   const [favorites, setFavorites] = useState<boolean>(false);
+  const [textButton, setTextButton] = useState(`$${books.priceHard} USD`);
   const navigate = useNavigate();
+  
   const AddOrRemoveFavorites = () => {
     setFavorites(!favorites);
   };
@@ -27,6 +29,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
 
   const addBookToCart = () => {
     dispatch(addBookToCartThunk({bookId}))
+    setTextButton('Added to cart')
   };
 
   return (
@@ -45,7 +48,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
       </div>
       <div>
         <RatingBook />
-        <Button className="button" text={`$${books.priceHard} USD`} onClick={addBookToCart}/>
+        <Button className="button" text={textButton} onClick={addBookToCart}/>
       </div>
     </StylesWrapper>
   );

@@ -14,6 +14,7 @@ import { useAppSelector } from "../../hooks";
 const Header = () => {
   const navigate = useNavigate();
   const user = useAppSelector((state) => state.users.user);
+  const countBookWithCart = useAppSelector((state) => state.cart.book)
   const handleButtonClick = () => {
     window.location.pathname === constant.SIGN_IN
       ? navigate(constant.SIGN_UP)
@@ -32,8 +33,8 @@ const Header = () => {
       {user ? (
         <div className="menu">
           <div className="menu__cart">
-            <div className="menu__count">0</div>
-            <Link to="/home">
+            <div className="menu__count">{Object.keys(countBookWithCart).length}</div>
+            <Link to={constant.CART}>
               <Button className="menu__button cart" />
             </Link>
           </div>

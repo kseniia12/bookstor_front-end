@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { axiosAddBookToCart, axiosGetBook, axiosGetBookToCart, axiosGetFilter } from "../../API/bookApi";
-import { IAddBookToCart, IGetBookToCart, IReqBook, IResponsBook, IResponsFilter } from "../../lib/typing";
+import { axiosAddBookToCart, axiosChangeCountBooks, axiosDeleteBookFromCart, axiosGetBook, axiosGetBookToCart, axiosGetFilter } from "../../API/bookApi";
+import { IAddBookToCart, IDeleteBookToCart, IGetBookToCart, IReqBook, IReqDeleteBookToCart, IResponsBook, IResponsFilter } from "../../lib/typing";
 
 export const getBookThunk = createAsyncThunk<IResponsBook, IReqBook>(
   "book/dBook",
@@ -26,10 +26,26 @@ export const addBookToCartThunk = createAsyncThunk<IResponsFilter, IAddBookToCar
   }
 );
 
+export const changeCountBooksThunk = createAsyncThunk<IResponsFilter, IAddBookToCart>(
+  "changeCountBooks/dBook",
+  async (bookId: IAddBookToCart): Promise<IResponsFilter> => {
+    const response = await axiosChangeCountBooks(bookId);
+    return response;
+  }
+);
+
 export const getBookToCartThunk = createAsyncThunk<IGetBookToCart>(
   "getBookToCartThunk/dBook",
   async (): Promise<IGetBookToCart> => {
     const response = await axiosGetBookToCart();
+    return response;
+  }
+);
+
+export const deleteBookToCartThunk = createAsyncThunk<IDeleteBookToCart, IReqDeleteBookToCart>(
+  "deleteBookToCartThunk/dBook",
+async (bookId: IReqDeleteBookToCart): Promise<IDeleteBookToCart> => {
+    const response = await axiosDeleteBookFromCart(bookId);
     return response;
   }
 );

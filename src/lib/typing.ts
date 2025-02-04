@@ -149,3 +149,11 @@ export interface IGetBookToCart {
   book: IBook[]; 
   totalPrice: number;
 }
+
+export interface IDeleteBookToCart {
+  status: string;
+}
+
+export interface IReqDeleteBookToCart {
+  id: number;
+}

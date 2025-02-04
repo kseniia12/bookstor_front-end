@@ -1,7 +1,7 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-import { IBook, IGetBookToCart, IResponsBook } from "../../lib/typing";
-import { getBookThunk, getBookToCartThunk } from "../thunk/thunkBook";
+import { IResponsBook } from "../../lib/typing";
+import { getBookThunk } from "../thunk/thunkBook";
 
 const initialState: IResponsBook = {
   book: {
@@ -32,12 +32,12 @@ const bookSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(getBookThunk.fulfilled, (state, action: PayloadAction<IResponsBook>) => {
+    builder.addCase(getBookThunk.fulfilled, (state, action) => {
       if (Array.isArray(action.payload.book)) {
-        const booksObject = action.payload.book.reduce((acc: { [key: string]: IBook }, book: IBook) => {
+        const booksObject = action.payload.book.reduce((acc, book) => {
           acc[book.id] = book; 
           return acc;
-        }, {} as Record<string, IBook>);
+        }, {});
         state.book = booksObject; 
         state.price = action.payload.price; 
       } else {
