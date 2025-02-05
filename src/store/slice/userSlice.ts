@@ -7,6 +7,7 @@ import {
   uploadPhotoThunk,
 } from "../thunk/thunkUser";
 import { IStateUser, IUser } from "../../lib/typing";
+import { rateBookThunk } from "../thunk/thunkBook";
 
 const initialState: IStateUser = {
   user: {
@@ -15,6 +16,10 @@ const initialState: IStateUser = {
     email: "",
     photo: "../../assets/userProfile.png",
   },
+  ratingBook: {
+    bookId: 0,
+    rate: 0
+  }
 };
 
 const userSlice = createSlice({
@@ -49,7 +54,14 @@ const userSlice = createSlice({
         (state, action: PayloadAction<{ user: IUser }>) => {
           state.user = action.payload.user;
         }
+      )
+      .addCase(
+        rateBookThunk.fulfilled,
+        (state, action) => {
+          state.ratingBook = action.payload;
+        }
       );
+      
   },
 });
 

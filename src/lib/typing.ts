@@ -49,6 +49,11 @@ export interface t {
 
 export interface IStateUser {
   user: IUser;
+  ratingBook: IRateBook
+}
+
+export interface IPatchUser {
+  user: IUser;
 }
 
 export interface IStateUserEror {
@@ -116,6 +121,12 @@ export interface IResponsBook {
   }
 }
 
+
+export interface IResponsRecommendations {
+  book: { [key: string]: IBook };
+}
+
+
 export interface ICartSlice {
   book: { [key: string]: IBook };
   totalPrice: number;
@@ -136,8 +147,8 @@ export interface IResponsFilter {
 }
 
 export interface IReqBook {
-  page: number;
-  filter: string[];
+  page?: number;
+  filter?: string[];
 }
 
 export interface IAddBookToCart {
@@ -156,4 +167,13 @@ export interface IDeleteBookToCart {
 
 export interface IReqDeleteBookToCart {
   id: number;
+}
+
+export interface IGenRecommendations {
+  bookId: number;
+}
+
+export interface IRateBook {
+  bookId: number;
+  rate: number;
 }

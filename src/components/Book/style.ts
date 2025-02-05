@@ -21,13 +21,13 @@ export const StylesWrapper = styled.div<{ src: boolean }>`
       position: absolute;
       top: 20px;
       left: 20px;
-      background-image: url(${({ src }) => (src ? heartSave : heartNoSave)});
+      background-image: url(${({ src }) => (src ? heartNoSave : heartSave )});
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 50%;
       padding: 11px;
       background-color: ${({ theme }) => theme.colors.darkBlue};
-      opacity: ${({ src }) => (src === true ? "0.5" : "1")};
+      opacity: ${({ src }) => (src === true ? "1" : "0.5")};
       width: 48px;
       height: 48px;
       background-size: 26px;

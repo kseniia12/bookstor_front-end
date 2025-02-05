@@ -10,6 +10,7 @@ import cart from "../../assets/Cart.png";
 import userProfile from "../../assets/user_profile.png";
 import heart from "../../assets/Heart.png";
 import { useAppSelector } from "../../hooks";
+import { compileFunction } from "vm";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Header = () => {
   return (
     <StylesWrapper src={{ cart, userProfile, heart }}>
       <div className="logo">
-        <Link to="/home">
+        <Link to="/">
           <img src={logo} alt="Logo" />
         </Link>
         <div>Catalog</div>
@@ -38,10 +39,10 @@ const Header = () => {
               <Button className="menu__button cart" />
             </Link>
           </div>
-          <Link to="/home">
+          <Link to={constant.HOME_PAGE}>
             <Button className="menu__button user" />
           </Link>
-          <Link to="/home">
+          <Link to={constant.FAVORITES}>
             <Button className="menu__button heart" />
           </Link>
         </div>

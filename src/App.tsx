@@ -16,6 +16,7 @@ import { StylesWrapper } from "./components/StylesWrapper";
 import InitializationProject from "./components/InitializationProject";
 import BookPage from "./pages/BookPage/BookPage";
 import Cart from "./pages/Cart/Cart";
+import Favorites from "./pages/Favorites/Favorites";
 
 const App: React.FC = () => {
   return (
@@ -33,6 +34,7 @@ const App: React.FC = () => {
               <Route element={<PrivateRouter />}>
                 <Route path={constant.HOME_PAGE} element={<UserProfile />} />
                 <Route path={constant.CART} element={<Cart />} />
+                <Route path={constant.FAVORITES} element={<Favorites />} />
               </Route>
             </Routes>
           </StylesWrapper>

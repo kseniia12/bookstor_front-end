@@ -10,7 +10,7 @@ const Footer = () => {
     <StylesWrapper>
       <div className="container">
         <div>
-          <Link to="/home">
+          <Link to="/users">
             <img src={logo} alt="Logo" />
           </Link>
           <div className="container__contact">
@@ -19,9 +19,9 @@ const Footer = () => {
           </div>
         </div>
         <div className="container__item">
-          <Link to="/home">Home Page</Link>
+          <Link to="/users">Home Page</Link>
           <Link to="/">Catalog</Link>
-          <Link to="/home">My Account</Link>
+          <Link to="/users">My Account</Link>
           <Link to={constant.CART}>Cart</Link>
         </div>
         <div>

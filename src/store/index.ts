@@ -3,13 +3,17 @@ import userSlice from "./slice/userSlice";
 import bookSlice from "./slice/bookSlice";
 import filterSlice from "./slice/filterSlice";
 import cartSlice from "./slice/cartSlice";
+import recommendationsSlice from "./slice/recommendationsSlice";
+import favoritesSlice from "./slice/favoritesSlice";
 
 const store = configureStore({
   reducer: {
     users: userSlice,
     book: bookSlice,
     filter: filterSlice,
-    cart: cartSlice
+    cart: cartSlice,
+    recommendation: recommendationsSlice,
+    favorites: favoritesSlice
   },
 });
 

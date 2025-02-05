@@ -1,9 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IBook, ICartSlice, IGetBookToCart } from "../../lib/typing";
-import { addBookToCartThunk, getBookToCartThunk } from "../thunk/thunkBook";
-import { count } from "console";
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState: ICartSlice = {
+import { IResponsRecommendations } from "../../lib/typing";
+import { addBookToFavoritesThunk, getBookToFavoritesThunk } from "../thunk/thunkBook";
+
+
+const initialState: IResponsRecommendations = {
   book: {
     key: {
       id: "",
@@ -21,35 +22,31 @@ const initialState: ICartSlice = {
       }
     },
   },
-  totalPrice: 0,
- 
 };
 
-const cartSlice = createSlice({
-  name: "cart",
+const favoritesSlice = createSlice({
+  name: "favorites",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(addBookToCartThunk.fulfilled, (state, action) => {
+    builder.addCase(addBookToFavoritesThunk.fulfilled, (state, action) => {
       if (Array.isArray(action.payload.book)) {
         const booksObject = action.payload.book.reduce((acc, book) => {
           acc[book.id] = book; 
           return acc;
-        }, {} as Record<string, IBook>);
+        }, {});
         state.book = booksObject; 
-        state.totalPrice = action.payload.totalPrice
       } else {
         console.error("Это не массив");
       }
     });
-    builder.addCase(getBookToCartThunk.fulfilled, (state, action) => {
+    builder.addCase(getBookToFavoritesThunk.fulfilled, (state, action) => {
       if (Array.isArray(action.payload.book)) {
         const booksObject = action.payload.book.reduce((acc, book) => {
           acc[book.id] = book; 
           return acc;
-        }, {} as Record<string, IBook>);
+        }, {});
         state.book = booksObject; 
-        state.totalPrice = action.payload.totalPrice
       } else {
         console.error("Это не массив");
       }
@@ -58,4 +55,4 @@ const cartSlice = createSlice({
   },
 );
 
-export default cartSlice.reducer;
+export default favoritesSlice.reducer;

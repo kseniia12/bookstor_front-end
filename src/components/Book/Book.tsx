@@ -5,7 +5,7 @@ import RatingBook from "../RatingBook/RatingBook";
 import { IBook } from "../../lib/typing";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch } from "../../hooks";
-import { addBookToCartThunk } from "../../store/thunk/thunkBook";
+import { addBookToCartThunk, addBookToFavoritesThunk } from "../../store/thunk/thunkBook";
 
 export interface IBookProps {
   books: IBook;
@@ -21,6 +21,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
   
   const AddOrRemoveFavorites = () => {
     setFavorites(!favorites);
+    dispatch(addBookToFavoritesThunk({bookId}))
   };
 
   const sendBookId = () => {
@@ -34,7 +35,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
 
   return (
     <StylesWrapper src={favorites}>
-      <div className="book" onClick={sendBookId}>
+      <div className="book">
         <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
         <img
           className="book__img"
@@ -42,12 +43,12 @@ const Book: React.FC<IBookProps> = ({ books }) => {
           alt="Book"
         />
       </div>
-      <div>
+      <div onClick={sendBookId}>
         <div className="genre">{books.name}</div>
         <div className="author">{books.author.name}</div>
       </div>
       <div>
-        <RatingBook />
+        <RatingBook bookId={Number(books.id)}/>
         <Button className="button" text={textButton} onClick={addBookToCart}/>
       </div>
     </StylesWrapper>

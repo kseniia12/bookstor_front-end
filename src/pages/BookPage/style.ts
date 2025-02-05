@@ -1,54 +1,16 @@
 import styled from "styled-components";
-import heartSave from "../../assets/Heart.png";
-import heartNoSave from "../../assets/HeartNotSave.png";
-export const StylesWrapper = styled.div<{ src: boolean }>`
-  display: flex;
-  gap: 128px;
-  padding-top: 60px;
-  padding-bottom: 110px;
-  .book {
-    position: relative;
-    border-radius: 16px;
-    &__img {
-      width: 552px;
-      height: 779px;
-    }
-    &__favorites {
-      position: absolute;
-      top: 30px;
-      right: 30px;
-      background-image: url(${({ src }) => (src ? heartSave : heartNoSave)});
-      background-position: center;
-      background-repeat: no-repeat;
-      border-radius: 50%;
-      padding: 11px;
-      background-color: ${({ theme }) => theme.colors.darkBlue};
-      opacity: ${({ src }) => (src === true ? "0.5" : "1")};
-      width: 48px;
-      height: 48px;
-      background-size: 26px;
-    }
-  }
-  .title {
+
+export const StylesWrapper = styled.div`
+.recommendations{
+  padding-top: 108px;
+  padding-bottom: 150px;
+  &__title{
     font-size: 40px;
+    padding-bottom: 50px;
   }
-  .author {
-    font-size: 24px;
-    padding-bottom: 30px;
-  }
-  .description {
-    font-size: 24px;
-    padding-top: 30px;
-    &__text {
-      padding-top: 10px;
-      padding-bottom: 74px;
-    }
-  }
-  .button {
+  &__books{
     display: flex;
-    gap: 82px;
-    &__title {
-      padding-bottom: 14px;
-    }
+    gap: 20px;
   }
+}
 `;

@@ -3,6 +3,7 @@ import {
   IAxiosResponse,
   IFormInput,
   IGetUser,
+  IPatchUser,
   IResponse,
   IResponsFormPassword,
   IStateUser,
@@ -56,7 +57,7 @@ export const axiosGetUser = async (): Promise<IResponse> => {
 
 export const axiosPatchUser = async ({
   user,
-}: IGetUser): Promise<IStateUser> => {
+}: IGetUser): Promise<IPatchUser> => {
   const response = await axiosDefault.patch<IGetUser>(constant.GET_ME, {
     user,
   });

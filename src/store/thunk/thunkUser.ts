@@ -3,6 +3,7 @@ import {
   IAxiosResponse,
   IFormInput,
   IGetUser,
+  IPatchUser,
   IResponse,
   IResponsFormPassword,
   IRouterProps,
@@ -67,9 +68,9 @@ export const getUserThunk = createAsyncThunk<IResponse>(
   }
 );
 
-export const patchUserThunk = createAsyncThunk<IStateUser, IGetUser>(
+export const patchUserThunk = createAsyncThunk<IPatchUser, IGetUser>(
   "users/getUser",
-  async ({ user }: IGetUser): Promise<IStateUser> => {
+  async ({ user }: IGetUser): Promise<IPatchUser> => {
     const response = await axiosPatchUser({
       user,
     });
