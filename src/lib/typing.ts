@@ -22,6 +22,10 @@ export interface IFormInput {
   fullName?: string;
 }
 
+export interface IFormComments {
+  comment: string;
+}
+
 export interface IAxiosResponse {
   token: string;
   user: { id: number; fullName: string; email: string; photo?: string };
@@ -49,7 +53,7 @@ export interface t {
 
 export interface IStateUser {
   user: IUser;
-  ratingBook: IRateBook
+  ratingBook: IRateBook;
 }
 
 export interface IPatchUser {
@@ -106,6 +110,7 @@ export interface IBook {
   countSoft: number;
   bestseller: boolean;
   author: Author;
+  averageRating: number;
 }
 
 interface Author {
@@ -118,14 +123,12 @@ export interface IResponsBook {
   price: {
     minValue: number;
     maxValue: number;
-  }
+  };
 }
-
 
 export interface IResponsRecommendations {
   book: { [key: string]: IBook };
 }
-
 
 export interface ICartSlice {
   book: { [key: string]: IBook };
@@ -152,12 +155,12 @@ export interface IReqBook {
 }
 
 export interface IAddBookToCart {
-  bookId: number; 
+  bookId: number;
   count?: number;
 }
 
 export interface IGetBookToCart {
-  book: IBook[]; 
+  book: IBook[];
   totalPrice: number;
 }
 
@@ -176,4 +179,23 @@ export interface IGenRecommendations {
 export interface IRateBook {
   bookId: number;
   rate: number;
+}
+
+export interface IPropsComment {
+  comment: string;
+  date: object;
+  bookId: number
+}
+
+export interface IResComment {
+
+  bookId: number,
+  comment: string,
+  date: string,
+  user: { fullName: string, photo: string }
+
+}
+
+export interface CommentsState {
+  comments: IResComment[];
 }

@@ -6,6 +6,9 @@ import { useParams } from "react-router-dom";
 import Book from "../../components/Book/Book";
 import { StylesWrapper } from "./style";
 
+import FormForComments from "../../components/FormForComments/FormForComments";
+import Comments from "../../components/Comments/Comments";
+
 const BookPage = () => {
   const dispatch = useAppDispatch();
   const books = useAppSelector((state) => state.recommendation.book);
@@ -17,6 +20,8 @@ const BookPage = () => {
   return (
     <StylesWrapper>
       <BookDescription />
+      <Comments />
+      <FormForComments bookId={bookId}/>
       <div className="recommendations">
         <div className="recommendations__title">Recommendations</div>
         <div className="recommendations__books">

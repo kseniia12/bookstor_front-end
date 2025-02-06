@@ -5,6 +5,8 @@ import filterSlice from "./slice/filterSlice";
 import cartSlice from "./slice/cartSlice";
 import recommendationsSlice from "./slice/recommendationsSlice";
 import favoritesSlice from "./slice/favoritesSlice";
+import commentsSlice from "./slice/commentsSlice";
+
 
 const store = configureStore({
   reducer: {
@@ -13,7 +15,8 @@ const store = configureStore({
     filter: filterSlice,
     cart: cartSlice,
     recommendation: recommendationsSlice,
-    favorites: favoritesSlice
+    favorites: favoritesSlice,
+    comments: commentsSlice
   },
 });
 

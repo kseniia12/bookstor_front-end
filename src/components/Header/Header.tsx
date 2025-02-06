@@ -28,7 +28,7 @@ const Header = () => {
         <Link to="/">
           <img src={logo} alt="Logo" />
         </Link>
-        <div>Catalog</div>
+        <Link to="/">Catalog</Link>
       </div>
       <Input className="input" icon={search} placeholder="Search" type="text" />
       {user ? (

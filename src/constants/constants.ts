@@ -15,10 +15,11 @@ const constant = {
   CART: "/cart",
   GET_CART: "/book/cart",
   ADD_FAVORITES: "/favorites/add",
+  ADD_COMMENT: "/book/comment",
   DELETE_BOOK_FROM_CART: "/cart/delete",
   GET_RECOMMENDATIONS: "/book/recommendations",
   RATE_BOOK: "/book/rating",
-  FAVORITES: "favorites",
+  FAVORITES: "/favorites",
 
 } as const;
 

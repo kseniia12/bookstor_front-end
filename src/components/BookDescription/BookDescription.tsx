@@ -3,13 +3,14 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useParams } from "react-router-dom";
 import { IBook } from "../../lib/typing";
 
-import RatingBook from "../../components/RatingBook/RatingBook";
+
 import Button from "../../components/Button/Button";
 import {
   addBookToCartThunk,
   getBookThunk,
 } from "../../store/thunk/thunkBook";
 import { StylesWrapper } from "./style";
+import RatingBookForUser from "../RatingBookForUser/RatingBookForUser";
 
 const BookDescription = () => {
   const dispatch = useAppDispatch();
@@ -56,7 +57,7 @@ const BookDescription = () => {
       <div>
         <p className="title">{book.name}</p>
         <p className="author">{book.author.name}</p>
-        <RatingBook bookId={Number(book.id)} />
+        <RatingBookForUser bookId={Number(book.id)} />
         <p className="description">Description</p>
         <p className="description__text">{book.description}</p>
         <div className="button">

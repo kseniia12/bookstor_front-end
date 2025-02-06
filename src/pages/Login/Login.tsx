@@ -26,7 +26,7 @@ const Login = () => {
     try {
       const user = await dispatch(loginUserThunk(data)).unwrap();
       if (user) {
-        navigate(constant.HOME_PAGE)
+        navigate(constant.CATALOG_BOOKS)
       }
     } catch (error) {
       navigate(constant.SIGN_IN);

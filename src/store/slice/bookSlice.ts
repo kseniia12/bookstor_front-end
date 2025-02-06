@@ -15,6 +15,7 @@ const initialState: IResponsBook = {
       countHard: 0,
       countSoft: 0,
       bestseller: false,
+      averageRating: 0,
       author: {
         id: 0,
         name: ""

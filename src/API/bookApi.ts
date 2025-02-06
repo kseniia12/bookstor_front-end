@@ -1,5 +1,5 @@
 import constant from "../constants/constants";
-import { IAddBookToCart, IBook, IDeleteBookToCart, IGenRecommendations, IGetBookToCart, IRateBook, IReqBook, IReqDeleteBookToCart, IResponsBook, IResponsFilter, IResponsRecommendations } from "../lib/typing";
+import { IAddBookToCart, IBook, IDeleteBookToCart, IGenRecommendations, IGetBookToCart, IPropsComment, IRateBook, IReqBook, IReqDeleteBookToCart, IResComment, IResponsBook, IResponsFilter, IResponsRecommendations } from "../lib/typing";
 import { axiosDefault } from "./axiosDefault";
 
 export const axiosGetBook = async (data: IReqBook): Promise<IResponsBook> => {
@@ -49,12 +49,17 @@ export const axiosGetReccomendationsBook = async (data: IGenRecommendations): Pr
 };
 
 export const axiosRateBook = async (data: IRateBook): Promise<IRateBook> => {
-  console.log(data)
+
   const response = await axiosDefault.patch<IRateBook>(constant.RATE_BOOK, data);
   return response.data;
 };
 
 export const axiosGetBookToFavorites = async (): Promise<IResponsRecommendations> => {
   const response = await axiosDefault.get<IResponsRecommendations>(constant.ADD_FAVORITES);
+  return response.data;
+};
+
+export const axiosaddCommentBook = async (data: IPropsComment): Promise<IResComment> => {
+  const response = await axiosDefault.post<IResComment>(constant.ADD_COMMENT, data);
   return response.data;
 };

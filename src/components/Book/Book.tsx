@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { StylesWrapper } from "./style";
 import Button from "../Button/Button";
-import RatingBook from "../RatingBook/RatingBook";
+
 import { IBook } from "../../lib/typing";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../hooks";
-import { addBookToCartThunk, addBookToFavoritesThunk } from "../../store/thunk/thunkBook";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import {
+  addBookToCartThunk,
+  addBookToFavoritesThunk,
+} from "../../store/thunk/thunkBook";
+import { Rating } from "@mui/material";
 
 export interface IBookProps {
   books: IBook;
@@ -13,15 +17,16 @@ export interface IBookProps {
 }
 
 const Book: React.FC<IBookProps> = ({ books }) => {
-  const dispatch = useAppDispatch()
-  const bookId = Number(books.id)
+  const cart = useAppSelector((state) => state.cart.book);
+  const dispatch = useAppDispatch();
+  const bookId = Number(books.id);
   const [favorites, setFavorites] = useState<boolean>(false);
   const [textButton, setTextButton] = useState(`$${books.priceHard} USD`);
   const navigate = useNavigate();
   
   const AddOrRemoveFavorites = () => {
     setFavorites(!favorites);
-    dispatch(addBookToFavoritesThunk({bookId}))
+    dispatch(addBookToFavoritesThunk({ bookId }));
   };
 
   const sendBookId = () => {
@@ -29,8 +34,8 @@ const Book: React.FC<IBookProps> = ({ books }) => {
   };
 
   const addBookToCart = () => {
-    dispatch(addBookToCartThunk({bookId}))
-    setTextButton('Added to cart')
+    dispatch(addBookToCartThunk({ bookId }));
+    setTextButton("Added to cart");
   };
 
   return (
@@ -48,8 +53,15 @@ const Book: React.FC<IBookProps> = ({ books }) => {
         <div className="author">{books.author.name}</div>
       </div>
       <div>
-        <RatingBook bookId={Number(books.id)}/>
-        <Button className="button" text={textButton} onClick={addBookToCart}/>
+        <div>
+          <Rating
+            className="simple-controlled"
+            value={books.averageRating}
+            readOnly
+          />
+        </div>
+
+        <Button className="button" text={textButton} onClick={addBookToCart} />
       </div>
     </StylesWrapper>
   );
