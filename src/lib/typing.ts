@@ -188,8 +188,6 @@ export interface IPropsComment {
 }
 
 export interface IResComment {
-
-  bookId: number,
   comment: string,
   date: string,
   user: { fullName: string, photo: string }

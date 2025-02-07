@@ -22,7 +22,7 @@ const BookPage = () => {
   return (
     <StylesWrapper>
       <BookDescription />
-      <Comments />
+      <Comments bookId={bookId}/>
       {user.id !== 0 ? <FormForComments bookId={bookId}/> : ""}
       <Authorization/>
       <div className="recommendations">

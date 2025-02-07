@@ -8,6 +8,7 @@ import {
   axiosGetBook,
   axiosGetBookToCart,
   axiosGetBookToFavorites,
+  axiosGetComment,
   axiosGetFilter,
   axiosGetReccomendationsBook,
   axiosRateBook,
@@ -73,6 +74,7 @@ export const changeCountBooksThunk = createAsyncThunk<
   "changeCountBooks/dBook",
   async (bookId: IAddBookToCart): Promise<IResponsFilter> => {
     const response = await axiosChangeCountBooks(bookId);
+    console.log(response)
     return response;
   }
 );
@@ -128,6 +130,18 @@ export const addCommentBookThunk = createAsyncThunk<IResComment, IPropsComment>(
   "comments/addCommentBook",
   async (data: IPropsComment): Promise<IResComment> => {
     const response = await axiosaddCommentBook(data);
+    console.log(response)
+    return response;
+  }
+);
+
+export const getCommentBookThunk = createAsyncThunk<
+IResComment[],
+  IGenRecommendations
+>(
+  "getComment/dBook",
+  async (bookId: IGenRecommendations): Promise<IResComment[]> => {
+    const response = await axiosGetComment(bookId);
     console.log(response)
     return response;
   }

@@ -49,7 +49,6 @@ export const axiosGetReccomendationsBook = async (data: IGenRecommendations): Pr
 };
 
 export const axiosRateBook = async (data: IRateBook): Promise<IRateBook> => {
-
   const response = await axiosDefault.patch<IRateBook>(constant.RATE_BOOK, data);
   return response.data;
 };
@@ -61,5 +60,10 @@ export const axiosGetBookToFavorites = async (): Promise<IResponsRecommendations
 
 export const axiosaddCommentBook = async (data: IPropsComment): Promise<IResComment> => {
   const response = await axiosDefault.post<IResComment>(constant.ADD_COMMENT, data);
+  return response.data;
+};
+
+export const axiosGetComment = async (data: IGenRecommendations): Promise<IResComment[]> => {
+  const response = await axiosDefault.get<IResComment[]>(constant.ADD_COMMENT, {params: data});
   return response.data;
 };

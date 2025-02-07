@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { StylesWrapper } from "./style";
 import Button from "../Button/Button";
 
@@ -18,14 +18,25 @@ export interface IBookProps {
 
 const Book: React.FC<IBookProps> = ({ books }) => {
   const cart = useAppSelector((state) => state.cart.book);
+  const favoritesBook = useAppSelector((state) => state.favorites.book);
   const dispatch = useAppDispatch();
   const bookId = Number(books.id);
-  const [favorites, setFavorites] = useState<boolean>(false);
   const [textButton, setTextButton] = useState(`$${books.priceHard} USD`);
   const navigate = useNavigate();
+  const isBookInCart = cart.hasOwnProperty(books.id);
+
+  useEffect(() => {
+    if (isBookInCart) {
+      setTextButton("Added to cart");
+    } else {
+      setTextButton(`$${books.priceHard} USD`);
+    }
+  }, [isBookInCart, books.priceHard]);
+  
+  const isBookInFavorites = favoritesBook.hasOwnProperty(books.id);
+ 
   
   const AddOrRemoveFavorites = () => {
-    setFavorites(!favorites);
     dispatch(addBookToFavoritesThunk({ bookId }));
   };
 
@@ -39,7 +50,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
   };
 
   return (
-    <StylesWrapper src={favorites}>
+    <StylesWrapper isBookInFavorites={isBookInFavorites} isBookInCart={isBookInCart}>
       <div className="book">
         <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
         <img
@@ -53,12 +64,13 @@ const Book: React.FC<IBookProps> = ({ books }) => {
         <div className="author">{books.author.name}</div>
       </div>
       <div>
-        <div>
+        <div className="averageRating__block">
           <Rating
             className="simple-controlled"
             value={books.averageRating}
             readOnly
           />
+          <div className="averageRating">{books.averageRating}.0</div>
         </div>
 
         <Button className="button" text={textButton} onClick={addBookToCart} />

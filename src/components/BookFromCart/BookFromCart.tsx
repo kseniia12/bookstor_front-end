@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IBook } from "../../lib/typing";
 import { StylesWrapper } from "./style";
 import cart from "../../assets/delete.png";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import Button from "../Button/Button";
 import { addBookToCartThunk, changeCountBooksThunk, deleteBookToCartThunk } from "../../store/thunk/thunkBook";
 // import { axiosDeleteBookFromCart } from "../../API/bookApi";
@@ -11,6 +11,7 @@ export interface IBookProps {
   className: string;
 }
 const BookFromCart: React.FC<IBookProps> = ({ books }) => {
+  const totalPrice = useAppSelector((state) => state.cart.totalPrice);
   const [count, setCount] = useState(1);
   const dispatch = useAppDispatch()
   const deleteBookFromCart = (id: number) => {
@@ -49,9 +50,12 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
             <div>{count}</div>
             <div className="counter__v" onClick={addBookToCart}>+</div>
           </div>
+          <div>
           <img className="cart" src={cart} alt="cart" onClick={()=>(deleteBookFromCart(Number(books.id)))}/>
+          </div>
+         
         </div>
-        <div className="info__price">{`$${books.priceHard} USD`}</div>
+        <div className="info__price">{`$${totalPrice} USD`}</div>
       </div>
     </StylesWrapper>
   );

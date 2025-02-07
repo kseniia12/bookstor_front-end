@@ -7,9 +7,6 @@ import { getBookThunk, getBookToFavoritesThunk } from '../../store/thunk/thunkBo
 const Favorites = () => {
   const dispatch = useAppDispatch()
   const books = useAppSelector((state) => state.favorites.book);
-  useEffect(() => {
-    dispatch(getBookToFavoritesThunk());
-  }, [dispatch]);
   return (
     <StylesWrapper>
     {Object.keys(books).map((bookId) => {

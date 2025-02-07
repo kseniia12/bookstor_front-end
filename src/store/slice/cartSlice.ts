@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IBook, ICartSlice, IGetBookToCart } from "../../lib/typing";
-import { addBookToCartThunk, getBookToCartThunk } from "../thunk/thunkBook";
+import { addBookToCartThunk, deleteBookToCartThunk, getBookToCartThunk } from "../thunk/thunkBook";
 import { count } from "console";
 
 const initialState: ICartSlice = {

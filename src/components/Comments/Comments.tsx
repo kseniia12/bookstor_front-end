@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { StylesWrapper } from "./style";
-import { useAppSelector } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { getBookThunk, getCommentBookThunk } from "../../store/thunk/thunkBook";
 
-const Comments = () => {
+interface propsComments {
+  bookId: number
+}
+
+const Comments: React.FC<propsComments> = ({bookId}) => {
+  const dispatch = useAppDispatch()
   const comments = useAppSelector((state) => state.comments.comments);
+  
+  useEffect(() => {
+    dispatch(getCommentBookThunk({bookId}));
+  }, [dispatch]);
 
   const calculateDaysDifference = (dateString: string) => {
     const commentDate = new Date(dateString);
@@ -16,13 +26,13 @@ const Comments = () => {
   return (
     <>
       {comments.map((comment) => (
-        <StylesWrapper key={comment.bookId}>
+        <StylesWrapper>
           <div>Comments</div>
           <div className="photo">
             <img
               className="photo__user"
               src={comment.user.photo}
-              alt={comment.user.fullName}
+              alt={comment.user.photo}
             />
           </div>
           <div>

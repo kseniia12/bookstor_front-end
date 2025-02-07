@@ -19,7 +19,7 @@ const initialState: IResponsRecommendations = {
       author: {
         id: 0,
         name: ""
-      }
+      },
     },
   },
 };

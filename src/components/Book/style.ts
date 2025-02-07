@@ -2,7 +2,7 @@ import styled from "styled-components";
 import heartSave from "../../assets/Heart.png";
 import heartNoSave from "../../assets/HeartNotSave.png";
 
-export const StylesWrapper = styled.div<{ src: boolean }>`
+export const StylesWrapper = styled.div<{ isBookInFavorites: boolean, isBookInCart: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -21,13 +21,13 @@ export const StylesWrapper = styled.div<{ src: boolean }>`
       position: absolute;
       top: 20px;
       left: 20px;
-      background-image: url(${({ src }) => (src ? heartNoSave : heartSave )});
+      background-image: url(${({ isBookInFavorites }) => (isBookInFavorites ? heartNoSave : heartSave )});
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 50%;
       padding: 11px;
       background-color: ${({ theme }) => theme.colors.darkBlue};
-      opacity: ${({ src }) => (src === true ? "1" : "0.5")};
+      opacity: ${({ isBookInFavorites }) => (isBookInFavorites === true ? "1" : "0.5")};
       width: 48px;
       height: 48px;
       background-size: 26px;
@@ -40,5 +40,27 @@ export const StylesWrapper = styled.div<{ src: boolean }>`
   .author {
     color: ${({ theme }) => theme.colors.darkGrey};
     white-space: nowrap;
+  }
+  .button{
+    background-color: ${({ isBookInCart, theme }) =>
+    isBookInCart ? theme.colors.white : theme.colors.darkBlue};
+    color: ${({ isBookInCart, theme }) =>
+    isBookInCart ? theme.colors.dark : theme.colors.white};
+    border: 1px solid ${({ theme }) => theme.colors.darkBlue};
+  }
+  .simple-controlled{
+    display: flex;
+    gap: 30px;
+    color: ${({ theme }) => theme.colors.green};
+  }
+  .averageRating__block{
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    font-size: 16px;
+
+  }
+  .averageRating{
+    color: ${({ theme }) => theme.colors.darkGrey};
   }
 `;

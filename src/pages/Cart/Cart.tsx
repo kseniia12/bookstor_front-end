@@ -1,20 +1,15 @@
-import React, { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getBookToCartThunk } from "../../store/thunk/thunkBook";
+import React from "react";
+import { useAppSelector } from "../../hooks";
 import { StylesWrapper } from "./style";
 import BookFromCart from "../../components/BookFromCart/BookFromCart";
 import book from "../../assets/bookFromCart.png";
-import Button from "../../components/Button/Button"
+import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import constant from "../../constants/constants";
 const Cart = () => {
-  const dispatch = useAppDispatch();
   const books = useAppSelector((state) => state.cart.book);
   const totalPrice = useAppSelector((state) => state.cart.totalPrice);
-  const navigate = useNavigate()
-  useEffect(() => {
-    dispatch(getBookToCartThunk());
-  }, [dispatch]);
+  const navigate = useNavigate();
 
   const handleGoToCatalog = () => {
     navigate(constant.CATALOG_BOOKS);
@@ -44,7 +39,9 @@ const Cart = () => {
           </div>
           <div className="cart-empty__message">
             <div className="cart-empty__title">Your cart is empty</div>
-            <div className="cart-empty__description">Add items to cart to make a purchase. Go to the catalogue no.</div>
+            <div className="cart-empty__description">
+              Add items to cart to make a purchase. Go to the catalogue no.
+            </div>
             <Button text="Go to catalog" onClick={handleGoToCatalog} />
           </div>
         </div>
