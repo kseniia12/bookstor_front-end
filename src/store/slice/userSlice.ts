@@ -49,6 +49,14 @@ const userSlice = createSlice({
       .addCase(getUserThunk.fulfilled, (state, action) => {
         state.user = action.payload.user;
       })
+      .addCase(getUserThunk.rejected, (state, action) => {
+        state.user = {
+          id: 0,
+          fullName: "",
+          email: "",
+          photo: "../../assets/userProfile.png",
+        };
+      })
       .addCase(
         patchUserThunk.fulfilled,
         (state, action: PayloadAction<{ user: IUser }>) => {

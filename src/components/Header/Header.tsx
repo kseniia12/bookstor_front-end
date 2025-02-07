@@ -31,7 +31,7 @@ const Header = () => {
         <Link to="/">Catalog</Link>
       </div>
       <Input className="input" icon={search} placeholder="Search" type="text" />
-      {user ? (
+      {user.id !== 0 ? (
         <div className="menu">
           <div className="menu__cart">
             <div className="menu__count">{Object.keys(countBookWithCart).length}</div>

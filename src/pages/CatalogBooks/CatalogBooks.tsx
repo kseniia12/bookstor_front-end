@@ -14,13 +14,20 @@ import Authorization from "../../components/Authorization/Authorization";
 const CatalogBooks = () => {
   const [searchParams] = useSearchParams();
   const books = useAppSelector((state) => state.book.book);
+  const user = useAppSelector((state) => state.users.user);
   const dispatch = useAppDispatch();
   const page = Number(searchParams.get("page")) || 1;
   const filter = searchParams.getAll("filter");
   const sort = searchParams.get("sort");
   const maxPrice = searchParams.get("max");
   const minPrice = searchParams.get("min");
-  const data = { page: page, filter: filter, sort: sort, maxPrice: maxPrice, minPrice: minPrice };
+  const data = {
+    page: page,
+    filter: filter,
+    sort: sort,
+    maxPrice: maxPrice,
+    minPrice: minPrice,
+  };
 
   useEffect(() => {
     dispatch(getBookThunk(data));
@@ -28,16 +35,17 @@ const CatalogBooks = () => {
 
   return (
     <StylesWrapper>
-      <Banner/>
+      <Banner />
       <div className="container">
         <div>Catalog</div>
         <div className="container__filter">
-          <FilterByGenre />
+        {user.id !== 0 ? <FilterByGenre /> : ""}
+         
           <FilterBySort />
           <FilterByAuthor />
         </div>
       </div>
-      <div className="books" >
+      <div className="books">
         {Object.keys(books).map((bookId) => {
           return (
             <Book books={books[bookId]} key={bookId} className="books__book" />
@@ -45,7 +53,7 @@ const CatalogBooks = () => {
         })}
       </div>
       <PaginationLink />
-      <Authorization />
+      {user.id === 0 ? <Authorization /> : ""}
     </StylesWrapper>
   );
 };

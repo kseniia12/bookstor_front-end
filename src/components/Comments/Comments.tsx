@@ -17,12 +17,19 @@ const Comments = () => {
     <>
       {comments.map((comment) => (
         <StylesWrapper key={comment.bookId}>
+          <div>Comments</div>
           <div className="photo">
-            <img className="photo__user" src={comment.user.photo} alt={comment.user.fullName} />
+            <img
+              className="photo__user"
+              src={comment.user.photo}
+              alt={comment.user.fullName}
+            />
           </div>
           <div>
             <div className="user">{comment.user.fullName}</div>
-            <div className="date">{calculateDaysDifference(comment.date)} days ago</div>
+            <div className="date">
+              {calculateDaysDifference(comment.date)} days ago
+            </div>
             <div className="comment">{comment.comment}</div>
           </div>
         </StylesWrapper>

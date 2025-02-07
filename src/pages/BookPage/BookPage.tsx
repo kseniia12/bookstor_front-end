@@ -8,10 +8,12 @@ import { StylesWrapper } from "./style";
 
 import FormForComments from "../../components/FormForComments/FormForComments";
 import Comments from "../../components/Comments/Comments";
+import Authorization from "../../components/Authorization/Authorization";
 
 const BookPage = () => {
   const dispatch = useAppDispatch();
   const books = useAppSelector((state) => state.recommendation.book);
+  const user = useAppSelector((state) => state.users.user);
   const { id } = useParams<{ id: string }>();
   const bookId = Number(id);
   useEffect(() => {
@@ -21,7 +23,8 @@ const BookPage = () => {
     <StylesWrapper>
       <BookDescription />
       <Comments />
-      <FormForComments bookId={bookId}/>
+      {user.id !== 0 ? <FormForComments bookId={bookId}/> : ""}
+      <Authorization/>
       <div className="recommendations">
         <div className="recommendations__title">Recommendations</div>
         <div className="recommendations__books">
