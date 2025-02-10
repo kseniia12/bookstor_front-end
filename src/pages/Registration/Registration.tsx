@@ -11,6 +11,7 @@ import { useAppDispatch } from "../../hooks";
 import { createUserThunk } from "../../store/thunk/thunkUser";
 import { IFormInput } from "../../lib/typing";
 import constant from "../../constants/constants";
+import { toast } from "react-toastify";
 
 const Registration = () => {
   const navigate = useNavigate();
@@ -26,8 +27,12 @@ const Registration = () => {
   const password = watch("password");
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    const user = await dispatch(createUserThunk(data)).unwrap();
-    user ? navigate(constant.HOME_PAGE) : navigate(constant.SIGN_IN);
+    try {
+      const user = await dispatch(createUserThunk(data)).unwrap();
+      user ? navigate(constant.HOME_PAGE) : navigate(constant.SIGN_IN);
+    } catch (error) {
+      toast.error("Registration failed. Please try again.");
+    }
   };
 
   return (

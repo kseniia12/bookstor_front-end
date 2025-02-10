@@ -10,14 +10,14 @@ const Cart = () => {
   const books = useAppSelector((state) => state.cart.book);
   const totalPrice = useAppSelector((state) => state.cart.totalPrice);
   const navigate = useNavigate();
-
   const handleGoToCatalog = () => {
     navigate(constant.CATALOG_BOOKS);
   };
 
   return (
     <StylesWrapper>
-      {Object.keys(books).length !== 0 ? (
+      
+      {totalPrice !== 0 ? (
         <div>
           <div className="books">
             {Object.keys(books).map((bookId) => {

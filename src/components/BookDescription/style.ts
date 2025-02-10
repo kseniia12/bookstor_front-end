@@ -51,4 +51,26 @@ export const StylesWrapper = styled.div<{ src: boolean }>`
       padding-bottom: 14px;
     }
   }
+  .rating{
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    &__section-value{
+      display: flex;
+      gap: 13px;
+      align-items: center;
+    }
+    &__value{
+      font-size: 16px;
+      color: ${({ theme }) => theme.colors.darkGrey};
+    }
+    &__book{
+      display: flex;
+      gap: 7px;
+    }
+    &__title{
+      font-size: 16px;
+      color: ${({ theme }) => theme.colors.darkGrey};
+    }
+  }
 `;

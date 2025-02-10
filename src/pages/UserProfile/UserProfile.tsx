@@ -22,7 +22,9 @@ const UserProfile = () => {
 
   const { register, handleSubmit } = useForm<IGetUser>();
 
-  const lastSegmentPathUserPhoto = user.photo ? user.photo.split("/").pop() : null;
+  const lastSegmentPathUserPhoto = user.photo
+    ? user.photo.split("/").pop()
+    : null;
   const foto = lastSegmentPathUserPhoto === "null" ? userPhoto : user.photo;
 
   const dispatch = useAppDispatch();
@@ -42,9 +44,7 @@ const UserProfile = () => {
     data
   ) => {
     try {
-      await dispatch(
-        patchUserPasswordThunk({ user: data.user})
-      ).unwrap();
+      await dispatch(patchUserPasswordThunk({ user: data.user })).unwrap();
     } catch (error) {
       console.error("The old password was entered incorrectly", error);
     }

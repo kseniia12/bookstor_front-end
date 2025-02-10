@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useParams } from "react-router-dom";
 import { IBook } from "../../lib/typing";
-
+import rating from "../../assets/rating.png";
 
 import Button from "../../components/Button/Button";
-import {
-  addBookToCartThunk,
-  getBookThunk,
-} from "../../store/thunk/thunkBook";
+import { addBookToCartThunk, getBookThunk } from "../../store/thunk/thunkBook";
 import { StylesWrapper } from "./style";
 import RatingBookForUser from "../RatingBookForUser/RatingBookForUser";
-
+import rateBook from "../../assets/rateBook.png";
 const BookDescription = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
@@ -54,10 +51,23 @@ const BookDescription = () => {
           alt={book.name}
         />
       </div>
+
       <div>
         <p className="title">{book.name}</p>
         <p className="author">{book.author.name}</p>
-        <RatingBookForUser bookId={Number(book.id)} />
+
+        <div className="rating">
+          <div className="rating__section-value">
+            <img src={rating} alt="rating" />
+            <div className="rating__value">5.0</div>
+          </div>
+          <RatingBookForUser bookId={Number(book.id)}/>
+          <div className="rating__book">
+            <img src={rateBook} alt="rating" />
+            <div className="rating__title">Rate this book</div>
+          </div>
+        </div>
+
         <p className="description">Description</p>
         <p className="description__text">{book.description}</p>
         <div className="button">

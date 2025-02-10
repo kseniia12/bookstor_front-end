@@ -3,6 +3,7 @@ import Rating from "@mui/material/Rating";
 import Box from "@mui/material/Box";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { rateBookThunk } from "../../store/thunk/thunkBook";
+import { StylesWrapper } from "./style";
 
 interface IPropsRating {
   bookId: number;
@@ -23,13 +24,9 @@ const RatingBook: React.FC<IPropsRating> = (props) => {
   }, [rate, bookId, dispatch]);
 
   return (
-    <Box
-      sx={{
-        "& > legend": { mt: 2 },
-      }}
-    >
+    <StylesWrapper>
       <Rating
-        name="simple-controlled"
+        className="simple-controlled"
         value={rate}
         onChange={(event, newValue) => {
           if (newValue != null) {
@@ -37,7 +34,7 @@ const RatingBook: React.FC<IPropsRating> = (props) => {
           }
         }}
       />
-    </Box>
+    </StylesWrapper>
   );
 };
 

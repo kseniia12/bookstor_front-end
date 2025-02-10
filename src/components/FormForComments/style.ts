@@ -7,4 +7,8 @@ padding-top: 60px;
   height: 128px;
   border-radius: 16px;
 }
+textarea::placeholder {
+    padding-top: 20px;
+    padding-left: 24px;
+}
 `;
