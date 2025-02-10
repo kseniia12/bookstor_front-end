@@ -1,5 +1,5 @@
 import constant from "../constants/constants";
-import { IAddBookToCart, IBook, IDeleteBookToCart, IGenRecommendations, IGetBookToCart, IPropsComment, IRateBook, IReqBook, IReqDeleteBookToCart, IResComment, IResponsBook, IResponsFilter, IResponsRecommendations } from "../lib/typing";
+import { IAddBookToCart, IBook, ICartSlice, IDeleteBookToCart, IGenRecommendations, IGetBookToCart, IGetBookToCartPatchCount, IPropsComment, IRateBook, IReqBook, IReqDeleteBookToCart, IResComment, IResponsBook, IResponsFilter, IResponsRecommendations, IStateUser } from "../lib/typing";
 import { axiosDefault } from "./axiosDefault";
 
 export const axiosGetBook = async (data: IReqBook): Promise<IResponsBook> => {
@@ -12,8 +12,8 @@ export const axiosGetFilter = async (): Promise<IResponsFilter> => {
   return response.data;
 };
 
-export const axiosAddBookToCart = async (bookId: IAddBookToCart): Promise<IGetBookToCart> => {
-  const response = await axiosDefault.post<IGetBookToCart>(constant.GET_CART, 
+export const axiosAddBookToCart = async (bookId: IAddBookToCart): Promise<ICartSlice> => {
+  const response = await axiosDefault.post<ICartSlice>(constant.GET_CART, 
     bookId
   );
   return response.data;
@@ -26,8 +26,8 @@ export const axiosAddBookToFavorites = async (bookId: IAddBookToCart): Promise<I
   return response.data;
 };
 
-export const axiosGetBookToCart = async (): Promise<IGetBookToCart> => {
-  const response = await axiosDefault.get<IGetBookToCart>(constant.GET_CART);
+export const axiosGetBookToCart = async (): Promise<ICartSlice> => {
+  const response = await axiosDefault.get<ICartSlice>(constant.GET_CART);
   return response.data;
 };
 
@@ -36,8 +36,8 @@ export const axiosDeleteBookFromCart = async (bookId: IReqDeleteBookToCart): Pro
   return response.data;
 };
 
-export const axiosChangeCountBooks = async (bookId: IAddBookToCart): Promise<IResponsFilter> => {
-  const response = await axiosDefault.patch<IResponsFilter>(constant.DELETE_BOOK_FROM_CART, 
+export const axiosChangeCountBooks = async (bookId: IAddBookToCart): Promise<ICartSlice> => {
+  const response = await axiosDefault.patch<ICartSlice>(constant.DELETE_BOOK_FROM_CART, 
     bookId
   );
   return response.data;
@@ -48,8 +48,8 @@ export const axiosGetReccomendationsBook = async (data: IGenRecommendations): Pr
   return response.data;
 };
 
-export const axiosRateBook = async (data: IRateBook): Promise<IRateBook> => {
-  const response = await axiosDefault.patch<IRateBook>(constant.RATE_BOOK, data);
+export const axiosRateBook = async (data: IRateBook): Promise<IStateUser> => {
+  const response = await axiosDefault.patch<IStateUser>(constant.RATE_BOOK, data);
   return response.data;
 };
 

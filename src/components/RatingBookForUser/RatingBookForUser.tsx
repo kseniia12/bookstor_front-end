@@ -11,7 +11,9 @@ interface IPropsRating {
 const RatingBook: React.FC<IPropsRating> = (props) => {
   const bookId = props.bookId;
   const rating = useAppSelector((state) => state.users.ratingBook);
-  const [rate, setRate] = React.useState(rating.rate);
+  const ratingBook = rating[bookId];
+  const [rate, setRate] = React.useState(ratingBook?.rate ?? 0);
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {

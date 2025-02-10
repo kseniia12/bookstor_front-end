@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import Book from '../../components/Book/Book';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppSelector } from '../../hooks';
 import { StylesWrapper } from './style';
-import { getBookThunk, getBookToFavoritesThunk } from '../../store/thunk/thunkBook';
 
 const Favorites = () => {
-  const dispatch = useAppDispatch()
   const books = useAppSelector((state) => state.favorites.book);
   return (
     <StylesWrapper>

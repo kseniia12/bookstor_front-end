@@ -15,10 +15,9 @@ import {
 } from "../../API/bookApi";
 import {
   IAddBookToCart,
-  IBook,
+  ICartSlice,
   IDeleteBookToCart,
   IGenRecommendations,
-  IGetBookToCart,
   IPropsComment,
   IRateBook,
   IReqBook,
@@ -27,6 +26,7 @@ import {
   IResponsBook,
   IResponsFilter,
   IResponsRecommendations,
+  IStateUser,
 } from "../../lib/typing";
 
 export const getBookThunk = createAsyncThunk<IResponsBook, IReqBook>(
@@ -45,12 +45,9 @@ export const getFilterThunk = createAsyncThunk<IResponsFilter>(
   }
 );
 
-export const addBookToCartThunk = createAsyncThunk<
-  IGetBookToCart,
-  IAddBookToCart
->(
+export const addBookToCartThunk = createAsyncThunk<ICartSlice, IAddBookToCart>(
   "addBookToCartThunk/dBook",
-  async (bookId: IAddBookToCart): Promise<IGetBookToCart> => {
+  async (bookId: IAddBookToCart): Promise<ICartSlice> => {
     const response = await axiosAddBookToCart(bookId);
     return response;
   }
@@ -68,20 +65,19 @@ export const addBookToFavoritesThunk = createAsyncThunk<
 );
 
 export const changeCountBooksThunk = createAsyncThunk<
-  IResponsFilter,
+  ICartSlice,
   IAddBookToCart
 >(
   "changeCountBooks/dBook",
-  async (bookId: IAddBookToCart): Promise<IResponsFilter> => {
+  async (bookId: IAddBookToCart): Promise<ICartSlice> => {
     const response = await axiosChangeCountBooks(bookId);
-    console.log(response)
     return response;
   }
 );
 
-export const getBookToCartThunk = createAsyncThunk<IGetBookToCart>(
+export const getBookToCartThunk = createAsyncThunk<ICartSlice>(
   "getBookToCartThunk/dBook",
-  async (): Promise<IGetBookToCart> => {
+  async (): Promise<ICartSlice> => {
     const response = await axiosGetBookToCart();
     return response;
   }
@@ -109,9 +105,9 @@ export const getRecommendationsBookThunk = createAsyncThunk<
   }
 );
 
-export const rateBookThunk = createAsyncThunk<IRateBook, IRateBook>(
+export const rateBookThunk = createAsyncThunk<IStateUser, IRateBook>(
   "rateBook/dBook",
-  async (data: IRateBook): Promise<IRateBook> => {
+  async (data: IRateBook): Promise<IStateUser> => {
     const response = await axiosRateBook(data);
     return response;
   }
@@ -130,19 +126,17 @@ export const addCommentBookThunk = createAsyncThunk<IResComment, IPropsComment>(
   "comments/addCommentBook",
   async (data: IPropsComment): Promise<IResComment> => {
     const response = await axiosaddCommentBook(data);
-    console.log(response)
     return response;
   }
 );
 
 export const getCommentBookThunk = createAsyncThunk<
-IResComment[],
+  IResComment[],
   IGenRecommendations
 >(
   "getComment/dBook",
   async (bookId: IGenRecommendations): Promise<IResComment[]> => {
     const response = await axiosGetComment(bookId);
-    console.log(response)
     return response;
   }
 );

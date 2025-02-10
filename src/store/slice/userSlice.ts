@@ -17,9 +17,11 @@ const initialState: IStateUser = {
     photo: "../../assets/userProfile.png",
   },
   ratingBook: {
-    bookId: 0,
-    rate: 0
-  }
+    key: {
+      bookId: 0,
+      rate: 0,
+    },
+  },
 };
 
 const userSlice = createSlice({
@@ -48,6 +50,16 @@ const userSlice = createSlice({
       )
       .addCase(getUserThunk.fulfilled, (state, action) => {
         state.user = action.payload.user;
+        console.log(action.payload.ratingBook)
+        if (Array.isArray(action.payload.ratingBook)) {
+          const booksObject = action.payload.ratingBook.reduce((acc, book) => {
+            acc[book.bookId] = book; 
+            return acc;
+          }, {});
+          state.ratingBook = booksObject;
+        } else {
+          console.error("Это не массив");
+        }
       })
       .addCase(getUserThunk.rejected, (state, action) => {
         state.user = {
@@ -63,13 +75,17 @@ const userSlice = createSlice({
           state.user = action.payload.user;
         }
       )
-      .addCase(
-        rateBookThunk.fulfilled,
-        (state, action) => {
-          state.ratingBook = action.payload;
+      .addCase(rateBookThunk.fulfilled, (state, action) => {
+        if (Array.isArray(action.payload.ratingBook)) {
+          const booksObject = action.payload.ratingBook.reduce((acc, book) => {
+            acc[book.bookId] = book; 
+            return acc;
+          }, {});
+          state.ratingBook = booksObject;
+        } else {
+          console.error("Это не массив");
         }
-      );
-      
+      });
   },
 });
 

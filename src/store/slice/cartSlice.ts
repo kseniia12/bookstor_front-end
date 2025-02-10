@@ -1,7 +1,11 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IBook, ICartSlice, IGetBookToCart } from "../../lib/typing";
-import { addBookToCartThunk, deleteBookToCartThunk, getBookToCartThunk } from "../thunk/thunkBook";
-import { count } from "console";
+import { createSlice } from "@reduxjs/toolkit";
+import { IBook, ICartSlice } from "../../lib/typing";
+import {
+  addBookToCartThunk,
+  changeCountBooksThunk,
+  deleteBookToCartThunk,
+  getBookToCartThunk,
+} from "../thunk/thunkBook";
 
 const initialState: ICartSlice = {
   book: {
@@ -16,14 +20,14 @@ const initialState: ICartSlice = {
       countSoft: 0,
       bestseller: false,
       averageRating: 0,
+      count: 0,
       author: {
         id: 0,
-        name: ""
-      }
+        name: "",
+      },
     },
   },
   totalPrice: 0,
- 
 };
 
 const cartSlice = createSlice({
@@ -34,11 +38,11 @@ const cartSlice = createSlice({
     builder.addCase(addBookToCartThunk.fulfilled, (state, action) => {
       if (Array.isArray(action.payload.book)) {
         const booksObject = action.payload.book.reduce((acc, book) => {
-          acc[book.id] = book; 
+          acc[book.id] = book;
           return acc;
         }, {} as Record<string, IBook>);
-        state.book = booksObject; 
-        state.totalPrice = action.payload.totalPrice
+        state.book = booksObject;
+        state.totalPrice = action.payload.totalPrice;
       } else {
         console.error("Это не массив");
       }
@@ -46,17 +50,39 @@ const cartSlice = createSlice({
     builder.addCase(getBookToCartThunk.fulfilled, (state, action) => {
       if (Array.isArray(action.payload.book)) {
         const booksObject = action.payload.book.reduce((acc, book) => {
-          acc[book.id] = book; 
+          acc[book.id] = book;
           return acc;
         }, {} as Record<string, IBook>);
-        state.book = booksObject; 
-        state.totalPrice = action.payload.totalPrice
+        state.book = booksObject;
+        state.totalPrice = action.payload.totalPrice;
       } else {
         console.error("Это не массив");
       }
     });
+    builder.addCase(deleteBookToCartThunk.fulfilled, (state, action) => {
+      state.totalPrice = action.payload.totalPrice
+      const bookId = action.meta.arg.id;
+      if (state.book.hasOwnProperty(bookId)) {
+        delete state.book[bookId];
+      }
+    });
+    builder.addCase(changeCountBooksThunk.fulfilled, (state, action) => {
+      if (Array.isArray(action.payload.book)) {
+        const booksObject = action.payload.book.reduce((acc, book) => {
+          acc[book.id] = book;
+          return acc;
+        }, {} as Record<string, IBook>);
+        state.book = booksObject;
+        state.totalPrice = action.payload.totalPrice;
+
+      } else {
+        console.error("Это не массив");
+      }
+      
+    });
+    
+
   },
-  },
-);
+});
 
 export default cartSlice.reducer;

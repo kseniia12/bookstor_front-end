@@ -36,6 +36,11 @@ export interface IAxiosResponseGetUser {
   user: { id: number; fullName: string; email: string; photo?: string };
 }
 
+export interface IRateBook {
+  bookId: number;
+  rate: number;
+}
+
 export interface IUser {
   id?: number;
   fullName: string;
@@ -53,7 +58,7 @@ export interface t {
 
 export interface IStateUser {
   user: IUser;
-  ratingBook: IRateBook;
+  ratingBook: { [key: string]: IRateBook };
 }
 
 export interface IPatchUser {
@@ -70,6 +75,7 @@ export interface IRouterProps {
 
 export interface IResponse {
   user: { id: number; fullName: string; email: string; photo: string };
+  ratingBook: IRateBook;
 }
 
 export interface IAxiosRes {
@@ -130,8 +136,24 @@ export interface IResponsRecommendations {
   book: { [key: string]: IBook };
 }
 
+
+export interface IBookCart {
+  id: string;
+  name: string;
+  priceSoft: number;
+  priceHard: number;
+  description: string;
+  cover: string;
+  countHard: number;
+  countSoft: number;
+  bestseller: boolean;
+  author: Author;
+  averageRating: number;
+  count: number;
+}
+
 export interface ICartSlice {
-  book: { [key: string]: IBook };
+  book: { [key: string]: IBookCart };
   totalPrice: number;
 }
 
@@ -164,8 +186,13 @@ export interface IGetBookToCart {
   totalPrice: number;
 }
 
+export interface IGetBookToCartPatchCount {
+  book: IBook[];
+  totalPrice: number;
+}
+
 export interface IDeleteBookToCart {
-  status: string;
+  totalPrice: number;
 }
 
 export interface IReqDeleteBookToCart {
@@ -176,10 +203,6 @@ export interface IGenRecommendations {
   bookId: number;
 }
 
-export interface IRateBook {
-  bookId: number;
-  rate: number;
-}
 
 export interface IPropsComment {
   comment: string;
