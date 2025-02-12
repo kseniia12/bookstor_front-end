@@ -27,12 +27,8 @@ const Registration = () => {
   const password = watch("password");
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    try {
-      const user = await dispatch(createUserThunk(data)).unwrap();
-      user ? navigate(constant.HOME_PAGE) : navigate(constant.SIGN_IN);
-    } catch (error) {
-      toast.error("Registration failed. Please try again.");
-    }
+    const user = await dispatch(createUserThunk(data)).unwrap();
+    user ? navigate(constant.HOME_PAGE) : navigate(constant.SIGN_IN);
   };
 
   return (

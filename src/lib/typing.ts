@@ -126,6 +126,15 @@ interface Author {
 
 export interface IResponsBook {
   book: { [key: string]: IBook };
+  bookNormalized: IBook[];
+  price: {
+    minValue: number;
+    maxValue: number;
+  };
+}
+
+export interface IResponsBookPagination {
+  book: IBook[];
   price: {
     minValue: number;
     maxValue: number;

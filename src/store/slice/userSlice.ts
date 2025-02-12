@@ -50,7 +50,6 @@ const userSlice = createSlice({
       )
       .addCase(getUserThunk.fulfilled, (state, action) => {
         state.user = action.payload.user;
-        console.log(action.payload.ratingBook)
         if (Array.isArray(action.payload.ratingBook)) {
           const booksObject = action.payload.ratingBook.reduce((acc, book) => {
             acc[book.bookId] = book; 

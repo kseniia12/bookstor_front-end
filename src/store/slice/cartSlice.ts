@@ -60,7 +60,6 @@ const cartSlice = createSlice({
       }
     });
     builder.addCase(deleteBookToCartThunk.fulfilled, (state, action) => {
-      state.totalPrice = action.payload.totalPrice
       const bookId = action.meta.arg.id;
       if (state.book.hasOwnProperty(bookId)) {
         delete state.book[bookId];

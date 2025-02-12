@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { IResponsBook } from "../../lib/typing";
+import { IBook, IResponsBook } from "../../lib/typing";
 import { getBookThunk } from "../thunk/thunkBook";
 
 const initialState: IResponsBook = {
@@ -22,28 +22,36 @@ const initialState: IResponsBook = {
       }
     },
   },
+  bookNormalized: [],
   price: {
     minValue: 0,
     maxValue: 0,
   }
 };
 
+interface IBooksObject {
+  [key: string]: IBook;
+}
+
 const bookSlice = createSlice({
   name: "book",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+    
     builder.addCase(getBookThunk.fulfilled, (state, action) => {
+      state.bookNormalized = action.payload.book;
       if (Array.isArray(action.payload.book)) {
-        const booksObject = action.payload.book.reduce((acc, book) => {
-          acc[book.id] = book; 
+        const booksObject: IBooksObject = action.payload.book.reduce((acc, book) => {
+          acc[book.id] = book;
           return acc;
-        }, {});
-        state.book = booksObject; 
-        state.price = action.payload.price; 
+        }, {} as IBooksObject);
+        state.book = booksObject;
+        state.price = action.payload.price;
       } else {
         console.error("Это не массив");
       }
+
     });
   },
   },

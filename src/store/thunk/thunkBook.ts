@@ -24,14 +24,15 @@ import {
   IReqDeleteBookToCart,
   IResComment,
   IResponsBook,
+  IResponsBookPagination,
   IResponsFilter,
   IResponsRecommendations,
   IStateUser,
 } from "../../lib/typing";
 
-export const getBookThunk = createAsyncThunk<IResponsBook, IReqBook>(
+export const getBookThunk = createAsyncThunk<IResponsBookPagination, IReqBook>(
   "book/dBook",
-  async (data: IReqBook): Promise<IResponsBook> => {
+  async (data: IReqBook): Promise<IResponsBookPagination> => {
     const response = await axiosGetBook(data);
     return response;
   }

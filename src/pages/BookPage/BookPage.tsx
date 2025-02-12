@@ -24,7 +24,7 @@ const BookPage = () => {
       <BookDescription />
       <Comments bookId={bookId}/>
       {user.id !== 0 ? <FormForComments bookId={bookId}/> : ""}
-      <Authorization/>
+      {user.id == 0 ? <Authorization/> : ""}
       <div className="recommendations">
         <div className="recommendations__title">Recommendations</div>
         <div className="recommendations__books">

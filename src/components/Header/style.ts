@@ -12,6 +12,10 @@ export const StylesWrapper = styled.div<{
     display: flex;
     align-items: center;
     gap: 128px;
+    &__page {
+      color: ${({ theme }) => theme.colors.dark};
+      text-decoration: none;
+    }
   }
   .input {
     width: 100%;

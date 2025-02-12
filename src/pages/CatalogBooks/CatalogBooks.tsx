@@ -13,7 +13,7 @@ import Authorization from "../../components/Authorization/Authorization";
 
 const CatalogBooks = () => {
   const [searchParams] = useSearchParams();
-  const books = useAppSelector((state) => state.book.book);
+  const books = useAppSelector((state) => state.book.bookNormalized);
   const user = useAppSelector((state) => state.users.user);
   const dispatch = useAppDispatch();
   const page = Number(searchParams.get("page")) || 1;
@@ -45,9 +45,9 @@ const CatalogBooks = () => {
         </div>
       </div>
       <div className="books">
-        {Object.keys(books).map((bookId) => {
+        {(books).map((bookId) => {
           return (
-            <Book books={books[bookId]} key={bookId} className="books__book" />
+            <Book books={bookId} className="books__book" />
           );
         })}
       </div>

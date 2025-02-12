@@ -11,6 +11,7 @@ import { IFormInput } from "../../lib/typing";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { loginUserThunk } from "../../store/thunk/thunkUser";
 import constant from "../../constants/constants";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,6 +30,7 @@ const Login = () => {
         navigate(constant.CATALOG_BOOKS)
       }
     } catch (error) {
+      toast.error("Data entered incorrectly");
       navigate(constant.SIGN_IN);
     }
   };

@@ -6,6 +6,7 @@ import { useAppDispatch } from "../../hooks";
 import {
   changeCountBooksThunk,
   deleteBookToCartThunk,
+  getBookToCartThunk,
 } from "../../store/thunk/thunkBook";
 
 export interface IBookProps {
@@ -17,6 +18,7 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
   const dispatch = useAppDispatch();
   const deleteBookFromCart = (id: number) => {
     dispatch(deleteBookToCartThunk({ id }));
+    dispatch(getBookToCartThunk());
   };
 
   const addBookToCart = () => {
