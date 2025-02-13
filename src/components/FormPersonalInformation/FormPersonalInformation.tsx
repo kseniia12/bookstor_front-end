@@ -1,7 +1,6 @@
 import React from 'react'
 import emailIcon from "../../assets/email.png";
 import userProfile from "../../assets/userProfile.png";
-import Button from '../Button/Button';
 import Input from '../Input/Input';
 import { useAppSelector } from '../../hooks';
 

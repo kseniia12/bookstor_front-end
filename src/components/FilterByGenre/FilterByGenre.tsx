@@ -17,13 +17,12 @@ const FilterByGenre = () => {
 
   return (
     <StylesWrapper open={open}>
-      <div className="container">
+      <div className="container"  onClick={changeStateForm}>
         <div className="container__title">Genre</div>
         <img
           className="arrow"
           src={arrowToOpenForm}
           alt="Arrow to open form"
-          onClick={changeStateForm}
         />
       </div>
       {open && <SortByGenre />}

@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Button/Button";
-import constant from "../../constants/constants";
+import constant from "../../lib/constants/constants";
 import { useNavigate } from "react-router-dom";
 import book from "../../assets/bookFromCart.png";
 import { StylesWrapper } from "./style";

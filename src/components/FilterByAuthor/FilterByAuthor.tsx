@@ -28,11 +28,13 @@ const FilterByAuthor = () => {
 
   return (
     <StylesWrapper open={open}>
+      <div onClick={changeStateForm}>
       <div className="container">
         <select
           className="container__select"
           value={selectedOption}
           onChange={handleSelectChange}
+          
         >
           <option value="1">Price</option>
           <option value="2">Name</option>
@@ -40,13 +42,15 @@ const FilterByAuthor = () => {
           <option value="4">Rating</option>
           <option value="5">Date of issue</option>
         </select>
-        <img
+      
+      </div>
+      <img
           src={arrowToOpenForm}
           alt="Arrow to open form"
           className="arrow"
-          onClick={changeStateForm}
         />
       </div>
+     
     </StylesWrapper>
   );
 };

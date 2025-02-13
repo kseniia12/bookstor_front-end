@@ -9,10 +9,11 @@ import {
   uploadPhotoThunk,
 } from "../../store/thunk/thunkUser";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { IGetUser, IResponsFormPassword } from "../../lib/typing";
+import { IGetUser, IResponsFormPassword } from "../../lib/types/types";
 import Button from "../../components/Button/Button";
 import FormPersonalInformation from "../../components/FormPersonalInformation/FormPersonalInformation";
 import FormPassword from "../../components/FormPassword/FormPassword";
+import { toast } from "react-toastify";
 
 const UserProfile = () => {
   const user = useAppSelector((state) => state.users.user);
@@ -46,7 +47,7 @@ const UserProfile = () => {
     try {
       await dispatch(patchUserPasswordThunk({ user: data.user })).unwrap();
     } catch (error) {
-      console.error("The old password was entered incorrectly", error);
+      toast.error("The old password was entered incorrectly");
     }
   };
 
@@ -75,11 +76,13 @@ const UserProfile = () => {
     e.preventDefault();
     if (activeForm === "profile") {
       handleSubmit(onSubmit)();
+      setIsEditable(false);
     } else if (activeForm === "password") {
+      setChangePassword(false);
       handleSubmitPassword(onSubmitForPassword)();
     }
   };
-
+  console.log(changePassword)
   return (
     <StylesWrapper isEditable={isEditable} changePassword={changePassword}>
       <div className="avatar">

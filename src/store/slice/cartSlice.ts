@@ -1,11 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { IBook, ICartSlice } from "../../lib/typing";
-import {
-  addBookToCartThunk,
-  changeCountBooksThunk,
-  deleteBookToCartThunk,
-  getBookToCartThunk,
-} from "../thunk/thunkBook";
+import { IBook, ICartSlice } from "../../lib/types/types";
+import { addBookToCartThunk, changeCountBooksThunk, deleteBookToCartThunk, getBookToCartThunk } from "../thunk/thunkCart";
+
 
 const initialState: ICartSlice = {
   book: {

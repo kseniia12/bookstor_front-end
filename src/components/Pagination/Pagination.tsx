@@ -7,7 +7,7 @@ const PaginationLink = () => {
   return (
     <StylesWrapper>
       <Pagination
-      className="d"
+        className="d"
         count={3}
         renderItem={(item) => (
           <PaginationItem
@@ -19,5 +19,5 @@ const PaginationLink = () => {
       />
     </StylesWrapper>
   );
-}
-export default PaginationLink
+};
+export default PaginationLink;

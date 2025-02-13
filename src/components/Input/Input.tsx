@@ -1,6 +1,15 @@
 import React from "react";
 import { StylesWrapper } from "./style";
-import { IPropsInput } from "../../lib/typing";
+
+interface IPropsInput {
+  register?: any;
+  className?: string;
+  placeholder?: string;
+  icon?: string;
+  value?: string;
+  readOnly?: boolean;
+  type: string;
+}
 
 const Input: React.FC<IPropsInput> = (props) => {
   return (

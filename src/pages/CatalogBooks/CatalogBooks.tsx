@@ -39,7 +39,7 @@ const CatalogBooks = () => {
       <div className="container">
         <div>Catalog</div>
         <div className="container__filter">
-          {user.id !== 0 ? <FilterByGenre /> : ""}
+          <FilterByGenre />
           <FilterBySort />
           <FilterByAuthor />
         </div>

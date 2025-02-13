@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { IResponsRecommendations } from "../../lib/typing";
+import { IResponsRecommendations } from "../../lib/types/types";
 import { addBookToFavoritesThunk, getBookToFavoritesThunk } from "../thunk/thunkBook";
 
 

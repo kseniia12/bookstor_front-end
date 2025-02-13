@@ -1,6 +1,11 @@
 import React from "react";
 import { StylesWrapper } from "./style";
-import { IPropsButton } from "../../lib/typing";
+
+interface IPropsButton {
+  text?: string;
+  className?: string;
+  onClick?: any;
+}
 
 const Button: React.FC<IPropsButton> = (props) => {
   return (

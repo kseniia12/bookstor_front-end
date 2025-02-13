@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { getRecommendationsBookThunk } from "../thunk/thunkBook";
-import { IResponsRecommendations } from "../../lib/typing";
+import { IResponsRecommendations } from "../../lib/types/types";
 
 const initialState: IResponsRecommendations = {
   book: {

@@ -9,8 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useAppDispatch } from "../../hooks";
 import { createUserThunk } from "../../store/thunk/thunkUser";
-import { IFormInput } from "../../lib/typing";
-import constant from "../../constants/constants";
+import { IFormInput } from "../../lib/types/types";
+import constant from "../../lib/constants/constants";
 import { toast } from "react-toastify";
 
 const Registration = () => {

@@ -12,13 +12,12 @@ const FilterBySort = () => {
 
   return (
     <StylesWrapper open={open}>
-      <div className="container">
+      <div className="container" onClick={changeStateForm}>
         <div className="title-filter">Price</div>
         <img
           src={arrowToOpenForm}
           alt="Arrow to open form"
           className="arrow"
-          onClick={changeStateForm}
         />
       </div>
       <div>{open && <Price />}</div>

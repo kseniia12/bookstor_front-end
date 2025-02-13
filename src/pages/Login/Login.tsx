@@ -7,10 +7,10 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import { StylesWrapper } from "./style";
 import { useAppDispatch } from "../../hooks";
-import { IFormInput } from "../../lib/typing";
+import { IFormInput } from "../../lib/types/types";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { loginUserThunk } from "../../store/thunk/thunkUser";
-import constant from "../../constants/constants";
+import constant from "../../lib/constants/constants";
 import { toast } from "react-toastify";
 
 const Login = () => {

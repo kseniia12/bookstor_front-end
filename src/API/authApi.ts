@@ -1,4 +1,4 @@
-import constant from "../constants/constants";
+import constant from "../lib/constants/constants";
 import {
   IAxiosResponse,
   IFormInput,
@@ -6,11 +6,7 @@ import {
   IPatchUser,
   IResponse,
   IResponsFormPassword,
-  IStateUser,
-  IStateUserEror,
-  IUseweewer,
-  t,
-} from "../lib/typing";
+} from "../lib/types/types";
 import { axiosDefault } from "./axiosDefault";
 
 export const axiosPostRegistrationUser = async ({
@@ -37,8 +33,16 @@ export const axiosPostLoginUser = async ({
   return response.data;
 };
 
-export const axiosUpload = async ({ photo }: IUseweewer): Promise<t> => {
-  const response = await axiosDefault.post<t>(
+export const axiosUpload = async ({
+  photo,
+}: {
+  photo: File;
+}): Promise<{
+  photo: string;
+}> => {
+  const response = await axiosDefault.post<{
+    photo: string;
+  }>(
     constant.UPLOAD_USER_PHOTO,
     { picture: photo },
     {
@@ -66,10 +70,11 @@ export const axiosPatchUser = async ({
 
 export const axiosPatchUserPassword = async ({
   user,
-}: IResponsFormPassword): Promise<IStateUserEror> => {
-  const response = await axiosDefault.patch<IStateUserEror>(
-    constant.PASSWORD_CHANGE,
-    { user }
-  );
+}: IResponsFormPassword): Promise<{
+  message: string;
+}> => {
+  const response = await axiosDefault.patch<{
+    message: string;
+  }>(constant.PASSWORD_CHANGE, { user });
   return response.data;
 };

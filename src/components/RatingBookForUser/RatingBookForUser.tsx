@@ -1,9 +1,7 @@
 import React, { useEffect } from "react";
-import Rating from "@mui/material/Rating";
-import Box from "@mui/material/Box";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { rateBookThunk } from "../../store/thunk/thunkBook";
-import { StylesWrapper } from "./style";
+import { StyledRating, StylesWrapper } from "./style";
 
 interface IPropsRating {
   bookId: number;
@@ -25,7 +23,7 @@ const RatingBook: React.FC<IPropsRating> = (props) => {
 
   return (
     <StylesWrapper>
-      <Rating
+      <StyledRating
         className="simple-controlled"
         value={rate}
         onChange={(event, newValue) => {

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { IResponsFilter } from "../../lib/typing";
+import { IResponsFilter } from "../../lib/types/types";
 import { getFilterThunk } from "../thunk/thunkBook";
 
 const initialState: IResponsFilter = {

@@ -3,7 +3,7 @@ import GlobalStyles from "./style/global";
 import { ThemeProvider } from "styled-components";
 import { baseTheme } from "./style/theme";
 import Login from "./pages/Login/Login";
-import constant from "./constants/constants";
+import constant from "./lib/constants/constants";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Registration from "./pages/Registration/Registration";
 import Header from "./components/Header/Header";

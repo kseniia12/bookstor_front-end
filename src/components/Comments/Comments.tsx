@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { StylesWrapper } from "./style";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getBookThunk, getCommentBookThunk } from "../../store/thunk/thunkBook";
+import { getCommentBookThunk } from "../../store/thunk/thunkComment";
+
 
 interface propsComments {
   bookId: number;

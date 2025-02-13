@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { IBook, IResponsBook } from "../../lib/typing";
+import { IBook, IResponsBook } from "../../lib/types/types";
 import { getBookThunk } from "../thunk/thunkBook";
 
 const initialState: IResponsBook = {

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import heartSave from "../../assets/Heart.png";
 import heartNoSave from "../../assets/HeartNotSave.png";
+import { Rating } from "@mui/material";
 
 export const StylesWrapper = styled.div<{ isBookInFavorites: boolean, isBookInCart: boolean }>`
   display: flex;
@@ -62,5 +63,12 @@ export const StylesWrapper = styled.div<{ isBookInFavorites: boolean, isBookInCa
   }
   .averageRating{
     color: ${({ theme }) => theme.colors.darkGrey};
+  }
+`;
+
+export const StyledRating = styled(Rating)`
+  & .MuiRating-icon {
+    font-size: 26px;
+    color:${({ theme }) => theme.colors.green};
   }
 `;

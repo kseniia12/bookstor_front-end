@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { CommentsState } from "../../lib/typing";
-import { addCommentBookThunk, getCommentBookThunk } from "../thunk/thunkBook";
+import { IComment } from "../../lib/types/types";
+import { addCommentBookThunk, getCommentBookThunk } from "../thunk/thunkComment";
 
-const initialState: CommentsState = {
-  comments: []
+const initialState: {
+  comments: IComment[];
+} = {
+  comments: [],
 };
 
 const commentsSlice = createSlice({
@@ -12,11 +14,11 @@ const commentsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    // builder.addCase(addCommentBookThunk.fulfilled, (state, action) => {
-    //   state.comments.push(action.payload)
-    // })
+    builder.addCase(addCommentBookThunk.fulfilled, (state, action) => {
+      state.comments.push(action.payload)
+    })
     builder.addCase(getCommentBookThunk.fulfilled, (state, action) => {
-      state.comments = action.payload
+      state.comments = action.payload;
     });
   },
 });

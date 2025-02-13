@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { StylesWrapper } from "./style";
+import { StyledRating, StylesWrapper } from "./style";
 import Button from "../Button/Button";
-import { IBook } from "../../lib/typing";
+import { IBook } from "../../lib/types/types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import {
-  addBookToCartThunk,
-  addBookToFavoritesThunk,
-} from "../../store/thunk/thunkBook";
-import { Rating } from "@mui/material";
+import { addBookToFavoritesThunk } from "../../store/thunk/thunkBook";
+import { addBookToCartThunk } from "../../store/thunk/thunkCart";
 
 export interface IBookProps {
   books: IBook;
@@ -23,6 +20,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
   const [textButton, setTextButton] = useState(`$${books.priceHard} USD`);
   const navigate = useNavigate();
   const isBookInCart = cart.hasOwnProperty(books.id);
+  const isBookInFavorites = favoritesBook.hasOwnProperty(books.id);
 
   useEffect(() => {
     if (isBookInCart) {
@@ -31,10 +29,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
       setTextButton(`$${books.priceHard} USD`);
     }
   }, [isBookInCart, books.priceHard]);
-  
-  const isBookInFavorites = favoritesBook.hasOwnProperty(books.id);
- 
-  
+
   const AddOrRemoveFavorites = () => {
     dispatch(addBookToFavoritesThunk({ bookId }));
   };
@@ -49,7 +44,10 @@ const Book: React.FC<IBookProps> = ({ books }) => {
   };
 
   return (
-    <StylesWrapper isBookInFavorites={isBookInFavorites} isBookInCart={isBookInCart}>
+    <StylesWrapper
+      isBookInFavorites={isBookInFavorites}
+      isBookInCart={isBookInCart}
+    >
       <div className="book">
         <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
         <img
@@ -64,7 +62,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
       </div>
       <div>
         <div className="averageRating__block">
-          <Rating
+          <StyledRating
             className="simple-controlled"
             value={books.averageRating}
             readOnly

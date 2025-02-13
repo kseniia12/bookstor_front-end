@@ -5,7 +5,7 @@ import { StylesWrapper } from "./style";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
 import { Link, useNavigate } from "react-router-dom";
-import constant from "../../constants/constants";
+import constant from "../../lib/constants/constants";
 import cart from "../../assets/Cart.png";
 import userProfile from "../../assets/user_profile.png";
 import heart from "../../assets/Heart.png";

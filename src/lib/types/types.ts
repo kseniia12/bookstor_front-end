@@ -1,29 +1,8 @@
-export interface IPropsButton {
-  text?: string;
-  className?: string;
-  onClick?: any;
-  form?: any;
-}
-
-export interface IPropsInput {
-  register?: any;
-  className?: string;
-  placeholder?: string;
-  icon?: string;
-  value?: string;
-  readOnly?: boolean;
-  type: string;
-}
-
 export interface IFormInput {
   email?: string;
   password?: string;
   passwordReplay?: string | undefined;
   fullName?: string;
-}
-
-export interface IFormComments {
-  comment: string;
 }
 
 export interface IAxiosResponse {
@@ -48,14 +27,6 @@ export interface IUser {
   photo?: string;
 }
 
-export interface IUseweewer {
-  photo: File;
-}
-
-export interface t {
-  photo: string;
-}
-
 export interface IStateUser {
   user: IUser;
   ratingBook: { [key: string]: IRateBook };
@@ -63,10 +34,6 @@ export interface IStateUser {
 
 export interface IPatchUser {
   user: IUser;
-}
-
-export interface IStateUserEror {
-  message: string;
 }
 
 export interface IRouterProps {
@@ -91,10 +58,6 @@ export interface IGetUser {
   user: IResp;
 }
 
-export interface IRespwwww {
-  user: IResp;
-}
-
 export interface IResponsForm {
   password: string;
   newPassword: string;
@@ -115,11 +78,12 @@ export interface IBook {
   countHard: number;
   countSoft: number;
   bestseller: boolean;
-  author: Author;
+  author: IAuthor;
   averageRating: number;
+  count?: number;
 }
 
-interface Author {
+interface IAuthor {
   id: number;
   name: string;
 }
@@ -145,30 +109,9 @@ export interface IResponsRecommendations {
   book: { [key: string]: IBook };
 }
 
-
-export interface IBookCart {
-  id: string;
-  name: string;
-  priceSoft: number;
-  priceHard: number;
-  description: string;
-  cover: string;
-  countHard: number;
-  countSoft: number;
-  bestseller: boolean;
-  author: Author;
-  averageRating: number;
-  count: number;
-}
-
 export interface ICartSlice {
-  book: { [key: string]: IBookCart };
+  book: { [key: string]: IBook };
   totalPrice: number;
-}
-
-export interface Price {
-  minValue: number;
-  maxValue: number;
 }
 
 export interface IFilter {
@@ -195,37 +138,14 @@ export interface IGetBookToCart {
   totalPrice: number;
 }
 
-export interface IGetBookToCartPatchCount {
-  book: IBook[];
-  totalPrice: number;
-}
-
-export interface IDeleteBookToCart {
-  totalPrice: number;
-}
-
-export interface IReqDeleteBookToCart {
-  id: number;
-}
-
-export interface IGenRecommendations {
-  bookId: number;
-}
-
-
 export interface IPropsComment {
   comment: string;
   date: object;
   bookId: number
 }
 
-export interface IResComment {
+export interface IComment {
   comment: string,
   date: string,
   user: { fullName: string, photo: string }
-
-}
-
-export interface CommentsState {
-  comments: IResComment[];
 }

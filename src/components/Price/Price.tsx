@@ -6,7 +6,10 @@ import { useAppSelector } from "../../hooks";
 
 const Price = () => {
   const price = useAppSelector((state) => state.book.price);
-  const [value, setValue] = React.useState<number[]>([price.minValue, price.maxValue]);
+  const [value, setValue] = React.useState<number[]>([
+    price.minValue,
+    price.maxValue,
+  ]);
   const navigate = useNavigate();
   const params = new URLSearchParams(window.location.search);
 

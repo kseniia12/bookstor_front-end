@@ -6,12 +6,7 @@ import {
   IPatchUser,
   IResponse,
   IResponsFormPassword,
-  IRouterProps,
-  IStateUser,
-  IStateUserEror,
-  IUseweewer,
-  t,
-} from "../../lib/typing";
+} from "../../lib/types/types";
 import {
   axiosGetUser,
   axiosPatchUser,
@@ -50,9 +45,22 @@ export const loginUserThunk = createAsyncThunk<IAxiosResponse, IFormInput>(
   }
 );
 
-export const uploadPhotoThunk = createAsyncThunk<t, IUseweewer>(
+export const uploadPhotoThunk = createAsyncThunk<
+  {
+    photo: string;
+  },
+  {
+    photo: File;
+  }
+>(
   "users/upload",
-  async ({ photo }: IUseweewer): Promise<t> => {
+  async ({
+    photo,
+  }: {
+    photo: File;
+  }): Promise<{
+    photo: string;
+  }> => {
     const response = await axiosUpload({
       photo,
     });
@@ -79,11 +87,17 @@ export const patchUserThunk = createAsyncThunk<IPatchUser, IGetUser>(
 );
 
 export const patchUserPasswordThunk = createAsyncThunk<
-  IStateUserEror,
+  {
+    message: string;
+  },
   IResponsFormPassword
 >(
   "users/getUserPassword",
-  async ({ user }: IResponsFormPassword): Promise<IStateUserEror> => {
+  async ({
+    user,
+  }: IResponsFormPassword): Promise<{
+    message: string;
+  }> => {
     const response = await axiosPatchUserPassword({
       user,
     });

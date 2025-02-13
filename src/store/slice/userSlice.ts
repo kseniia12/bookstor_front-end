@@ -6,7 +6,7 @@ import {
   patchUserThunk,
   uploadPhotoThunk,
 } from "../thunk/thunkUser";
-import { IStateUser, IUser } from "../../lib/typing";
+import { IStateUser, IUser } from "../../lib/types/types";
 import { rateBookThunk } from "../thunk/thunkBook";
 
 const initialState: IStateUser = {
