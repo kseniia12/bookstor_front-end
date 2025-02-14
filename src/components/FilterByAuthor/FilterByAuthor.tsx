@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import arrowToOpenForm from "../../assets/arrowToOpenForm.png";
 import { StylesWrapper } from "./style";
 import { useNavigate } from "react-router-dom";
+import { useAppSelector } from "../../hooks";
 
 const FilterByAuthor = () => {
+  const filters = useAppSelector((state)=> state.book.filters)
   const [open, setOpen] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<string>("");
+  const [selectedOption, setSelectedOption] = useState<string>(filters.sort);
   const navigate = useNavigate();
 
   const changeStateForm = () => {

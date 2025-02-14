@@ -89,8 +89,8 @@ interface IAuthor {
 }
 
 export interface IResponsBook {
-  book: { [key: string]: IBook };
-  bookNormalized: IBook[];
+  bookNormalized: { [key: string]: IBook };
+  books: IBook[];
   price: {
     minValue: number;
     maxValue: number;
@@ -102,6 +102,13 @@ export interface IResponsBook {
     hasNextPage: boolean,
     hasPrevPage: boolean,
   };
+  filters: {
+    genre: string[];
+    maxPrice: string;
+    minPrice: string;
+    page: string;
+    sort: string;
+  }
 }
 
 export interface IResponsBookPagination {
@@ -117,6 +124,13 @@ export interface IResponsBookPagination {
     hasNextPage: boolean,
     hasPrevPage: boolean,
   },
+  filters: {
+    genre: string[];
+    maxPrice: string;
+    minPrice: string;
+    page: string;
+    sort: string;
+  }
 }
 
 export interface IResponsRecommendations {
@@ -139,7 +153,7 @@ export interface IResponsFilter {
 
 export interface IReqBook {
   page?: number;
-  filter?: string[];
+  genre?: string[];
 }
 
 export interface IAddBookToCart {

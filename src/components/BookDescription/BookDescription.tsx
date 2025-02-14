@@ -13,7 +13,7 @@ import { addBookToCartThunk } from "../../store/thunk/thunkCart";
 const BookDescription = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams<{ id: string }>();
-  const books = useAppSelector((state) => state.book.book);
+  const books = useAppSelector((state) => state.book.bookNormalized);
 
   useEffect(() => {
     if (Object.keys(books).length - 1 === 0) {

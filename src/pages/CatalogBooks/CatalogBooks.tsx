@@ -13,17 +13,17 @@ import Authorization from "../../components/Authorization/Authorization";
 
 const CatalogBooks = () => {
   const [searchParams] = useSearchParams();
-  const books = useAppSelector((state) => state.book.bookNormalized);
+  const books = useAppSelector((state) => state.book.books);
   const user = useAppSelector((state) => state.users.user);
   const dispatch = useAppDispatch();
   const page = Number(searchParams.get("page")) || 1;
-  const filter = searchParams.getAll("filter");
+  const genre = searchParams.getAll("genre");
   const sort = searchParams.get("sort");
   const maxPrice = searchParams.get("max");
   const minPrice = searchParams.get("min");
   const data = {
     page: page,
-    filter: filter,
+    genre: genre,
     sort: sort,
     maxPrice: maxPrice,
     minPrice: minPrice,

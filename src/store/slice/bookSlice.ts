@@ -4,7 +4,7 @@ import { IBook, IResponsBook } from "../../lib/types/types";
 import { getBookThunk } from "../thunk/thunkBook";
 
 const initialState: IResponsBook = {
-  book: {
+  bookNormalized: {
     key: {
       id: "",
       name: "",
@@ -22,7 +22,7 @@ const initialState: IResponsBook = {
       }
     },
   },
-  bookNormalized: [],
+  books: [],
   price: {
     minValue: 0,
     maxValue: 0,
@@ -33,6 +33,13 @@ const initialState: IResponsBook = {
     currentPage: 1,
     hasNextPage: true,
     hasPrevPage: true,
+  },
+  filters: {
+    genre: [""],
+    maxPrice: "0.0",
+    minPrice: "40.0",
+    page: "1",
+    sort: "1",
   }
 };
 
@@ -47,14 +54,15 @@ const bookSlice = createSlice({
   extraReducers: (builder) => {
     
     builder.addCase(getBookThunk.fulfilled, (state, action) => {
+      state.filters = action.payload.filters;
       state.meta = action.payload.meta;
-      state.bookNormalized = action.payload.book;
+      state.books = action.payload.book;
       if (Array.isArray(action.payload.book)) {
         const booksObject: IBooksObject = action.payload.book.reduce((acc, book) => {
           acc[book.id] = book;
           return acc;
         }, {} as IBooksObject);
-        state.book = booksObject;
+        state.bookNormalized = booksObject;
         state.price = action.payload.price;
       } else {
         console.error("Это не массив");

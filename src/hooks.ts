@@ -24,6 +24,3 @@ export const useMultiselect = (initialValue: string[]) => {
 
   return { selected, isSelected, onChange, active };
 };
-
-
-// navigate(selected.join())

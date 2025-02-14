@@ -7,8 +7,8 @@ export const StylesWrapper = styled.div<{backdArrowState: boolean, forwardArrowS
   gap: 50px;
   .circle {
     border: 3px solid black;
-    width: 20px;
-    height: 20px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
   }
   .circle.active {
