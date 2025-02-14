@@ -82,7 +82,7 @@ const UserProfile = () => {
       handleSubmitPassword(onSubmitForPassword)();
     }
   };
-  console.log(changePassword)
+
   return (
     <StylesWrapper isEditable={isEditable} changePassword={changePassword}>
       <div className="avatar">

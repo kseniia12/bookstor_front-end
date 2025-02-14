@@ -26,6 +26,13 @@ const initialState: IResponsBook = {
   price: {
     minValue: 0,
     maxValue: 0,
+  },
+  meta: {
+    totalBooks: 0,
+    totalPages: 1,
+    currentPage: 1,
+    hasNextPage: true,
+    hasPrevPage: true,
   }
 };
 
@@ -40,6 +47,7 @@ const bookSlice = createSlice({
   extraReducers: (builder) => {
     
     builder.addCase(getBookThunk.fulfilled, (state, action) => {
+      state.meta = action.payload.meta;
       state.bookNormalized = action.payload.book;
       if (Array.isArray(action.payload.book)) {
         const booksObject: IBooksObject = action.payload.book.reduce((acc, book) => {

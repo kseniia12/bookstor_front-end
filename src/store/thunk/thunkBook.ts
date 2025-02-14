@@ -70,7 +70,6 @@ export const getBookToFavoritesThunk =
     "getBookToFavoritesThunk/dBook",
     async (): Promise<IResponsRecommendations> => {
       const response = await axiosGetBookToFavorites();
-      console.log(response);
       return response;
     }
   );

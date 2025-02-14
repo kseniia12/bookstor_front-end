@@ -95,6 +95,13 @@ export interface IResponsBook {
     minValue: number;
     maxValue: number;
   };
+  meta: {
+    totalBooks: number,
+    totalPages: number,
+    currentPage: number,
+    hasNextPage: boolean,
+    hasPrevPage: boolean,
+  };
 }
 
 export interface IResponsBookPagination {
@@ -103,6 +110,13 @@ export interface IResponsBookPagination {
     minValue: number;
     maxValue: number;
   };
+  meta: {
+    totalBooks: number,
+    totalPages: number,
+    currentPage: number,
+    hasNextPage: boolean,
+    hasPrevPage: boolean,
+  },
 }
 
 export interface IResponsRecommendations {
