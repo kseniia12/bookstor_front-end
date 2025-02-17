@@ -10,15 +10,18 @@ import RatingBookForUser from "../RatingBookForUser/RatingBookForUser";
 import rateBook from "../../assets/rateBook.png";
 import { addBookToCartThunk } from "../../store/thunk/thunkCart";
 import constant from "../../lib/constants/constants";
+import { addBookToFavoritesThunk } from "../../store/thunk/thunkFavorites";
 const BookDescription = () => {
   const dispatch = useAppDispatch();
 
   const { id } = useParams<{ id: string }>();
   const cart = useAppSelector((state) => state.cart.book);
   const books = useAppSelector((state) => state.book.bookNormalized);
+  const favoritesBook = useAppSelector((state) => state.favorites.book);
   const [textButton, setTextButton] = useState(`$${books.priceHard} USD`);
   const navigate = useNavigate()
   const isBookInCart = cart.hasOwnProperty(id !== undefined ? id : 0);
+  const isBookInFavorites = favoritesBook.hasOwnProperty(id !== undefined ? id : 0);
 
   useEffect(() => {
     if (Object.keys(books).length - 1 === 0) {
@@ -45,7 +48,7 @@ const BookDescription = () => {
   }
 
   const AddOrRemoveFavorites = () => {
-    setFavorites(!favorites);
+    dispatch(addBookToFavoritesThunk({ bookId }));
   };
 
   const addBookToCart = () => {
@@ -55,7 +58,7 @@ const BookDescription = () => {
   };
 
   return (
-    <StylesWrapper src={favorites} isBookInCart={isBookInCart}>
+    <StylesWrapper isBookInFavorites={isBookInFavorites} isBookInCart={isBookInCart}>
       <div className="book">
         <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
         <img

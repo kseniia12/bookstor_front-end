@@ -2,7 +2,7 @@ import styled from "styled-components";
 import heartSave from "../../assets/Heart.png";
 import heartNoSave from "../../assets/HeartNotSave.png";
 export const StylesWrapper = styled.div<{
-  src: boolean;
+  isBookInFavorites: boolean;
   isBookInCart: boolean;
 }>`
   display: flex;
@@ -20,13 +20,13 @@ export const StylesWrapper = styled.div<{
       position: absolute;
       top: 30px;
       right: 30px;
-      background-image: url(${({ src }) => (src ? heartSave : heartNoSave)});
+      background-image: url(${({ isBookInFavorites }) => (isBookInFavorites ? heartNoSave :  heartSave)});
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 50%;
       padding: 11px;
       background-color: ${({ theme }) => theme.colors.darkBlue};
-      opacity: ${({ src }) => (src === true ? "0.5" : "1")};
+      opacity: ${({ isBookInFavorites }) => (isBookInFavorites === true ? "1" : "0.5")};
       width: 48px;
       height: 48px;
       background-size: 26px;
