@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks";
 
 const FilterByAuthor = () => {
-  const filters = useAppSelector((state)=> state.book.filters)
+  const filters = useAppSelector((state) => state.book.filters);
   const [open, setOpen] = useState<boolean>(false);
-  const [selectedOption, setSelectedOption] = useState<string>(filters.sort);
   const navigate = useNavigate();
+  const params = new URLSearchParams(window.location.search);
+  const initialSelectedOption = params.get('sort') || filters.sort;
+  const [selectedOption, setSelectedOption] = useState<string>(initialSelectedOption);
 
   const changeStateForm = () => {
     setOpen(!open);
@@ -22,7 +24,6 @@ const FilterByAuthor = () => {
 
   useEffect(() => {
     if (selectedOption) {
-      const params = new URLSearchParams(window.location.search);
       params.set("sort", selectedOption);
       navigate({ search: params.toString() });
     }

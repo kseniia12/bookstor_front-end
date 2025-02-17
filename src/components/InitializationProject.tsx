@@ -23,9 +23,7 @@ const InitializationProject: React.FC<PropsWithChildren> = ({ children }) => {
       }
     };
     initialize();
-
     dispatch(getBookToCartThunk());
-
     dispatch(getBookToFavoritesThunk());
   }, [dispatch]);
 

@@ -3,7 +3,6 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useParams } from "react-router-dom";
 import { IBook } from "../../lib/types/types";
 import rating from "../../assets/rating.png";
-
 import Button from "../../components/Button/Button";
 import { getBookThunk } from "../../store/thunk/thunkBook";
 import { StylesWrapper } from "./style";
@@ -12,14 +11,24 @@ import rateBook from "../../assets/rateBook.png";
 import { addBookToCartThunk } from "../../store/thunk/thunkCart";
 const BookDescription = () => {
   const dispatch = useAppDispatch();
+
   const { id } = useParams<{ id: string }>();
+  const cart = useAppSelector((state) => state.cart.book);
   const books = useAppSelector((state) => state.book.bookNormalized);
+  const [textButton, setTextButton] = useState(`$${books.priceHard} USD`);
+
+  const isBookInCart = cart.hasOwnProperty(id !== undefined ? id : 0);
 
   useEffect(() => {
     if (Object.keys(books).length - 1 === 0) {
       dispatch(getBookThunk({}));
     }
-  }, [dispatch]);
+    if (isBookInCart) {
+      setTextButton("Added to cart");
+    } else {
+      setTextButton(`$${book?.priceHard} USD`);
+    }
+  }, [dispatch, isBookInCart]);
 
   const [favorites, setFavorites] = useState<boolean>(false);
 
@@ -40,10 +49,11 @@ const BookDescription = () => {
 
   const addBookToCart = () => {
     dispatch(addBookToCartThunk({ bookId }));
+    setTextButton("Added to cart");
   };
 
   return (
-    <StylesWrapper src={favorites}>
+    <StylesWrapper src={favorites} isBookInCart={isBookInCart}>
       <div className="book">
         <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
         <img
@@ -75,7 +85,11 @@ const BookDescription = () => {
           </div>
           <div>
             <p className="button__title">Hardcover</p>
-            <Button text={`$${book.priceHard} USD`} onClick={addBookToCart} />
+            <Button
+              text={`${textButton}`}
+              onClick={addBookToCart}
+              className="button__cart"
+            />
           </div>
         </div>
       </div>

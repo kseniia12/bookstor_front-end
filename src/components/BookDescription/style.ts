@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import heartSave from "../../assets/Heart.png";
 import heartNoSave from "../../assets/HeartNotSave.png";
-export const StylesWrapper = styled.div<{ src: boolean }>`
+export const StylesWrapper = styled.div<{ src: boolean, isBookInCart: boolean }>`
   display: flex;
   gap: 128px;
   padding-top: 60px;
@@ -49,6 +49,13 @@ export const StylesWrapper = styled.div<{ src: boolean }>`
     gap: 82px;
     &__title {
       padding-bottom: 14px;
+    }
+    &__cart {
+      background-color: ${({ isBookInCart, theme }) =>
+    isBookInCart ? theme.colors.white : theme.colors.darkBlue};
+    color: ${({ isBookInCart, theme }) =>
+    isBookInCart ? theme.colors.dark : theme.colors.white};
+    border: 1px solid ${({ theme }) => theme.colors.darkBlue};
     }
   }
   .rating{

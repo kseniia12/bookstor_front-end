@@ -6,23 +6,22 @@ import { useAppSelector } from "../../hooks";
 
 const Price = () => {
   const price = useAppSelector((state) => state.book.price);
-  const [value, setValue] = React.useState<number[]>([
-    price.minValue,
-    price.maxValue,
-  ]);
   const navigate = useNavigate();
   const params = new URLSearchParams(window.location.search);
+
+  const initialMin = params.has('min') ? parseFloat(params.get('min')!) : price.minValue;
+  const initialMax = params.has('max') ? parseFloat(params.get('max')!) : price.maxValue;
+  const [value, setValue] = React.useState<number[]>([initialMin, initialMax]);
 
   const handleChangeCommitted = (
     event: React.SyntheticEvent | Event,
     newValue: number | number[]
   ) => {
-    setValue(newValue as number[]);
-    if (value.length > 0) {
-      params.set("min", value[0].toString());
-      params.set("max", value[1].toString());
-      navigate({ search: params.toString() });
-    }
+    const newValues = newValue as number[];
+    setValue(newValues);
+    params.set("min", newValues[0].toString());
+    params.set("max", newValues[1].toString());
+    navigate({ search: params.toString() });
   };
 
   const handleChange = (event: Event, newValue: number | number[]) => {
@@ -48,4 +47,5 @@ const Price = () => {
     </StylesWrapper>
   );
 };
+
 export default Price;

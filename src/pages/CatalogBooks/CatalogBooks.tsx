@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Book from "../../components/Book/Book";
 import { StylesWrapper } from "./style";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getBookThunk } from "../../store/thunk/thunkBook";
+import { getBookThunk, getFilterThunk } from "../../store/thunk/thunkBook";
 import { useSearchParams } from "react-router-dom";
 import PaginationLink from "../../components/Pagination/Pagination";
 import FilterByGenre from "../../components/FilterByGenre/FilterByGenre";
@@ -31,6 +31,7 @@ const CatalogBooks = () => {
 
   useEffect(() => {
     dispatch(getBookThunk(data));
+    dispatch(getFilterThunk())
   }, [dispatch, window.location.href]);
 
   return (

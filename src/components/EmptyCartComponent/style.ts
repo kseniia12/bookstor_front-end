@@ -4,18 +4,18 @@ export const StylesWrapper = styled.div`
   padding: 118px 165px 148px 108px;
   display: flex;
   gap: 109px;
-  &__image {
+  .image {
     width: 433px;
     height: 261px;
   }
-  &__book {
+  .book {
     padding-top: 50px;
     max-width: 100%;
   }
-  &__title {
+  .title {
     font-size: 40px;
   }
-  &__description {
+  .description {
     font-size: 24px;
     padding-top: 20px;
     padding-bottom: 60px;

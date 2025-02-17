@@ -67,7 +67,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
             value={books.averageRating}
             readOnly
           />
-          <div className="averageRating">{books.averageRating}.0</div>
+          <div className="averageRating">{books.averageRating}</div>
         </div>
 
         <Button className="button" text={textButton} onClick={addBookToCart} />
