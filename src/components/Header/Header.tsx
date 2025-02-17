@@ -27,7 +27,9 @@ const Header = () => {
         <Link to="/">
           <img src={logo} alt="Logo" />
         </Link>
-        <Link className="logo__page" to="/">Catalog</Link>
+        <Link className="logo__page" to="/">
+          Catalog
+        </Link>
       </div>
       <Input className="input" icon={search} placeholder="Search" type="text" />
       {user.id !== 0 ? (

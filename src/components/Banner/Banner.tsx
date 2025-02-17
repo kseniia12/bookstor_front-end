@@ -14,8 +14,8 @@ const Banner = () => {
         </div>
         <Button text="Choose a book" />
       </div>
-      <img src={book} alt="Book" className="img-book" />
-      <img src={girlWithBook} alt="Girl With Book" className="img-girl" />
+      <img src={book} alt="Book" className="img__book" />
+      <img src={girlWithBook} alt="Girl With Book" className="img" />
     </StylesWrapper>
   );
 };

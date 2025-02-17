@@ -1,25 +1,26 @@
-import React from 'react'
-import Input from '../Input/Input'
+import React from "react";
+import Input from "../Input/Input";
 import searchIcon from "../../assets/hide.png";
 
 interface ChangePasswordFormProps {
   registerPassword: any;
   errors: any;
   watch: any;
-  handleEditClick1: any;
+  handleEditClickPassword: any;
 }
 
 const FormPassword: React.FC<ChangePasswordFormProps> = ({
   registerPassword,
   errors,
   watch,
-  handleEditClick1}) => {
+  handleEditClickPassword,
+}) => {
   const password = watch("user.newPassword");
   return (
     <div className="form__section">
       <div className="form__header password">
         <div>Password</div>
-        <div className="form__editing" onClick={handleEditClick1}>
+        <div className="form__editing" onClick={handleEditClickPassword}>
           Change password
         </div>
       </div>
@@ -41,8 +42,7 @@ const FormPassword: React.FC<ChangePasswordFormProps> = ({
           })}
         />
         <div
-          className={`item__text ${errors.user?.newPassword ? "error" : ""
-            }`}
+          className={`item__text ${errors.user?.newPassword ? "error" : ""}`}
         >
           {errors.user?.newPassword
             ? errors.user.newPassword.message
@@ -62,8 +62,7 @@ const FormPassword: React.FC<ChangePasswordFormProps> = ({
           })}
         />
         <div
-          className={`item__text ${errors.user?.passwordReplay ? "error" : ""
-            }`}
+          className={`item__text ${errors.user?.passwordReplay ? "error" : ""}`}
         >
           {errors.user?.passwordReplay
             ? errors.user.passwordReplay.message
@@ -71,6 +70,6 @@ const FormPassword: React.FC<ChangePasswordFormProps> = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 export default FormPassword;

@@ -21,13 +21,13 @@ export const StylesWrapper = styled.div`
       padding-bottom: 50px;
     }
   }
-  .img-castle {
+  .img {
     display: block;
-  }
-  .img-fairy {
-    display: block;
-    position: absolute;
-    bottom: 0px;
-    right: 0px;
+    &__fairy {
+      display: block;
+      position: absolute;
+      bottom: 0px;
+      right: 0px;
+    }
   }
 `;

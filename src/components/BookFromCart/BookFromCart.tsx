@@ -3,7 +3,12 @@ import { IBook } from "../../lib/types/types";
 import { StylesWrapper } from "./style";
 import cart from "../../assets/delete.png";
 import { useAppDispatch } from "../../hooks";
-import { changeCountBooksThunk, deleteBookToCartThunk, getBookToCartThunk } from "../../store/thunk/thunkCart";
+import {
+  changeCountBooksThunk,
+  deleteBookToCartThunk,
+  getBookToCartThunk,
+} from "../../store/thunk/thunkCart";
+import constant from "../../lib/constants/constants";
 
 export interface IBookProps {
   books: IBook;
@@ -18,23 +23,23 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
     dispatch(getBookToCartThunk());
   };
   const addBookToCart = () => {
-    if (typeof count === 'undefined') {
-      console.error('Count is undefined');
+    if (typeof count === "undefined") {
+      console.error("Count is undefined");
       return;
     }
-    
+
     dispatch(
       changeCountBooksThunk({ count: count + 1, bookId: Number(books.id) })
     );
     setCount(count + 1);
   };
-  
+
   const addBookToCartmin = () => {
-    if (typeof count === 'undefined') {
-      console.error('Count is undefined');
+    if (typeof count === "undefined") {
+      console.error("Count is undefined");
       return;
     }
-  
+
     if (count > 1) {
       dispatch(
         changeCountBooksThunk({ count: count - 1, bookId: Number(books.id) })
@@ -42,13 +47,13 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
       setCount(count - 1);
     }
   };
-  
+
   return (
     <StylesWrapper>
       <div className="book">
         <img
           className="book__img"
-          src={`http://localhost:4000/upload/${books.cover}`}
+          src={`${constant.PATH_TO_FOLDER}/${books.cover}`}
           alt="Book"
         />
       </div>
@@ -58,12 +63,12 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
           <div className="info__author">{books.author.name}</div>
         </div>
         <div className="counter">
-          <div className="counter__u">
-            <div className="counter__v" onClick={addBookToCartmin}>
+          <div className="counter__controls">
+            <div className="counter__button" onClick={addBookToCartmin}>
               -
             </div>
             <div>{count}</div>
-            <div className="counter__v" onClick={addBookToCart}>
+            <div className="counter__button" onClick={addBookToCart}>
               +
             </div>
           </div>

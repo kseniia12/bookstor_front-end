@@ -9,7 +9,7 @@ const initialState: IResponsFilter = {
       id: 0,
       name: "",
     },
-  ]
+  ],
 };
 
 const filterSlice = createSlice({

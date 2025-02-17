@@ -21,6 +21,4 @@ export default createGlobalStyle`
     font-weight: medium;
     font-size: 20px;
   }
-
-
 `;

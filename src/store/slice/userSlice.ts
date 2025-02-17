@@ -52,7 +52,7 @@ const userSlice = createSlice({
         state.user = action.payload.user;
         if (Array.isArray(action.payload.ratingBook)) {
           const booksObject = action.payload.ratingBook.reduce((acc, book) => {
-            acc[book.bookId] = book; 
+            acc[book.bookId] = book;
             return acc;
           }, {});
           state.ratingBook = booksObject;
@@ -77,7 +77,7 @@ const userSlice = createSlice({
       .addCase(rateBookThunk.fulfilled, (state, action) => {
         if (Array.isArray(action.payload.ratingBook)) {
           const booksObject = action.payload.ratingBook.reduce((acc, book) => {
-            acc[book.bookId] = book; 
+            acc[book.bookId] = book;
             return acc;
           }, {});
           state.ratingBook = booksObject;

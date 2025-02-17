@@ -4,8 +4,9 @@ import Button from "../Button/Button";
 import { IBook } from "../../lib/types/types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { addBookToFavoritesThunk } from "../../store/thunk/thunkBook";
+import { addBookToFavoritesThunk } from "../../store/thunk/thunkFavorites";
 import { addBookToCartThunk } from "../../store/thunk/thunkCart";
+import constant from "../../lib/constants/constants";
 
 export interface IBookProps {
   books: IBook;
@@ -52,8 +53,9 @@ const Book: React.FC<IBookProps> = ({ books }) => {
         <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
         <img
           className="book__img"
-          src={`http://localhost:4000/upload/${books.cover}`}
+          src={`${constant.PATH_TO_FOLDER}/${books.cover}`}
           alt="Book"
+          onClick={sendBookId}
         />
       </div>
       <div onClick={sendBookId}>

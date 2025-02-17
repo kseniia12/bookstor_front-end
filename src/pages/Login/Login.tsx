@@ -27,7 +27,7 @@ const Login = () => {
     try {
       const user = await dispatch(loginUserThunk(data)).unwrap();
       if (user) {
-        navigate(constant.CATALOG_BOOKS)
+        navigate(constant.CATALOG_BOOKS);
       }
     } catch (error) {
       toast.error("Data entered incorrectly");

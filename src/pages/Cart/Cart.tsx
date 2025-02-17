@@ -11,7 +11,7 @@ const Cart = () => {
     <StylesWrapper>
       {totalPrice !== 0 ? (
         <div>
-          <div className="books">
+          <div>
             {Object.keys(books).map((bookId) => {
               return (
                 <BookFromCart

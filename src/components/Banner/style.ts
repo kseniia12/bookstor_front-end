@@ -23,13 +23,13 @@ export const StylesWrapper = styled.div`
       color: ${({ theme }) => theme.colors.dark};
     }
   }
-  .img-book {
+  .img {
     display: block;
-    position: absolute;
-    top: 135px;
-    left: 0px;
-  }
-  .img-girl {
-    display: block;
+    &__book {
+      display: block;
+      position: absolute;
+      top: 135px;
+      left: 0px;
+    }
   }
 `;

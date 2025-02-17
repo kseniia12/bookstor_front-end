@@ -3,7 +3,6 @@ import { StylesWrapper } from "./style";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getCommentBookThunk } from "../../store/thunk/thunkComment";
 
-
 interface propsComments {
   bookId: number;
 }

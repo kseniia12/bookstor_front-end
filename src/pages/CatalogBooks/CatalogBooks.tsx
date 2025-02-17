@@ -31,7 +31,7 @@ const CatalogBooks = () => {
 
   useEffect(() => {
     dispatch(getBookThunk(data));
-    dispatch(getFilterThunk())
+    dispatch(getFilterThunk());
   }, [dispatch, window.location.href]);
 
   return (
@@ -46,10 +46,8 @@ const CatalogBooks = () => {
         </div>
       </div>
       <div className="books">
-        {(books).map((bookId) => {
-          return (
-            <Book books={bookId} className="books__book" />
-          );
+        {books.map((bookId) => {
+          return <Book books={bookId} className="books__book" />;
         })}
       </div>
       <PaginationLink />

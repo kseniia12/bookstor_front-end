@@ -5,10 +5,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../hooks";
 import { addCommentBookThunk } from "../../store/thunk/thunkComment";
 
-interface propsComments {
+interface PropsComments {
   bookId: number;
 }
-const FormForComments: React.FC<propsComments> = ({ bookId }) => {
+const FormForComments: React.FC<PropsComments> = ({ bookId }) => {
   const dispatch = useAppDispatch();
   const { handleSubmit, register, reset } = useForm<{
     comment: string;
@@ -23,6 +23,7 @@ const FormForComments: React.FC<propsComments> = ({ bookId }) => {
     );
     reset();
   };
+
   return (
     <StylesWrapper>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -33,7 +34,7 @@ const FormForComments: React.FC<propsComments> = ({ bookId }) => {
             {...register("comment")}
           />
         </div>
-        <Button className="button" text="Post a comment" />
+        <Button text="Post a comment" />
       </form>
     </StylesWrapper>
   );

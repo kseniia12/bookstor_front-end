@@ -17,13 +17,13 @@ export const StylesWrapper = styled.div<{ open: boolean }>`
     &__white {
       background-color: ${({ theme }) => theme.colors.light};
     }
-    &__select{
+    &__select {
       appearance: none;
       width: 100%;
       padding: 10px 12px 10px 15px;
       border: 1px solid ${({ theme }) => theme.colors.light};
       border-radius: 16px;
-      background-color: ${({ theme }) => theme.colors.light};;
+      background-color: ${({ theme }) => theme.colors.light};
     }
   }
   .arrow {

@@ -1,8 +1,8 @@
-import React from 'react';
-import Book from '../../components/Book/Book';
-import { useAppSelector } from '../../hooks';
-import { StylesWrapper } from './style';
-import EmptyCartComponent from '../../components/EmptyCartComponent/EmptyCartComponent';
+import React from "react";
+import Book from "../../components/Book/Book";
+import { useAppSelector } from "../../hooks";
+import { StylesWrapper } from "./style";
+import EmptyCartComponent from "../../components/EmptyCartComponent/EmptyCartComponent";
 
 const Favorites = () => {
   const books = useAppSelector((state) => state.favorites.book);
@@ -20,4 +20,3 @@ const Favorites = () => {
 };
 
 export default Favorites;
-

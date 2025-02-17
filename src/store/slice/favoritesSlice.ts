@@ -1,8 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { IResponsRecommendations } from "../../lib/types/types";
-import { addBookToFavoritesThunk, getBookToFavoritesThunk } from "../thunk/thunkBook";
-
+import {
+  addBookToFavoritesThunk,
+  getBookToFavoritesThunk,
+} from "../thunk/thunkFavorites";
 
 const initialState: IResponsRecommendations = {
   book: {
@@ -19,8 +21,8 @@ const initialState: IResponsRecommendations = {
       averageRating: 0,
       author: {
         id: 0,
-        name: ""
-      }
+        name: "",
+      },
     },
   },
 };
@@ -33,10 +35,10 @@ const favoritesSlice = createSlice({
     builder.addCase(addBookToFavoritesThunk.fulfilled, (state, action) => {
       if (Array.isArray(action.payload.book)) {
         const booksObject = action.payload.book.reduce((acc, book) => {
-          acc[book.id] = book; 
+          acc[book.id] = book;
           return acc;
         }, {});
-        state.book = booksObject; 
+        state.book = booksObject;
       } else {
         console.error("Это не массив");
       }
@@ -44,16 +46,15 @@ const favoritesSlice = createSlice({
     builder.addCase(getBookToFavoritesThunk.fulfilled, (state, action) => {
       if (Array.isArray(action.payload.book)) {
         const booksObject = action.payload.book.reduce((acc, book) => {
-          acc[book.id] = book; 
+          acc[book.id] = book;
           return acc;
         }, {});
-        state.book = booksObject; 
+        state.book = booksObject;
       } else {
         console.error("Это не массив");
       }
     });
   },
-  },
-);
+});
 
 export default favoritesSlice.reducer;

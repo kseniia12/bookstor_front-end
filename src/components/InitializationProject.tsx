@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect, useState } from "react";
 import { useAppDispatch } from "../hooks";
 import { getUserThunk } from "../store/thunk/thunkUser";
-import { getBookToFavoritesThunk } from "../store/thunk/thunkBook";
+import { getBookToFavoritesThunk } from "../store/thunk/thunkFavorites";
 import { getBookToCartThunk } from "../store/thunk/thunkCart";
 
 const InitializationProject: React.FC<PropsWithChildren> = ({ children }) => {

@@ -62,12 +62,12 @@ const UserProfile = () => {
     }
   };
 
-  const handleEditClick = () => {
+  const handleEditClickPersonalInformation = () => {
     setIsEditable(!isEditable);
     setActiveForm(isEditable ? null : "profile");
   };
 
-  const handleEditClick1 = () => {
+  const handleEditClickPassword = () => {
     setChangePassword(!changePassword);
     setActiveForm(changePassword ? null : "password");
   };
@@ -104,14 +104,14 @@ const UserProfile = () => {
       <div className="form">
         <form onSubmit={handleFormSubmit}>
           <FormPersonalInformation
-            handleEditClick={handleEditClick}
+            handleEditClickPersonalInformation={handleEditClickPersonalInformation}
             register={register}
           />
           <FormPassword
             registerPassword={registerPassword}
             errors={errors}
             watch={watch}
-            handleEditClick1={handleEditClick1}
+            handleEditClickPassword={handleEditClickPassword}
           />
           {activeForm && <Button className="button" text="Confirm" />}
         </form>

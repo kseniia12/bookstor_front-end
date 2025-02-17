@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import constant from "../../lib/constants/constants";
 
 const Authorization = () => {
-
   const navigate = useNavigate();
 
   const navigateToPageResistration = () => {
@@ -16,7 +15,7 @@ const Authorization = () => {
 
   return (
     <StylesWrapper>
-      <img src={castle} alt="castle" className="img-castle" />
+      <img src={castle} alt="castle" className="img" />
       <div className="content">
         <div className="content__title">Authorize now</div>
         <div className="content__subtitle">
@@ -24,7 +23,7 @@ const Authorization = () => {
         </div>
         <Button text="Log In/ Sing Up" onClick={navigateToPageResistration} />
       </div>
-      <img src={fairy} alt="fairy" className="img-fairy" />
+      <img src={fairy} alt="fairy" className="img__fairy" />
     </StylesWrapper>
   );
 };

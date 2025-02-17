@@ -4,37 +4,37 @@ export const StylesWrapper = styled.div`
   display: flex;
   gap: 20px;
   padding: 40px 0px;
-  .book{
+  .book {
     width: 197px;
     height: 289px;
-    &__img{
+    &__img {
       max-width: 100%;
       border-radius: 16px;
     }
   }
-  .info{
+  .info {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    &__title{ 
+    &__title {
       font-size: 40px;
     }
-    &__author{
+    &__author {
       font-size: 24px;
     }
-    &__price{
+    &__price {
       font-size: 36px;
     }
   }
-  .counter{
+  .counter {
     display: flex;
     gap: 58px;
     align-items: center;
-    &__u{
+    &__controls {
       display: flex;
       gap: 15px;
     }
-    &__v{
+    &__button {
       background-color: ${({ theme }) => theme.colors.light};
       width: 32px;
       height: 32px;
@@ -42,8 +42,8 @@ export const StylesWrapper = styled.div`
       text-align: center;
     }
   }
-  .cart{
-    height:20px;
+  .cart {
+    height: 20px;
     width: 20px;
     cursor: pointer;
   }

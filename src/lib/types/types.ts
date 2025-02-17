@@ -96,11 +96,11 @@ export interface IResponsBook {
     maxValue: number;
   };
   meta: {
-    totalBooks: number,
-    totalPages: number,
-    currentPage: number,
-    hasNextPage: boolean,
-    hasPrevPage: boolean,
+    totalBooks: number;
+    totalPages: number;
+    currentPage: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
   };
   filters: {
     genre: string[];
@@ -108,7 +108,7 @@ export interface IResponsBook {
     minPrice: string;
     page: string;
     sort: string;
-  }
+  };
 }
 
 export interface IResponsBookPagination {
@@ -118,19 +118,19 @@ export interface IResponsBookPagination {
     maxValue: number;
   };
   meta: {
-    totalBooks: number,
-    totalPages: number,
-    currentPage: number,
-    hasNextPage: boolean,
-    hasPrevPage: boolean,
-  },
+    totalBooks: number;
+    totalPages: number;
+    currentPage: number;
+    hasNextPage: boolean;
+    hasPrevPage: boolean;
+  };
   filters: {
     genre: string[];
     maxPrice: string;
     minPrice: string;
     page: string;
     sort: string;
-  }
+  };
 }
 
 export interface IResponsRecommendations {
@@ -169,11 +169,11 @@ export interface IGetBookToCart {
 export interface IPropsComment {
   comment: string;
   date: object;
-  bookId: number
+  bookId: number;
 }
 
 export interface IComment {
-  comment: string,
-  date: string,
-  user: { fullName: string, photo: string }
+  comment: string;
+  date: string;
+  user: { fullName: string; photo: string };
 }

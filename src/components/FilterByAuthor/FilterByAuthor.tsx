@@ -9,8 +9,10 @@ const FilterByAuthor = () => {
   const [open, setOpen] = useState<boolean>(false);
   const navigate = useNavigate();
   const params = new URLSearchParams(window.location.search);
-  const initialSelectedOption = params.get('sort') || filters.sort;
-  const [selectedOption, setSelectedOption] = useState<string>(initialSelectedOption);
+  const initialSelectedOption = params.get("sort") || filters.sort;
+  const [selectedOption, setSelectedOption] = useState<string>(
+    initialSelectedOption
+  );
 
   const changeStateForm = () => {
     setOpen(!open);

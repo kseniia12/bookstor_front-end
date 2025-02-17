@@ -4,6 +4,7 @@ import constant from "../../lib/constants/constants";
 import { useNavigate } from "react-router-dom";
 import book from "../../assets/bookFromCart.png";
 import { StylesWrapper } from "./style";
+
 const EmptyCartComponent = () => {
   const navigate = useNavigate();
   const handleGoToCatalog = () => {

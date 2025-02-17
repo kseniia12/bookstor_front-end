@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StylesWrapper = styled.div<{
   isEditable: boolean;
   changePassword: boolean;
-}>` 
+}>`
   display: flex;
   padding: 60px 0px 110px 0px;
   gap: 128px;

@@ -15,7 +15,7 @@ const constant = {
   RECOMMENDATIONS: "/book/recommendations",
   RATE_BOOK: "/book/rating",
   FAVORITES: "/favorites",
-
+  PATH_TO_FOLDER: "http://localhost:4000/upload/",
 } as const;
 
 export default constant;

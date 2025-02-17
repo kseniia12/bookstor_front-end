@@ -9,6 +9,7 @@ import { StylesWrapper } from "./style";
 import RatingBookForUser from "../RatingBookForUser/RatingBookForUser";
 import rateBook from "../../assets/rateBook.png";
 import { addBookToCartThunk } from "../../store/thunk/thunkCart";
+import constant from "../../lib/constants/constants";
 const BookDescription = () => {
   const dispatch = useAppDispatch();
 
@@ -58,7 +59,7 @@ const BookDescription = () => {
         <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
         <img
           className="book__img"
-          src={`http://localhost:4000/upload/${book.cover}`}
+          src={`${constant.PATH_TO_FOLDER}/${book.cover}`}
           alt={book.name}
         />
       </div>

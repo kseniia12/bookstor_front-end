@@ -1,6 +1,5 @@
 import constant from "../lib/constants/constants";
 import {
-  IAddBookToCart,
   IRateBook,
   IReqBook,
   IResponsBookPagination,
@@ -25,16 +24,6 @@ export const axiosGetFilter = async (): Promise<IResponsFilter> => {
   return response.data;
 };
 
-export const axiosAddBookToFavorites = async (
-  bookId: IAddBookToCart
-): Promise<IResponsRecommendations> => {
-  const response = await axiosDefault.post<IResponsRecommendations>(
-    constant.FAVORITES,
-    bookId
-  );
-  return response.data;
-};
-
 export const axiosGetReccomendationsBook = async (data: {
   bookId: number;
 }): Promise<IResponsRecommendations> => {
@@ -52,13 +41,3 @@ export const axiosRateBook = async (data: IRateBook): Promise<IStateUser> => {
   );
   return response.data;
 };
-
-export const axiosGetBookToFavorites =
-  async (): Promise<IResponsRecommendations> => {
-    const response = await axiosDefault.get<IResponsRecommendations>(
-      constant.FAVORITES
-    );
-    return response.data;
-  };
-
-

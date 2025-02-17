@@ -14,7 +14,7 @@ import {
   axiosPostLoginUser,
   axiosPostRegistrationUser,
   axiosUpload,
-} from "../../API/authApi";
+} from "../../API/userApi";
 
 export const createUserThunk = createAsyncThunk<IAxiosResponse, IFormInput>(
   "users/createUser",

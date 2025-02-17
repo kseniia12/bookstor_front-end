@@ -1,14 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  axiosAddBookToFavorites,
   axiosGetBook,
-  axiosGetBookToFavorites,
   axiosGetFilter,
   axiosGetReccomendationsBook,
   axiosRateBook,
 } from "../../API/bookApi";
 import {
-  IAddBookToCart,
   IRateBook,
   IReqBook,
   IResponsBookPagination,
@@ -33,17 +30,6 @@ export const getFilterThunk = createAsyncThunk<IResponsFilter>(
   }
 );
 
-export const addBookToFavoritesThunk = createAsyncThunk<
-  IResponsRecommendations,
-  IAddBookToCart
->(
-  "addBookToFavorites/dBook",
-  async (bookId: IAddBookToCart): Promise<IResponsRecommendations> => {
-    const response = await axiosAddBookToFavorites(bookId);
-    return response;
-  }
-);
-
 export const getRecommendationsBookThunk = createAsyncThunk<
   IResponsRecommendations,
   {
@@ -64,14 +50,3 @@ export const rateBookThunk = createAsyncThunk<IStateUser, IRateBook>(
     return response;
   }
 );
-
-export const getBookToFavoritesThunk =
-  createAsyncThunk<IResponsRecommendations>(
-    "getBookToFavoritesThunk/dBook",
-    async (): Promise<IResponsRecommendations> => {
-      const response = await axiosGetBookToFavorites();
-      return response;
-    }
-  );
-
-

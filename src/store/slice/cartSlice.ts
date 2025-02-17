@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { IBook, ICartSlice } from "../../lib/types/types";
-import { addBookToCartThunk, changeCountBooksThunk, deleteBookToCartThunk, getBookToCartThunk } from "../thunk/thunkCart";
-
+import {
+  addBookToCartThunk,
+  changeCountBooksThunk,
+  deleteBookToCartThunk,
+  getBookToCartThunk,
+} from "../thunk/thunkCart";
 
 const initialState: ICartSlice = {
   book: {
@@ -69,14 +73,10 @@ const cartSlice = createSlice({
         }, {} as Record<string, IBook>);
         state.book = booksObject;
         state.totalPrice = action.payload.totalPrice;
-
       } else {
         console.error("Это не массив");
       }
-      
     });
-    
-
   },
 });
 

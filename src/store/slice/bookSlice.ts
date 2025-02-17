@@ -18,8 +18,8 @@ const initialState: IResponsBook = {
       averageRating: 0.0,
       author: {
         id: 0,
-        name: ""
-      }
+        name: "",
+      },
     },
   },
   books: [],
@@ -40,7 +40,7 @@ const initialState: IResponsBook = {
     minPrice: "40.0",
     page: "1",
     sort: "1",
-  }
+  },
 };
 
 interface IBooksObject {
@@ -52,26 +52,26 @@ const bookSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    
     builder.addCase(getBookThunk.fulfilled, (state, action) => {
-      console.log(action.payload)
+      console.log(action.payload);
       state.filters = action.payload.filters;
       state.meta = action.payload.meta;
       state.books = action.payload.book;
       if (Array.isArray(action.payload.book)) {
-        const booksObject: IBooksObject = action.payload.book.reduce((acc, book) => {
-          acc[book.id] = book;
-          return acc;
-        }, {} as IBooksObject);
+        const booksObject: IBooksObject = action.payload.book.reduce(
+          (acc, book) => {
+            acc[book.id] = book;
+            return acc;
+          },
+          {} as IBooksObject
+        );
         state.bookNormalized = booksObject;
         state.price = action.payload.price;
       } else {
         console.error("Это не массив");
       }
-
     });
   },
-  },
-);
+});
 
 export default bookSlice.reducer;

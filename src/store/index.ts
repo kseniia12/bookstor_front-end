@@ -7,7 +7,6 @@ import recommendationsSlice from "./slice/recommendationsSlice";
 import favoritesSlice from "./slice/favoritesSlice";
 import commentsSlice from "./slice/commentsSlice";
 
-
 const store = configureStore({
   reducer: {
     users: userSlice,
@@ -16,7 +15,7 @@ const store = configureStore({
     cart: cartSlice,
     recommendation: recommendationsSlice,
     favorites: favoritesSlice,
-    comments: commentsSlice
+    comments: commentsSlice,
   },
 });
 

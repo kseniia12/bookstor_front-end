@@ -10,11 +10,12 @@ const SortByGenre = () => {
   const genres = activeFilter.genre;
   const params = new URLSearchParams(window.location.search);
   const initialSelected = Array.from(params.keys())
-    .filter((key) => key.startsWith('genre'))
+    .filter((key) => key.startsWith("genre"))
     .map((key) => params.get(key))
     .filter((value): value is string => value !== null);
 
-  const { selected, isSelected, onChange, active } = useMultiselect(initialSelected);
+  const { selected, isSelected, onChange, active } =
+    useMultiselect(initialSelected);
 
   const updateURL = () => {
     const params = new URLSearchParams();
@@ -36,7 +37,14 @@ const SortByGenre = () => {
               id={filter.id.toString()}
               type="checkbox"
               value={filter.id}
-              checked={genres && genres.length > 0 && genres.some((genre) => genre.includes(filter.id.toString())) || isSelected(filter.id.toString())}
+              checked={
+                (genres &&
+                  genres.length > 0 &&
+                  genres.some((genre) =>
+                    genre.includes(filter.id.toString())
+                  )) ||
+                isSelected(filter.id.toString())
+              }
               onChange={onChange}
             />
             <label htmlFor={filter.name} className="filter-list__label">

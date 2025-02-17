@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import heartSave from "../../assets/Heart.png";
 import heartNoSave from "../../assets/HeartNotSave.png";
-export const StylesWrapper = styled.div<{ src: boolean, isBookInCart: boolean }>`
+export const StylesWrapper = styled.div<{
+  src: boolean;
+  isBookInCart: boolean;
+}>`
   display: flex;
   gap: 128px;
   padding-top: 60px;
@@ -52,30 +55,30 @@ export const StylesWrapper = styled.div<{ src: boolean, isBookInCart: boolean }>
     }
     &__cart {
       background-color: ${({ isBookInCart, theme }) =>
-    isBookInCart ? theme.colors.white : theme.colors.darkBlue};
-    color: ${({ isBookInCart, theme }) =>
-    isBookInCart ? theme.colors.dark : theme.colors.white};
-    border: 1px solid ${({ theme }) => theme.colors.darkBlue};
+        isBookInCart ? theme.colors.white : theme.colors.darkBlue};
+      color: ${({ isBookInCart, theme }) =>
+        isBookInCart ? theme.colors.dark : theme.colors.white};
+      border: 1px solid ${({ theme }) => theme.colors.darkBlue};
     }
   }
-  .rating{
+  .rating {
     display: flex;
     gap: 40px;
     align-items: center;
-    &__section-value{
+    &__section-value {
       display: flex;
       gap: 13px;
       align-items: center;
     }
-    &__value{
+    &__value {
       font-size: 16px;
       color: ${({ theme }) => theme.colors.darkGrey};
     }
-    &__book{
+    &__book {
       display: flex;
       gap: 7px;
     }
-    &__title{
+    &__title {
       font-size: 16px;
       color: ${({ theme }) => theme.colors.darkGrey};
     }

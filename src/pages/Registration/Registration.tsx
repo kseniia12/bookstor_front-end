@@ -11,7 +11,6 @@ import { useAppDispatch } from "../../hooks";
 import { createUserThunk } from "../../store/thunk/thunkUser";
 import { IFormInput } from "../../lib/types/types";
 import constant from "../../lib/constants/constants";
-import { toast } from "react-toastify";
 
 const Registration = () => {
   const navigate = useNavigate();

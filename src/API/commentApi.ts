@@ -5,10 +5,7 @@ import { axiosDefault } from "./axiosDefault";
 export const axiosAddCommentBook = async (
   data: IPropsComment
 ): Promise<IComment> => {
-  const response = await axiosDefault.post<IComment>(
-    constant.COMMENT,
-    data
-  );
+  const response = await axiosDefault.post<IComment>(constant.COMMENT, data);
   return response.data;
 };
 

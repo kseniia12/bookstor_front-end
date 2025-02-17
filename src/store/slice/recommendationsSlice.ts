@@ -18,7 +18,7 @@ const initialState: IResponsRecommendations = {
       averageRating: 0,
       author: {
         id: 0,
-        name: ""
+        name: "",
       },
     },
   },
@@ -32,17 +32,15 @@ const recommendationsSlice = createSlice({
     builder.addCase(getRecommendationsBookThunk.fulfilled, (state, action) => {
       if (Array.isArray(action.payload.book)) {
         const booksObject = action.payload.book.reduce((acc, book) => {
-          acc[book.id] = book; 
+          acc[book.id] = book;
           return acc;
         }, {});
-        state.book = booksObject; 
-
+        state.book = booksObject;
       } else {
         console.error("Это не массив");
       }
     });
   },
-  },
-);
+});
 
 export default recommendationsSlice.reducer;
