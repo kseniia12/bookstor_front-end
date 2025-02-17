@@ -53,7 +53,6 @@ const bookSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getBookThunk.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.filters = action.payload.filters;
       state.meta = action.payload.meta;
       state.books = action.payload.book;

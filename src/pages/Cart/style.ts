@@ -6,5 +6,7 @@ export const StylesWrapper = styled.div`
   .totalPrice {
     padding-top: 10px;
     font-size: 40px;
+    display: flex;
+    gap: 12px;
   }
 `;

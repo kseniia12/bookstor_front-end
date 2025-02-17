@@ -3,10 +3,18 @@ import emailIcon from "../../assets/email.png";
 import userProfile from "../../assets/userProfile.png";
 import Input from "../Input/Input";
 import { useAppSelector } from "../../hooks";
+import { UseFormRegister } from "react-hook-form";
+
+interface User {
+  fullName: string;
+  email: string;
+}
 
 interface ChangePasswordFormProps {
-  handleEditClickPersonalInformation: any;
-  register: any;
+  handleEditClickPersonalInformation: () => void;
+  register: UseFormRegister<{
+    user: User;
+  }>;
 }
 
 const FormPersonalInformation: React.FC<ChangePasswordFormProps> = ({
@@ -17,8 +25,11 @@ const FormPersonalInformation: React.FC<ChangePasswordFormProps> = ({
   return (
     <div className="form__section">
       <div className="form__header">
-        <div>Personal information</div>
-        <div className="form__editing" onClick={handleEditClickPersonalInformation}>
+        <div className="normal-title">Personal information</div>
+        <div
+          className="form__editing"
+          onClick={handleEditClickPersonalInformation}
+        >
           Change information
         </div>
       </div>

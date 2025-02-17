@@ -45,6 +45,7 @@ export const StylesWrapper = styled.div<{
     &__text {
       padding-top: 10px;
       padding-bottom: 74px;
+      color: ${({ theme }) => theme.colors.darkBlue};
     }
   }
   .button {
@@ -52,6 +53,7 @@ export const StylesWrapper = styled.div<{
     gap: 82px;
     &__title {
       padding-bottom: 14px;
+      color: ${({ theme }) => theme.colors.darkBlue};
     }
     &__cart {
       background-color: ${({ isBookInCart, theme }) =>

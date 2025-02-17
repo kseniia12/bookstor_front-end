@@ -20,7 +20,7 @@ export const StylesWrapper = styled.div`
     &__subtitle {
       padding: 10px 305px 50px 0px;
       overflow-x: hidden;
-      color: ${({ theme }) => theme.colors.dark};
+      color: ${({ theme }) => theme.colors.darkBlue};
     }
   }
   .img {

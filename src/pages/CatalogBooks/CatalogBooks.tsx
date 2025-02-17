@@ -6,8 +6,8 @@ import { getBookThunk, getFilterThunk } from "../../store/thunk/thunkBook";
 import { useSearchParams } from "react-router-dom";
 import PaginationLink from "../../components/Pagination/Pagination";
 import FilterByGenre from "../../components/FilterByGenre/FilterByGenre";
-import FilterBySort from "../../components/FilterBySort/FilterBySort";
-import FilterByAuthor from "../../components/FilterByAuthor/FilterByAuthor";
+import FilterByPrice from "../../components/FilterByPrice/FilterByPrice";
+import Sorting from "../../components/Sorting/Sorting";
 import Banner from "../../components/Banner/Banner";
 import Authorization from "../../components/Authorization/Authorization";
 
@@ -38,16 +38,16 @@ const CatalogBooks = () => {
     <StylesWrapper>
       <Banner />
       <div className="container">
-        <div>Catalog</div>
+        <div className="big-title">Catalog</div>
         <div className="container__filter">
           <FilterByGenre />
-          <FilterBySort />
-          <FilterByAuthor />
+          <FilterByPrice />
+          <Sorting />
         </div>
       </div>
       <div className="books">
         {books.map((bookId) => {
-          return <Book books={bookId} className="books__book" />;
+          return <Book books={bookId} />;
         })}
       </div>
       <PaginationLink />

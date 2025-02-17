@@ -10,7 +10,7 @@ import constant from "../../lib/constants/constants";
 
 export interface IBookProps {
   books: IBook;
-  className: string;
+  className?: string;
 }
 
 const Book: React.FC<IBookProps> = ({ books }) => {
@@ -61,8 +61,6 @@ const Book: React.FC<IBookProps> = ({ books }) => {
       <div onClick={sendBookId}>
         <div className="genre">{books.name}</div>
         <div className="author">{books.author.name}</div>
-      </div>
-      <div>
         <div className="averageRating__block">
           <StyledRating
             className="simple-controlled"
@@ -71,9 +69,9 @@ const Book: React.FC<IBookProps> = ({ books }) => {
           />
           <div className="averageRating">{books.averageRating}</div>
         </div>
-
-        <Button className="button" text={textButton} onClick={addBookToCart} />
       </div>
+
+      <Button className="button" text={textButton} onClick={addBookToCart} />
     </StylesWrapper>
   );
 };

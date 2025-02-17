@@ -17,7 +17,7 @@ const Authorization = () => {
     <StylesWrapper>
       <img src={castle} alt="castle" className="img" />
       <div className="content">
-        <div className="content__title">Authorize now</div>
+        <div className="big-title">Authorize now</div>
         <div className="content__subtitle">
           Authorize now and discover the fabulous world of books
         </div>

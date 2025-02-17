@@ -5,7 +5,7 @@ import { getRecommendationsBookThunk } from "../../store/thunk/thunkBook";
 import { useParams } from "react-router-dom";
 import Book from "../../components/Book/Book";
 import { StylesWrapper } from "./style";
-import FormForComments from "../../components/FormForComments/FormForComments";
+import FormForComments from "../../components/FormComments/FormComments";
 import Comments from "../../components/Comments/Comments";
 import Authorization from "../../components/Authorization/Authorization";
 
@@ -25,7 +25,7 @@ const BookPage = () => {
       {user.id !== 0 ? <FormForComments bookId={bookId} /> : ""}
       {user.id === 0 ? <Authorization /> : ""}
       <div className="recommendations">
-        <div className="recommendations__title">Recommendations</div>
+        <div className="big-title recommendations__title">Recommendations</div>
         <div className="recommendations__books">
           {Object.keys(books).map((bookId) => {
             return (

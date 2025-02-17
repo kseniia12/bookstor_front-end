@@ -22,7 +22,7 @@ const Cart = () => {
               );
             })}
           </div>
-          <div className="totalPrice">Total: {totalPrice.toFixed(2)}</div>
+          <div className="totalPrice">Total: <p className="big-title">{totalPrice.toFixed(2)}</p></div>
         </div>
       ) : (
         <EmptyCartComponent />

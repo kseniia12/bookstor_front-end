@@ -17,14 +17,7 @@ export const StylesWrapper = styled.div`
   .books {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 60px 20px;
     padding-top: 38px;
-    &__book {
-      margin-top: 38px;
-      margin-bottom: 78px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
   }
 `;

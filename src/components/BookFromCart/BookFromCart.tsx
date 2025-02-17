@@ -27,7 +27,6 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
       console.error("Count is undefined");
       return;
     }
-
     dispatch(
       changeCountBooksThunk({ count: count + 1, bookId: Number(books.id) })
     );
@@ -59,7 +58,7 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
       </div>
       <div className="info">
         <div>
-          <div className="info__title">{books.name}</div>
+          <div className="big-title">{books.name}</div>
           <div className="info__author">{books.author.name}</div>
         </div>
         <div className="counter">

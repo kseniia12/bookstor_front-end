@@ -1,8 +1,9 @@
 import React from "react";
 import { StylesWrapper } from "./style";
+import { UseFormRegisterReturn } from "react-hook-form";
 
 interface IPropsInput {
-  register?: any;
+  register?: UseFormRegisterReturn;
   className?: string;
   placeholder?: string;
   icon?: string;

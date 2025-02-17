@@ -24,27 +24,27 @@ const Comments: React.FC<propsComments> = ({ bookId }) => {
   };
 
   return (
-    <>
-      <div>Comments</div>
+    <StylesWrapper>
+      <div className="big-title title">Comments</div>
       {comments.map((comment) => (
-        <StylesWrapper>
-          <div className="photo">
+        <div className="comment">
+          <div className="comment__photo">
             <img
-              className="photo__user"
+              className="comment__photo--user"
               src={comment.user.photo}
               alt={comment.user.photo}
             />
           </div>
           <div>
-            <div className="user">{comment.user.fullName}</div>
-            <div className="date">
+            <div className="comment__user">{comment.user.fullName}</div>
+            <div className="comment__date">
               {calculateDaysDifference(comment.date)} days ago
             </div>
-            <div className="comment">{comment.comment}</div>
+            <div className="comment__text">{comment.comment}</div>
           </div>
-        </StylesWrapper>
+        </div>
       ))}
-    </>
+    </StylesWrapper>
   );
 };
 

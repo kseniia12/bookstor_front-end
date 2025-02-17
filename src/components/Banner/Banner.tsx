@@ -8,7 +8,7 @@ const Banner = () => {
   return (
     <StylesWrapper>
       <div className="content">
-        <div className="content__title">Build your library with us</div>
+        <div className="big-title">Build your library with us</div>
         <div className="content__subtitle">
           Buy two books and get one for free
         </div>

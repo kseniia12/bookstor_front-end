@@ -16,14 +16,12 @@ export const StylesWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    &__title {
-      font-size: 40px;
-    }
     &__author {
       font-size: 24px;
     }
     &__price {
       font-size: 36px;
+      
     }
   }
   .counter {

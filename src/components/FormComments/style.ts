@@ -2,6 +2,7 @@ import styled from "styled-components";
 export const StylesWrapper = styled.div`
   padding-top: 60px;
   .item {
+    margin-bottom: 30px;
     background-color: ${({ theme }) => theme.colors.light};
     width: 738px;
     height: 128px;

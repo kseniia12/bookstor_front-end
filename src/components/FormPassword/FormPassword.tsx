@@ -19,7 +19,7 @@ const FormPassword: React.FC<ChangePasswordFormProps> = ({
   return (
     <div className="form__section">
       <div className="form__header password">
-        <div>Password</div>
+        <div className="normal-title">Password</div>
         <div className="form__editing" onClick={handleEditClickPassword}>
           Change password
         </div>

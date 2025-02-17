@@ -64,7 +64,7 @@ const BookDescription = () => {
         />
       </div>
       <div>
-        <p className="title">{book.name}</p>
+        <p className="big-title">{book.name}</p>
         <p className="author">{book.author.name}</p>
         <div className="rating">
           <div className="rating__section-value">

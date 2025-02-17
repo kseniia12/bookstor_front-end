@@ -37,10 +37,13 @@ export const StylesWrapper = styled.div<{ isBookInFavorites: boolean, isBookInCa
   .genre {
     overflow: hidden;
     white-space: nowrap;
+    color: ${({ theme }) => theme.colors.darkBlue};
   }
   .author {
     color: ${({ theme }) => theme.colors.darkGrey};
     white-space: nowrap;
+    overflow: hidden;
+    padding-bottom: 20px;
   }
   .button{
     background-color: ${({ isBookInCart, theme }) =>

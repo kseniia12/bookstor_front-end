@@ -4,7 +4,7 @@ import { StylesWrapper } from "./style";
 interface IPropsButton {
   text?: string;
   className?: string;
-  onClick?: any;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 const Button: React.FC<IPropsButton> = (props) => {
