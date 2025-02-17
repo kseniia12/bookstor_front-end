@@ -80,7 +80,7 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
             />
           </div>
         </div>
-        <div className="info__price">{`$${books.priceHard} USD`}</div>
+        <div className="normal-title info__price">{`$${books.priceHard} USD`}</div>
       </div>
     </StylesWrapper>
   );

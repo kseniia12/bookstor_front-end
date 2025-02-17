@@ -42,6 +42,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
   const addBookToCart = () => {
     dispatch(addBookToCartThunk({ bookId }));
     setTextButton("Added to cart");
+    navigate(constant.CART)
   };
 
   return (

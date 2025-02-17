@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IBook } from "../../lib/types/types";
 import rating from "../../assets/rating.png";
 import Button from "../../components/Button/Button";
@@ -17,7 +17,7 @@ const BookDescription = () => {
   const cart = useAppSelector((state) => state.cart.book);
   const books = useAppSelector((state) => state.book.bookNormalized);
   const [textButton, setTextButton] = useState(`$${books.priceHard} USD`);
-
+  const navigate = useNavigate()
   const isBookInCart = cart.hasOwnProperty(id !== undefined ? id : 0);
 
   useEffect(() => {
@@ -51,6 +51,7 @@ const BookDescription = () => {
   const addBookToCart = () => {
     dispatch(addBookToCartThunk({ bookId }));
     setTextButton("Added to cart");
+    navigate(constant.CART)
   };
 
   return (
