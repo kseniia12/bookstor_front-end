@@ -31,7 +31,7 @@ const SortByGenre = () => {
     <StylesWrapper active={active}>
       <ul className="filter-list">
         {filters.map((filter) => (
-          <li key={filter.id.toString()}>
+          <li key={filter.id.toString()} className="filter-list__item">
             <input
               className="filter-list__checkbox"
               id={filter.id.toString()}
