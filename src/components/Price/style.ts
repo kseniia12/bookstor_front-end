@@ -35,5 +35,6 @@ export const StylesWrapper = styled.div`
   .price {
     display: flex;
     justify-content: space-between;
+    color: ${({ theme }) => theme.colors.darkBlue};
   }
 `;

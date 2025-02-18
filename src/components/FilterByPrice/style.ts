@@ -10,6 +10,9 @@ export const StylesWrapper = styled.div<{ open: boolean }>`
     &__white {
       background-color: ${({ theme }) => theme.colors.light};
     }
+    &__title {
+      color: ${({ theme }) => theme.colors.darkBlue};
+    }
   }
   .arrow {
     display: block;

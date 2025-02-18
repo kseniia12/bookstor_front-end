@@ -39,7 +39,7 @@ const initialState: IResponsBook = {
     maxPrice: "0.0",
     minPrice: "40.0",
     page: "1",
-    sort: "1",
+    sort: "price",
   },
 };
 

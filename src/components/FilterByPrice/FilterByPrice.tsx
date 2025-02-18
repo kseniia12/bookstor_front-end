@@ -27,7 +27,7 @@ const FilterBySort = () => {
   return (
     <StylesWrapper open={open} ref={popupRef}>
       <div className="container" onClick={changeStateForm}>
-        <div>Price</div>
+        <div className="container__title">Price</div>
         <img src={arrowToOpenForm} alt="Arrow to open form" className="arrow" />
       </div>
       {open && <Price />}

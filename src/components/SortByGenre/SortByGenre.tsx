@@ -9,6 +9,7 @@ const SortByGenre = () => {
   const activeFilter = useAppSelector((state) => state.book.filters);
   const genres = activeFilter.genre;
   const params = new URLSearchParams(window.location.search);
+  
   const initialSelected = Array.from(params.keys())
     .filter((key) => key.startsWith("genre"))
     .map((key) => params.get(key))

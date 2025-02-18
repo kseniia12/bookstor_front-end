@@ -4,6 +4,7 @@ import { useState } from "react";
 
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 export const useAppDispatch: () => AppDispatch = useDispatch;
+
 export const useMultiselect = (initialValue: string[]) => {
   const [selected, setSelected] = useState<string[]>(initialValue);
   const [active, setActive] = useState(false);
@@ -22,5 +23,5 @@ export const useMultiselect = (initialValue: string[]) => {
     return selected.includes(value);
   };
 
-  return { selected, isSelected, onChange, active };
+  return { selected, isSelected, onChange, active, setActive, setSelected };
 };

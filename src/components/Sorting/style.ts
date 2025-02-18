@@ -1,37 +1,45 @@
 import styled from "styled-components";
 
 export const StylesWrapper = styled.div<{ open: boolean }>`
+  position: relative;
+  background-color: ${({ theme }) => theme.colors.white};
+  padding: 10px 8px 10px 15px;
   display: flex;
-  gap: 20px;
-
-  .arrow {
-    display: block;
-  }
-  .container {
-    width: 197px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    border-radius: 16px;
-    background-color: ${({ theme }) => theme.colors.light};
-    &__white {
-      background-color: ${({ theme }) => theme.colors.light};
-    }
-    &__select {
-      appearance: none;
-      width: 100%;
-      padding: 10px 12px 10px 15px;
-      border: 1px solid ${({ theme }) => theme.colors.light};
-      border-radius: 16px;
-      background-color: ${({ theme }) => theme.colors.light};
-    }
-  }
-  .arrow {
-    position: absolute;
-    top: 12px;
-    right: 12px;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 16px;
+  width: 197px;
+  .img {
     display: block;
     transform: ${({ open }) =>
       open === true ? "rotate(90deg)" : "rotate(360deg)"};
+    width: 24px;
+    height: 24px;
+  }
+  .menu {
+    position: absolute;
+    background-color: ${({ theme }) => theme.colors.light};
+    top: 72px;
+    left: 0px;
+    z-index: 2;
+    width: 197px;
+    padding: 15px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .menu .input {
+    width: 0;
+    height: 0;
+  }
+  .title {
+    background-color: ${({ theme }) => theme.colors.white};
+  }
+  .label {
+    color: ${({ theme }) => theme.colors.darkGrey};
+  }
+  .label.selected {
+    color: ${({ theme }) => theme.colors.darkBlue};
   }
 `;

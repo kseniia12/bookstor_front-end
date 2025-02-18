@@ -7,6 +7,9 @@ export const StylesWrapper = styled.div<{ open: boolean }>`
     border-radius: 16px;
     display: flex;
     gap: 91px;
+    &__title {
+      color: ${({ theme }) => theme.colors.darkBlue};
+    }
   }
   .arrow {
     display: block;
