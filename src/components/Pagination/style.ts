@@ -8,6 +8,7 @@ export const StylesWrapper = styled.div<{
   display: flex;
   align-items: center;
   gap: 50px;
+  cursor: pointer;
   .circle {
     border: 2px solid black;
     width: 14px;

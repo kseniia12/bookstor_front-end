@@ -15,7 +15,7 @@ import {
 const Cart = () => {
   const books = useAppSelector((state) => state.cart.book);
   const totalPrice = useAppSelector((state) => state.cart.totalPrice);
-  console.log(Object.keys(books));
+ 
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useAppDispatch();

@@ -18,10 +18,13 @@ const BookDescription = () => {
   const cart = useAppSelector((state) => state.cart.book);
   const books = useAppSelector((state) => state.book.bookNormalized);
   const favoritesBook = useAppSelector((state) => state.favorites.book);
+  const user = useAppSelector((state)=> state.users.ratingBook )
   const [textButton, setTextButton] = useState(`$${books.priceHard} USD`);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const isBookInCart = cart.hasOwnProperty(id !== undefined ? id : 0);
-  const isBookInFavorites = favoritesBook.hasOwnProperty(id !== undefined ? id : 0);
+  const isBookInFavorites = favoritesBook.hasOwnProperty(
+    id !== undefined ? id : 0
+  );
 
   useEffect(() => {
     if (Object.keys(books).length - 1 === 0) {
@@ -32,9 +35,8 @@ const BookDescription = () => {
     } else {
       setTextButton(`$${book?.priceHard} USD`);
     }
-  }, [dispatch, isBookInCart]);
+  }, [dispatch, isBookInCart, books]);
 
-  const [favorites, setFavorites] = useState<boolean>(false);
 
   const bookId = Number(id);
 
@@ -54,11 +56,13 @@ const BookDescription = () => {
   const addBookToCart = () => {
     dispatch(addBookToCartThunk({ bookId }));
     setTextButton("Added to cart");
-    navigate(constant.CART)
   };
 
   return (
-    <StylesWrapper isBookInFavorites={isBookInFavorites} isBookInCart={isBookInCart}>
+    <StylesWrapper
+      isBookInFavorites={isBookInFavorites}
+      isBookInCart={isBookInCart}
+    >
       <div className="book">
         <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
         <img
@@ -73,7 +77,7 @@ const BookDescription = () => {
         <div className="rating">
           <div className="rating__section-value">
             <img src={rating} alt="rating" />
-            <div className="rating__value">5.0</div>
+            <div className="rating__value">{user[id] ? user[id].rate.toFixed(1) : "0.0"}</div>
           </div>
           <RatingBookForUser bookId={Number(book.id)} />
           <div className="rating__book">
@@ -91,7 +95,7 @@ const BookDescription = () => {
           <div>
             <p className="button__title">Hardcover</p>
             <Button
-              text={`${textButton}`}
+              text={textButton}
               onClick={addBookToCart}
               className="button__cart"
             />

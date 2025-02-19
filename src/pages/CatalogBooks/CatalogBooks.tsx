@@ -18,7 +18,7 @@ const CatalogBooks = () => {
   const dispatch = useAppDispatch();
   const page = Number(searchParams.get("page")) || 1;
   const genre = searchParams.getAll("genre");
-  const sort = searchParams.get("sort");
+  const sort = searchParams.get("sort") || "price";
   const maxPrice = searchParams.get("max");
   const minPrice = searchParams.get("min");
   const data = {

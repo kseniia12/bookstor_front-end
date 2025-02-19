@@ -10,6 +10,7 @@ const FilterByAuthor = () => {
   const { selected, setSelected, active, setActive } = useMultiselect([]);
   const filter = useAppSelector((state) => state.book.filters);
   const sort = filter.sort;
+
   const handleChange = (event: { target: { value: any } }) => {
     const selectedOption = event.target.value;
     setSelected([selectedOption]);
@@ -55,7 +56,11 @@ const FilterByAuthor = () => {
             <li key={option}>
               <label
                 className={`label ${
-                  selected.includes(option) ? "selected" : ""
+                  selected.includes(option) ||
+                  (selected.length === 0 &&
+                    option.split(" ")[0].toLowerCase() === sort)
+                    ? "selected"
+                    : ""
                 }`}
               >
                 <input
