@@ -15,10 +15,11 @@ import {
 const Cart = () => {
   const books = useAppSelector((state) => state.cart.book);
   const totalPrice = useAppSelector((state) => state.cart.totalPrice);
- 
+
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useAppDispatch();
+
   const goToBookCatalog = () => {
     navigate(constant.CATALOG_BOOKS);
   };
@@ -32,7 +33,6 @@ const Cart = () => {
     Object.keys(books).map((bookId) => {
       return dispatch(deleteBookToCartThunk({ id: Number(bookId) }));
     });
-
     dispatch(getBookToCartThunk());
   };
 

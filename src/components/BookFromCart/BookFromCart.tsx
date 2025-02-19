@@ -18,27 +18,30 @@ export interface IBookProps {
 const BookFromCart: React.FC<IBookProps> = ({ books }) => {
   const [count, setCount] = useState(books.count);
   const dispatch = useAppDispatch();
+  
   const deleteBookFromCart = (id: number) => {
     dispatch(deleteBookToCartThunk({ id }));
     dispatch(getBookToCartThunk());
   };
-  const addBookToCart = () => {
+  
+  const increaseCountBooks = () => {
     if (typeof count === "undefined") {
       console.error("Count is undefined");
       return;
     }
-    dispatch(
-      changeCountBooksThunk({ count: count + 1, bookId: Number(books.id) })
-    );
-    setCount(count + 1);
+    if (count <= books.countHard) {
+      setCount(count + 1);
+      dispatch(
+        changeCountBooksThunk({ count: count + 1, bookId: Number(books.id) })
+      );
+    }
   };
 
-  const addBookToCartmin = () => {
+  const reduceCountBooks = () => {
     if (typeof count === "undefined") {
       console.error("Count is undefined");
       return;
     }
-
     if (count > 1) {
       dispatch(
         changeCountBooksThunk({ count: count - 1, bookId: Number(books.id) })
@@ -63,11 +66,11 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
         </div>
         <div className="counter">
           <div className="counter__controls">
-            <div className="counter__button" onClick={addBookToCartmin}>
+            <div className="counter__button" onClick={reduceCountBooks}>
               -
             </div>
             <div>{count}</div>
-            <div className="counter__button" onClick={addBookToCart}>
+            <div className="counter__button" onClick={increaseCountBooks}>
               +
             </div>
           </div>

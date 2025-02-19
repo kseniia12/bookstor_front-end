@@ -22,10 +22,9 @@ const Comments: React.FC<propsComments> = ({ bookId }) => {
     const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
     return differenceInDays;
   };
-
   return (
     <StylesWrapper>
-      <div className="big-title title">Comments</div>
+      {comments.length ? <div className="big-title title">Comments</div> : ""}
       {comments.map((comment) => (
         <div className="comment">
           <div className="comment__photo">

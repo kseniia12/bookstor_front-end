@@ -66,8 +66,6 @@ const bookSlice = createSlice({
         );
         state.bookNormalized = booksObject;
         state.price = action.payload.price;
-      } else {
-        console.error("Это не массив");
       }
     });
   },

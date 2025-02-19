@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { IBook } from "../../lib/types/types";
 import rating from "../../assets/rating.png";
 import Button from "../../components/Button/Button";
@@ -11,22 +11,23 @@ import rateBook from "../../assets/rateBook.png";
 import { addBookToCartThunk } from "../../store/thunk/thunkCart";
 import constant from "../../lib/constants/constants";
 import { addBookToFavoritesThunk } from "../../store/thunk/thunkFavorites";
+
 const BookDescription = () => {
   const dispatch = useAppDispatch();
-
   const { id } = useParams<{ id: string }>();
+
   const cart = useAppSelector((state) => state.cart.book);
   const books = useAppSelector((state) => state.book.bookNormalized);
   const favoritesBook = useAppSelector((state) => state.favorites.book);
-  const user = useAppSelector((state)=> state.users.ratingBook )
+  const user = useAppSelector((state) => state.users.ratingBook);
+
   const [textButton, setTextButton] = useState(`$${books.priceHard} USD`);
-  const navigate = useNavigate();
   const isBookInCart = cart.hasOwnProperty(id !== undefined ? id : 0);
   const isBookInFavorites = favoritesBook.hasOwnProperty(
     id !== undefined ? id : 0
   );
 
-  useEffect(() => {
+  useMemo(() => {
     if (Object.keys(books).length - 1 === 0) {
       dispatch(getBookThunk({}));
     }
@@ -36,7 +37,6 @@ const BookDescription = () => {
       setTextButton(`$${book?.priceHard} USD`);
     }
   }, [dispatch, isBookInCart, books]);
-
 
   const bookId = Number(id);
 
@@ -54,8 +54,10 @@ const BookDescription = () => {
   };
 
   const addBookToCart = () => {
-    dispatch(addBookToCartThunk({ bookId }));
-    setTextButton("Added to cart");
+    if (user.id) {
+      dispatch(addBookToCartThunk({ bookId }));
+      setTextButton("Added to cart");
+    }
   };
 
   return (
@@ -77,7 +79,9 @@ const BookDescription = () => {
         <div className="rating">
           <div className="rating__section-value">
             <img src={rating} alt="rating" />
-            <div className="rating__value">{user[id] ? user[id].rate.toFixed(1) : "0.0"}</div>
+            <div className="rating__value">
+              {user[id] ? user[id].rate.toFixed(1) : "0.0"}
+            </div>
           </div>
           <RatingBookForUser bookId={Number(book.id)} />
           <div className="rating__book">

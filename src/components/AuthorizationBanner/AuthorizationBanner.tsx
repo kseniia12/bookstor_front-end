@@ -6,7 +6,7 @@ import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 import constant from "../../lib/constants/constants";
 
-const Authorization = () => {
+const AuthorizationBanner = () => {
   const navigate = useNavigate();
 
   const navigateToPageResistration = () => {
@@ -28,4 +28,4 @@ const Authorization = () => {
   );
 };
 
-export default Authorization;
+export default AuthorizationBanner;

@@ -15,6 +15,7 @@ export const StylesWrapper = styled.div<{
     &__img {
       width: 552px;
       height: 779px;
+      border-radius: 16px;
     }
     &__favorites {
       position: absolute;

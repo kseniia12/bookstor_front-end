@@ -12,9 +12,11 @@ const Price = () => {
   const initialMin = params.has("min")
     ? parseFloat(params.get("min")!)
     : price.minValue;
+
   const initialMax = params.has("max")
     ? parseFloat(params.get("max")!)
     : price.maxValue;
+    
   const [value, setValue] = React.useState<number[]>([initialMin, initialMax]);
 
   const handleChangeCommitted = (

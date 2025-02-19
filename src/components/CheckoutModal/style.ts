@@ -20,19 +20,17 @@ export const StylesWrapper = styled.div`
     width: 100%;
     height: 1px;
   }
-  .modal__content {
+  .modal-content {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
     justify-content: center;
+    &__button {
+      background-color: ${({ theme }) => theme.colors.light};
+      color: ${({ theme }) => theme.colors.darkBlue};
+      border: 2px solid ${({ theme }) => theme.colors.light};
+    }
   }
-  .button {
-    background-color: ${({ theme }) => theme.colors.light};
-    color: ${({ theme }) => theme.colors.darkBlue};
-    border: 2px solid ${({ theme }) => theme.colors.light};
-  }
-
-
 `;

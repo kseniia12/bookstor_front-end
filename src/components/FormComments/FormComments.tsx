@@ -29,7 +29,7 @@ const FormForComments: React.FC<PropsComments> = ({ bookId }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="item">
           <textarea
-            className="input"
+            className="item__input-field"
             placeholder="Share a comment"
             {...register("comment")}
           />

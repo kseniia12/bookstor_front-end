@@ -36,8 +36,6 @@ const recommendationsSlice = createSlice({
           return acc;
         }, {});
         state.book = booksObject;
-      } else {
-        console.error("Это не массив");
       }
     });
   },

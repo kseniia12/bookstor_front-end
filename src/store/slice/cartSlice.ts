@@ -43,8 +43,6 @@ const cartSlice = createSlice({
         }, {} as Record<string, IBook>);
         state.book = booksObject;
         state.totalPrice = action.payload.totalPrice;
-      } else {
-        console.error("Это не массив");
       }
     });
     builder.addCase(getBookToCartThunk.fulfilled, (state, action) => {
@@ -55,8 +53,6 @@ const cartSlice = createSlice({
         }, {} as Record<string, IBook>);
         state.book = booksObject;
         state.totalPrice = action.payload.totalPrice;
-      } else {
-        console.error("Это не массив");
       }
     });
     builder.addCase(deleteBookToCartThunk.fulfilled, (state, action) => {
@@ -73,8 +69,6 @@ const cartSlice = createSlice({
         }, {} as Record<string, IBook>);
         state.book = booksObject;
         state.totalPrice = action.payload.totalPrice;
-      } else {
-        console.error("Это не массив");
       }
     });
   },

@@ -13,5 +13,4 @@ export const baseTheme: ITheme = {
     errorDark: "#C30052",
     errorLight: "#FFF2F7",
   },
-  
 };

@@ -21,4 +21,3 @@ export const StylesWrapper = styled.div`
     padding-bottom: 60px;
   }
 `;
-

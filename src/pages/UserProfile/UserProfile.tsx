@@ -29,6 +29,7 @@ const UserProfile = () => {
   const foto = lastSegmentPathUserPhoto === "null" ? userPhoto : user.photo;
 
   const dispatch = useAppDispatch();
+  
   const {
     watch,
     register: registerPassword,
@@ -104,7 +105,9 @@ const UserProfile = () => {
       <div className="form">
         <form onSubmit={handleFormSubmit}>
           <FormPersonalInformation
-            handleEditClickPersonalInformation={handleEditClickPersonalInformation}
+            handleEditClickPersonalInformation={
+              handleEditClickPersonalInformation
+            }
             register={register}
           />
           <FormPassword

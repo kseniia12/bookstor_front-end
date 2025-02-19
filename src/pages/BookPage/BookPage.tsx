@@ -7,7 +7,7 @@ import Book from "../../components/Book/Book";
 import { StylesWrapper } from "./style";
 import FormForComments from "../../components/FormComments/FormComments";
 import Comments from "../../components/Comments/Comments";
-import Authorization from "../../components/Authorization/Authorization";
+import Authorization from "../../components/AuthorizationBanner/AuthorizationBanner";
 
 const BookPage = () => {
   const dispatch = useAppDispatch();
@@ -15,9 +15,11 @@ const BookPage = () => {
   const user = useAppSelector((state) => state.users.user);
   const { id } = useParams<{ id: string }>();
   const bookId = Number(id);
+
   useEffect(() => {
     dispatch(getRecommendationsBookThunk({ bookId }));
   }, [dispatch]);
+
   return (
     <StylesWrapper>
       <BookDescription />

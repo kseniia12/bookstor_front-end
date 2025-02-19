@@ -17,6 +17,7 @@ const commentsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
+
     builder.addCase(addCommentBookThunk.fulfilled, (state, action) => {
       state.comments.push(action.payload);
     });

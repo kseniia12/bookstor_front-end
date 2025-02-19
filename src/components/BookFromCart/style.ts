@@ -8,7 +8,8 @@ export const StylesWrapper = styled.div`
     width: 197px;
     height: 289px;
     &__img {
-      max-width: 100%;
+      width: 197px;
+      height: 289px;
       border-radius: 16px;
     }
   }

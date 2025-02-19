@@ -12,7 +12,7 @@ const RatingBook: React.FC<IPropsRating> = (props) => {
   const rating = useAppSelector((state) => state.users.ratingBook);
   const ratingBook = rating[bookId];
   const [rate, setRate] = React.useState(ratingBook?.rate ?? 0);
-
+  const user = useAppSelector((state) => state.users.user);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -31,6 +31,7 @@ const RatingBook: React.FC<IPropsRating> = (props) => {
             setRate(newValue);
           }
         }}
+        readOnly={!user.id}
       />
     </StylesWrapper>
   );

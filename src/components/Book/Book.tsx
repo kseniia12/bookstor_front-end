@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { StyledRating, StylesWrapper } from "./style";
 import Button from "../Button/Button";
 import { IBook } from "../../lib/types/types";
@@ -15,6 +15,7 @@ export interface IBookProps {
 
 const Book: React.FC<IBookProps> = ({ books }) => {
   const cart = useAppSelector((state) => state.cart.book);
+  const user = useAppSelector((state) => state.users.user);
   const favoritesBook = useAppSelector((state) => state.favorites.book);
   const dispatch = useAppDispatch();
   const bookId = Number(books.id);
@@ -23,7 +24,7 @@ const Book: React.FC<IBookProps> = ({ books }) => {
   const isBookInCart = cart.hasOwnProperty(books.id);
   const isBookInFavorites = favoritesBook.hasOwnProperty(books.id);
 
-  useEffect(() => {
+  useMemo(() => {
     if (isBookInCart) {
       setTextButton("Added to cart");
     } else {
@@ -40,8 +41,10 @@ const Book: React.FC<IBookProps> = ({ books }) => {
   };
 
   const addBookToCart = () => {
-    dispatch(addBookToCartThunk({ bookId }));
-    setTextButton("Added to cart");
+    if (user.id) {
+      dispatch(addBookToCartThunk({ bookId }));
+      setTextButton("Added to cart");
+    }
   };
 
   return (
@@ -58,19 +61,19 @@ const Book: React.FC<IBookProps> = ({ books }) => {
           onClick={sendBookId}
         />
       </div>
+      {books.bestseller ? <div className="bestseller">Bestseller</div> : ""}
       <div onClick={sendBookId}>
         <div className="genre">{books.name}</div>
         <div className="author">{books.author.name}</div>
-        <div className="averageRating__block">
+        <div className="rating-block">
           <StyledRating
-            className="simple-controlled"
+            className="rating-block__star"
             value={books.averageRating}
             readOnly
           />
-          <div className="averageRating">{books.averageRating}</div>
+          <div className="rating-block__value">{books.averageRating}</div>
         </div>
       </div>
-
       <Button className="button" text={textButton} onClick={addBookToCart} />
     </StylesWrapper>
   );

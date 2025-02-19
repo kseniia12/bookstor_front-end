@@ -9,7 +9,7 @@ import FilterByGenre from "../../components/FilterByGenre/FilterByGenre";
 import FilterByPrice from "../../components/FilterByPrice/FilterByPrice";
 import Sorting from "../../components/Sorting/Sorting";
 import Banner from "../../components/Banner/Banner";
-import Authorization from "../../components/Authorization/Authorization";
+import Authorization from "../../components/AuthorizationBanner/AuthorizationBanner";
 
 const CatalogBooks = () => {
   const [searchParams] = useSearchParams();

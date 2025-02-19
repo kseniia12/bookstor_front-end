@@ -5,11 +5,7 @@ import constant from "../lib/constants/constants";
 
 const PrivateRouter: React.FC<IRouterProps> = () => {
   const user = useAppSelector((state) => state.users.user);
-  return Object.keys(user).length !== 0 ? (
-    <Outlet />
-  ) : (
-    <Navigate to={`${constant.SIGN_IN}`} />
-  );
+  return user.id !== 0 ? <Outlet /> : <Navigate to={`${constant.SIGN_IN}`} />;
 };
 
 export default PrivateRouter;

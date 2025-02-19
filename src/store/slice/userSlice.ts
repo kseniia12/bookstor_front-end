@@ -56,8 +56,6 @@ const userSlice = createSlice({
             return acc;
           }, {});
           state.ratingBook = booksObject;
-        } else {
-          console.error("Это не массив");
         }
       })
       .addCase(getUserThunk.rejected, (state, action) => {
@@ -81,8 +79,6 @@ const userSlice = createSlice({
             return acc;
           }, {});
           state.ratingBook = booksObject;
-        } else {
-          console.error("Это не массив");
         }
       });
   },
