@@ -4,6 +4,7 @@ import userProfile from "../../assets/userProfile.png";
 import Input from "../Input/Input";
 import { useAppSelector } from "../../hooks";
 import { UseFormRegister } from "react-hook-form";
+import { IUser } from "../../lib/types/types";
 
 interface User {
   fullName: string;
@@ -21,7 +22,7 @@ const FormPersonalInformation: React.FC<ChangePasswordFormProps> = ({
   handleEditClickPersonalInformation,
   register,
 }) => {
-  const user = useAppSelector((state) => state.users.user);
+  const user = useAppSelector((state) => state.users.user) as IUser;
   return (
     <div className="form__section">
       <div className="form__header">

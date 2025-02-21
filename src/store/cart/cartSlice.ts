@@ -5,28 +5,10 @@ import {
   changeCountBooksThunk,
   deleteBookToCartThunk,
   getBookToCartThunk,
-} from "../thunk/thunkCart";
+} from "./thunkCart";
 
 const initialState: ICartSlice = {
-  book: {
-    key: {
-      id: "",
-      name: "",
-      priceSoft: 0,
-      priceHard: 0,
-      description: "",
-      cover: "",
-      countHard: 0,
-      countSoft: 0,
-      bestseller: false,
-      averageRating: 0,
-      count: 0,
-      author: {
-        id: 0,
-        name: "",
-      },
-    },
-  },
+  book: {},
   totalPrice: 0,
 };
 
@@ -36,24 +18,20 @@ const cartSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(addBookToCartThunk.fulfilled, (state, action) => {
-      if (Array.isArray(action.payload.book)) {
         const booksObject = action.payload.book.reduce((acc, book) => {
           acc[book.id] = book;
           return acc;
         }, {} as Record<string, IBook>);
         state.book = booksObject;
         state.totalPrice = action.payload.totalPrice;
-      }
     });
     builder.addCase(getBookToCartThunk.fulfilled, (state, action) => {
-      if (Array.isArray(action.payload.book)) {
         const booksObject = action.payload.book.reduce((acc, book) => {
           acc[book.id] = book;
           return acc;
         }, {} as Record<string, IBook>);
         state.book = booksObject;
         state.totalPrice = action.payload.totalPrice;
-      }
     });
     builder.addCase(deleteBookToCartThunk.fulfilled, (state, action) => {
       const bookId = action.meta.arg.id;
@@ -62,7 +40,6 @@ const cartSlice = createSlice({
       }
     });
     builder.addCase(changeCountBooksThunk.fulfilled, (state, action) => {
-      if (Array.isArray(action.payload.book)) {
         const booksObject = action.payload.book.reduce((acc, book) => {
           acc[book.id] = book;
           return acc;
@@ -70,7 +47,7 @@ const cartSlice = createSlice({
         state.book = booksObject;
         state.totalPrice = action.payload.totalPrice;
       }
-    });
+    );
   },
 });
 

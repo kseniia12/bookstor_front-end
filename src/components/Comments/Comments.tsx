@@ -1,19 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StylesWrapper } from "./style";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { getCommentBookThunk } from "../../store/thunk/thunkComment";
+import { useAppDispatch } from "../../hooks";
+import { getCommentBookThunk } from "../../store/comments/thunkComment";
+import { IComment } from "../../lib/types/types";
 
 interface propsComments {
   bookId: number;
 }
 
 const Comments: React.FC<propsComments> = ({ bookId }) => {
+  const [comments, setComments] = useState<IComment[] | null>(null);
   const dispatch = useAppDispatch();
-  const comments = useAppSelector((state) => state.comments.comments);
 
   useEffect(() => {
-    dispatch(getCommentBookThunk({ bookId }));
-  }, [dispatch]);
+    async function getCommentsBook() {
+      const comments = await dispatch(getCommentBookThunk({ bookId })).unwrap();
+      setComments(comments);
+    }
+    getCommentsBook();
+  }, []);
 
   const calculateDaysDifference = (dateString: string) => {
     const commentDate = new Date(dateString);
@@ -22,10 +27,11 @@ const Comments: React.FC<propsComments> = ({ bookId }) => {
     const differenceInDays = Math.floor(differenceInTime / (1000 * 3600 * 24));
     return differenceInDays;
   };
+
   return (
     <StylesWrapper>
-      {comments.length ? <div className="big-title title">Comments</div> : ""}
-      {comments.map((comment) => (
+      {comments ? <div className="big-title title">Comments</div> : ""}
+      {comments?.map((comment) => (
         <div className="comment">
           <div className="comment__photo">
             <img

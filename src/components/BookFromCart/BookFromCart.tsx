@@ -7,7 +7,7 @@ import {
   changeCountBooksThunk,
   deleteBookToCartThunk,
   getBookToCartThunk,
-} from "../../store/thunk/thunkCart";
+} from "../../store/cart/thunkCart";
 import constant from "../../lib/constants/constants";
 
 export interface IBookProps {
@@ -16,7 +16,7 @@ export interface IBookProps {
 }
 
 const BookFromCart: React.FC<IBookProps> = ({ books }) => {
-  const [count, setCount] = useState(books.count);
+  const [count, setCount] = useState(books.count ?? 0);
   const dispatch = useAppDispatch();
   
   const deleteBookFromCart = (id: number) => {
@@ -25,12 +25,8 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
   };
   
   const increaseCountBooks = () => {
-    if (typeof count === "undefined") {
-      console.error("Count is undefined");
-      return;
-    }
     if (count <= books.countHard) {
-      setCount(count + 1);
+      // setCount(count + 1);
       dispatch(
         changeCountBooksThunk({ count: count + 1, bookId: Number(books.id) })
       );
@@ -38,10 +34,7 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
   };
 
   const reduceCountBooks = () => {
-    if (typeof count === "undefined") {
-      console.error("Count is undefined");
-      return;
-    }
+
     if (count > 1) {
       dispatch(
         changeCountBooksThunk({ count: count - 1, bookId: Number(books.id) })

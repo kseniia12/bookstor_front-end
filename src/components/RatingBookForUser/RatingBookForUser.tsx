@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { rateBookThunk } from "../../store/thunk/thunkBook";
 import { StyledRating, StylesWrapper } from "./style";
+import { rateBookThunk } from "../../store/book/thunkBook";
 
 interface IPropsRating {
   bookId: number;
@@ -31,7 +31,7 @@ const RatingBook: React.FC<IPropsRating> = (props) => {
             setRate(newValue);
           }
         }}
-        readOnly={!user.id}
+        readOnly={!user}
       />
     </StylesWrapper>
   );

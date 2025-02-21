@@ -3,7 +3,7 @@ import { StylesWrapper } from "./style";
 import Button from "../Button/Button";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useAppDispatch } from "../../hooks";
-import { addCommentBookThunk } from "../../store/thunk/thunkComment";
+import { addCommentBookThunk } from "../../store/comments/thunkComment";
 
 interface PropsComments {
   bookId: number;

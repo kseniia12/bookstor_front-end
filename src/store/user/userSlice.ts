@@ -5,23 +5,13 @@ import {
   loginUserThunk,
   patchUserThunk,
   uploadPhotoThunk,
-} from "../thunk/thunkUser";
+} from "./thunkUser";
 import { IStateUser, IUser } from "../../lib/types/types";
-import { rateBookThunk } from "../thunk/thunkBook";
+import { rateBookThunk } from "../book/thunkBook";
 
 const initialState: IStateUser = {
-  user: {
-    id: 0,
-    fullName: "",
-    email: "",
-    photo: "../../assets/userProfile.png",
-  },
-  ratingBook: {
-    key: {
-      bookId: 0,
-      rate: 0,
-    },
-  },
+  user: null,
+  ratingBook: {},
 };
 
 const userSlice = createSlice({
@@ -45,6 +35,7 @@ const userSlice = createSlice({
       .addCase(
         uploadPhotoThunk.fulfilled,
         (state, action: PayloadAction<{ photo: string }>) => {
+          if (state.user !== null)
           state.user.photo = action.payload.photo;
         }
       )
@@ -59,12 +50,7 @@ const userSlice = createSlice({
         }
       })
       .addCase(getUserThunk.rejected, (state, action) => {
-        state.user = {
-          id: 0,
-          fullName: "",
-          email: "",
-          photo: "../../assets/userProfile.png",
-        };
+        state.user = null;
       })
       .addCase(
         patchUserThunk.fulfilled,

@@ -28,7 +28,7 @@ export interface IUser {
 }
 
 export interface IStateUser {
-  user: IUser;
+  user: IUser | null;
   ratingBook: { [key: string]: IRateBook };
 }
 
@@ -88,13 +88,15 @@ interface IAuthor {
   name: string;
 }
 
+export interface IPrice {
+  minValue: number;
+  maxValue: number;
+}
+
 export interface IResponsBook {
   bookNormalized: { [key: string]: IBook };
   books: IBook[];
-  price: {
-    minValue: number;
-    maxValue: number;
-  };
+  price: IPrice | null;
   meta: {
     totalBooks: number;
     totalPages: number;
@@ -113,10 +115,7 @@ export interface IResponsBook {
 
 export interface IResponsBookPagination {
   book: IBook[];
-  price: {
-    minValue: number;
-    maxValue: number;
-  };
+  price: IPrice;
   meta: {
     totalBooks: number;
     totalPages: number;

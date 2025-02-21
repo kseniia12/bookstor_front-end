@@ -5,7 +5,7 @@ import { Rating } from "@mui/material";
 
 export const StylesWrapper = styled.div<{
   isBookInFavorites: boolean;
-  isBookInCart: boolean;
+  // isBookInCart: boolean;
 }>`
   display: flex;
   flex-direction: column;
@@ -50,10 +50,8 @@ export const StylesWrapper = styled.div<{
     padding-bottom: 20px;
   }
   .button {
-    background-color: ${({ isBookInCart, theme }) =>
-      isBookInCart ? theme.colors.white : theme.colors.darkBlue};
-    color: ${({ isBookInCart, theme }) =>
-      isBookInCart ? theme.colors.dark : theme.colors.white};
+    background-color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.dark};
     border: 1px solid ${({ theme }) => theme.colors.darkBlue};
   }
   .rating-block {

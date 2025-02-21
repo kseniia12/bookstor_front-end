@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userSlice from "./slice/userSlice";
-import bookSlice from "./slice/bookSlice";
-import filterSlice from "./slice/filterSlice";
-import cartSlice from "./slice/cartSlice";
-import recommendationsSlice from "./slice/recommendationsSlice";
-import favoritesSlice from "./slice/favoritesSlice";
-import commentsSlice from "./slice/commentsSlice";
+import userSlice from "./user/userSlice";
+import filterSlice from "./filter/filterSlice";
+import bookSlice from "./book/bookSlice";
+import cartSlice from "./cart/cartSlice";
+import favoritesSlice from "./favorites/favoritesSlice";
+import commentsSlice from "./comments/commentsSlice";
+
 
 const store = configureStore({
   reducer: {
@@ -13,7 +13,6 @@ const store = configureStore({
     book: bookSlice,
     filter: filterSlice,
     cart: cartSlice,
-    recommendation: recommendationsSlice,
     favorites: favoritesSlice,
     comments: commentsSlice,
   },

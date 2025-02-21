@@ -8,6 +8,7 @@ const constant = {
   PASSWORD_CHANGE: "/users/password",
   CATALOG_BOOKS: "/",
   GET_BOOK: "/book/pagination",
+  GET_BOOK_ID: "/book/id",
   FILTER: "/book/filter",
   BOOK_PAGE: "/book/:id",
   CART: "/cart",

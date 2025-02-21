@@ -1,80 +1,72 @@
-import React, { useMemo, useState } from "react";
+import React from "react";
 import { StyledRating, StylesWrapper } from "./style";
 import Button from "../Button/Button";
 import { IBook } from "../../lib/types/types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { addBookToFavoritesThunk } from "../../store/thunk/thunkFavorites";
-import { addBookToCartThunk } from "../../store/thunk/thunkCart";
+import { addBookToFavoritesThunk } from "../../store/favorites/thunkFavorites";
+import { addBookToCartThunk } from "../../store/cart/thunkCart";
 import constant from "../../lib/constants/constants";
 
 export interface IBookProps {
-  books: IBook;
+  book: IBook;
   className?: string;
 }
 
-const Book: React.FC<IBookProps> = ({ books }) => {
+const Book: React.FC<IBookProps> = ({ book }) => {
   const cart = useAppSelector((state) => state.cart.book);
   const user = useAppSelector((state) => state.users.user);
   const favoritesBook = useAppSelector((state) => state.favorites.book);
   const dispatch = useAppDispatch();
-  const bookId = Number(books.id);
-  const [textButton, setTextButton] = useState(`$${books.priceHard} USD`);
+  const bookId = Number(book.id);
   const navigate = useNavigate();
-  const isBookInCart = cart.hasOwnProperty(books.id);
-  const isBookInFavorites = favoritesBook.hasOwnProperty(books.id);
+  const isBookInCart = cart[book.id];
+  const isBookInFavorites = book.id ? !!favoritesBook[book.id] : false;
 
-  useMemo(() => {
-    if (isBookInCart) {
-      setTextButton("Added to cart");
-    } else {
-      setTextButton(`$${books.priceHard} USD`);
-    }
-  }, [isBookInCart, books.priceHard]);
 
   const AddOrRemoveFavorites = () => {
     dispatch(addBookToFavoritesThunk({ bookId }));
   };
 
   const sendBookId = () => {
-    navigate(`/book/${books.id}`);
+    navigate(`/book/${book.id}`);
   };
 
   const addBookToCart = () => {
-    if (user.id) {
+    if (user) {
       dispatch(addBookToCartThunk({ bookId }));
-      setTextButton("Added to cart");
     }
   };
 
   return (
-    <StylesWrapper
-      isBookInFavorites={isBookInFavorites}
-      isBookInCart={isBookInCart}
-    >
+    <StylesWrapper isBookInFavorites={isBookInFavorites}>
       <div className="book">
         <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
         <img
           className="book__img"
-          src={`${constant.PATH_TO_FOLDER}/${books.cover}`}
+          src={`${constant.PATH_TO_FOLDER}/${book.cover}`}
           alt="Book"
           onClick={sendBookId}
         />
       </div>
-      {books.bestseller ? <div className="bestseller">Bestseller</div> : ""}
+      {book.bestseller ? <div className="bestseller">Bestseller</div> : ""}
       <div onClick={sendBookId}>
-        <div className="genre">{books.name}</div>
-        <div className="author">{books.author.name}</div>
+        <div className="genre">{book.name}</div>
+        <div className="author">{book.author.name}</div>
         <div className="rating-block">
           <StyledRating
             className="rating-block__star"
-            value={books.averageRating}
+            value={book.averageRating}
             readOnly
           />
-          <div className="rating-block__value">{books.averageRating}</div>
+          <div className="rating-block__value">{book.averageRating}</div>
         </div>
       </div>
-      <Button className="button" text={textButton} onClick={addBookToCart} />
+      <Button
+        className={isBookInCart ? "button" : ""}
+        text={isBookInCart ? "Added to cart" : `$${book.priceHard} USD`}
+        onClick={addBookToCart}
+      />
     </StylesWrapper>
   );
 };

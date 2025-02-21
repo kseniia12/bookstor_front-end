@@ -1,11 +1,13 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  axiosGetBook,
+  axiosGetBookById,
+  axiosGetBooks,
   axiosGetFilter,
   axiosGetReccomendationsBook,
   axiosRateBook,
 } from "../../API/bookApi";
 import {
+  IBook,
   IRateBook,
   IReqBook,
   IResponsBookPagination,
@@ -14,10 +16,18 @@ import {
   IStateUser,
 } from "../../lib/types/types";
 
-export const getBookThunk = createAsyncThunk<IResponsBookPagination, IReqBook>(
-  "book/dBook",
+export const getBooksThunk = createAsyncThunk<IResponsBookPagination, IReqBook>(
+  "books/dBook",
   async (data: IReqBook): Promise<IResponsBookPagination> => {
-    const response = await axiosGetBook(data);
+    const response = await axiosGetBooks(data);
+    return response;
+  }
+);
+
+export const getBookByIdThunk = createAsyncThunk<IBook[], { bookId: number }>(
+  "book/dBook",
+  async (data: { bookId: number }): Promise<IBook[]> => {
+    const response = await axiosGetBookById(data);
     return response;
   }
 );
@@ -31,13 +41,13 @@ export const getFilterThunk = createAsyncThunk<IResponsFilter>(
 );
 
 export const getRecommendationsBookThunk = createAsyncThunk<
-  IResponsRecommendations,
+  IBook[],
   {
     bookId: number;
   }
 >(
   "getRecommendationsBook/dBook",
-  async (data: { bookId: number }): Promise<IResponsRecommendations> => {
+  async (data: { bookId: number }): Promise<IBook[]> => {
     const response = await axiosGetReccomendationsBook(data);
     return response;
   }

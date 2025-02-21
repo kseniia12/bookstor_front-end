@@ -10,7 +10,7 @@ import CheckoutModal from "../../components/CheckoutModal/CheckoutModal";
 import {
   deleteBookToCartThunk,
   getBookToCartThunk,
-} from "../../store/thunk/thunkCart";
+} from "../../store/cart/thunkCart";
 
 const Cart = () => {
   const books = useAppSelector((state) => state.cart.book);

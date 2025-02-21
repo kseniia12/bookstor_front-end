@@ -1,4 +1,4 @@
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import arrowToOpenForm from "../../assets/arrowToOpenForm.png";
 import { StylesWrapper } from "./style";
 import Price from "../Price/Price";
@@ -17,7 +17,7 @@ const FilterBySort = () => {
     }
   };
 
-  useMemo(() => {
+  useEffect(() => {
     document.addEventListener("click", handleClickOutside);
     return () => {
       document.removeEventListener("click", handleClickOutside);

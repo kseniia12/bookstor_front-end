@@ -4,7 +4,7 @@ import { IComment } from "../../lib/types/types";
 import {
   addCommentBookThunk,
   getCommentBookThunk,
-} from "../thunk/thunkComment";
+} from "./thunkComment";
 
 const initialState: {
   comments: IComment[];
@@ -17,7 +17,6 @@ const commentsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-
     builder.addCase(addCommentBookThunk.fulfilled, (state, action) => {
       state.comments.push(action.payload);
     });

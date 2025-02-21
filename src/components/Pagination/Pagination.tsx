@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { StylesWrapper } from "./style";
 import { useAppSelector } from "../../hooks";
@@ -12,7 +12,7 @@ const PaginationLink = () => {
   const [backdArrowState, setBackArrowState] = useState(true);
   const navigate = useNavigate();
 
-  useMemo(() => {
+  useEffect(() => {
     setState(meta.currentPage);
     setForwardArrowState(meta.hasNextPage);
     setBackArrowState(meta.hasPrevPage);

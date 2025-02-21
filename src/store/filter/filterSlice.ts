@@ -1,15 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 import { IResponsFilter } from "../../lib/types/types";
-import { getFilterThunk } from "../thunk/thunkBook";
+import { getFilterThunk } from "../book/thunkBook";
 
 const initialState: IResponsFilter = {
-  filter: [
-    {
-      id: 0,
-      name: "",
-    },
-  ],
+  filter: [],
 };
 
 const filterSlice = createSlice({

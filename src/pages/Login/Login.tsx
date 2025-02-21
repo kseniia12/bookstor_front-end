@@ -9,7 +9,7 @@ import { StylesWrapper } from "./style";
 import { useAppDispatch } from "../../hooks";
 import { IFormInput } from "../../lib/types/types";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { loginUserThunk } from "../../store/thunk/thunkUser";
+import { loginUserThunk } from "../../store/user/thunkUser";
 import constant from "../../lib/constants/constants";
 import { toast } from "react-toastify";
 

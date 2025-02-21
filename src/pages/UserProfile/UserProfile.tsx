@@ -7,16 +7,16 @@ import {
   patchUserThunk,
   patchUserPasswordThunk,
   uploadPhotoThunk,
-} from "../../store/thunk/thunkUser";
+} from "../../store/user/thunkUser";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import { IGetUser, IResponsFormPassword } from "../../lib/types/types";
+import { IGetUser, IResponsFormPassword, IUser } from "../../lib/types/types";
 import Button from "../../components/Button/Button";
 import FormPersonalInformation from "../../components/FormPersonalInformation/FormPersonalInformation";
 import FormPassword from "../../components/FormPassword/FormPassword";
 import { toast } from "react-toastify";
 
 const UserProfile = () => {
-  const user = useAppSelector((state) => state.users.user);
+  const user = useAppSelector((state) => state.users.user) as IUser;
   const [isEditable, setIsEditable] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
   const [activeForm, setActiveForm] = useState<null | string>(null);

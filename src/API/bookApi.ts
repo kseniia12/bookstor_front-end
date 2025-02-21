@@ -1,5 +1,6 @@
 import constant from "../lib/constants/constants";
 import {
+  IBook,
   IRateBook,
   IReqBook,
   IResponsBookPagination,
@@ -9,11 +10,21 @@ import {
 } from "../lib/types/types";
 import { axiosDefault } from "./axiosDefault";
 
-export const axiosGetBook = async (
+export const axiosGetBooks = async (
   data: IReqBook
 ): Promise<IResponsBookPagination> => {
   const response = await axiosDefault.get<IResponsBookPagination>(
     constant.GET_BOOK,
+    { params: data }
+  );
+  return response.data;
+};
+
+export const axiosGetBookById = async (data: {
+  bookId: number;
+}): Promise<IBook[]> => {
+  const response = await axiosDefault.get<IBook[]>(
+    constant.GET_BOOK_ID,
     { params: data }
   );
   return response.data;
@@ -26,8 +37,8 @@ export const axiosGetFilter = async (): Promise<IResponsFilter> => {
 
 export const axiosGetReccomendationsBook = async (data: {
   bookId: number;
-}): Promise<IResponsRecommendations> => {
-  const response = await axiosDefault.get<IResponsRecommendations>(
+}): Promise<IBook[]> => {
+  const response = await axiosDefault.get<IBook[]>(
     constant.RECOMMENDATIONS,
     { params: data }
   );

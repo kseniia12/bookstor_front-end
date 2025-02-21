@@ -25,10 +25,27 @@ export const StylesWrapper = styled.div<{
     display: flex;
     gap: 27px;
     &__cart {
-      position: relative;
       z-index: 1;
     }
-    &__count {
+    &__cart-container {
+      position: relative;
+    }
+    &__cart-favorites {
+      position: relative;
+    }
+    &__count-heart {
+      background-color: ${({ theme }) => theme.colors.darkGreen};
+      padding: 3px 9px;
+      text-align: center;
+      font-size: 12px;
+      border-radius: 50%;
+      position: absolute;
+      z-index: 2;
+      top: 10;
+      right: 0;
+      transform: translate(40%, -15%);
+    }
+    &__count-favorites {
       background-color: ${({ theme }) => theme.colors.darkGreen};
       padding: 3px 9px;
       text-align: center;
