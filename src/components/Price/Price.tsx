@@ -1,14 +1,15 @@
 import * as React from "react";
 import Slider from "@mui/material/Slider";
 import { StylesWrapper } from "./style";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks";
 import { IPrice } from "../../lib/types/types";
 
 const Price = () => {
   const price = useAppSelector((state) => state.book.price) as IPrice;
   const navigate = useNavigate();
-  const params = new URLSearchParams(window.location.search);
+  const location = useLocation()
+  const params = new URLSearchParams(location.search);
 
   const initialMin = params.has("min")
     ? parseFloat(params.get("min")!)

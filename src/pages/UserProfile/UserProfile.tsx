@@ -85,7 +85,7 @@ const UserProfile = () => {
   };
 
   return (
-    <StylesWrapper isEditable={isEditable} changePassword={changePassword}>
+    <StylesWrapper $isEditable={isEditable} $changePassword={changePassword}>
       <div className="avatar">
         <img src={foto} alt="Logo" className="avatar__image" />
         <label>

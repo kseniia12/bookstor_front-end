@@ -18,9 +18,11 @@ const FormForComments: React.FC<PropsComments> = ({ bookId }) => {
   const onSubmit: SubmitHandler<{
     comment: string;
   }> = async (data) => {
-    await dispatch(
-      addCommentBookThunk({ comment: data.comment, date, bookId })
-    );
+    if (data.comment !== "") {
+      await dispatch(
+        addCommentBookThunk({ comment: data.comment, date, bookId })
+      );
+    }
     reset();
   };
 

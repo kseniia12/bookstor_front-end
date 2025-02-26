@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { IBook } from "../../lib/types/types";
 import { StylesWrapper } from "./style";
 import cart from "../../assets/delete.png";
@@ -16,30 +16,32 @@ export interface IBookProps {
 }
 
 const BookFromCart: React.FC<IBookProps> = ({ books }) => {
-  const [count, setCount] = useState(books.count ?? 0);
   const dispatch = useAppDispatch();
-  
-  const deleteBookFromCart = (id: number) => {
+
+  const deleteBookFromCart = (id: number[]) => {
     dispatch(deleteBookToCartThunk({ id }));
     dispatch(getBookToCartThunk());
   };
-  
+
   const increaseCountBooks = () => {
-    if (count <= books.countHard) {
-      // setCount(count + 1);
+    if (books.count !== undefined && books.count <= books.countHard) {
       dispatch(
-        changeCountBooksThunk({ count: count + 1, bookId: Number(books.id) })
+        changeCountBooksThunk({
+          count: books.count + 1,
+          bookId: Number(books.id),
+        })
       );
     }
   };
 
   const reduceCountBooks = () => {
-
-    if (count > 1) {
+    if (books.count !== undefined && books.count > 1) {
       dispatch(
-        changeCountBooksThunk({ count: count - 1, bookId: Number(books.id) })
+        changeCountBooksThunk({
+          count: books.count - 1,
+          bookId: Number(books.id),
+        })
       );
-      setCount(count - 1);
     }
   };
 
@@ -62,7 +64,7 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
             <div className="counter__button" onClick={reduceCountBooks}>
               -
             </div>
-            <div>{count}</div>
+            <div>{books.count}</div>
             <div className="counter__button" onClick={increaseCountBooks}>
               +
             </div>
@@ -72,7 +74,7 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
               className="cart"
               src={cart}
               alt="cart"
-              onClick={() => deleteBookFromCart(Number(books.id))}
+              onClick={() => deleteBookFromCart([Number(books.id)])}
             />
           </div>
         </div>

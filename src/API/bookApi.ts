@@ -5,7 +5,6 @@ import {
   IReqBook,
   IResponsBookPagination,
   IResponsFilter,
-  IResponsRecommendations,
   IStateUser,
 } from "../lib/types/types";
 import { axiosDefault } from "./axiosDefault";
@@ -23,10 +22,9 @@ export const axiosGetBooks = async (
 export const axiosGetBookById = async (data: {
   bookId: number;
 }): Promise<IBook[]> => {
-  const response = await axiosDefault.get<IBook[]>(
-    constant.GET_BOOK_ID,
-    { params: data }
-  );
+  const response = await axiosDefault.get<IBook[]>(constant.GET_BOOK_ID, {
+    params: data,
+  });
   return response.data;
 };
 
@@ -38,10 +36,9 @@ export const axiosGetFilter = async (): Promise<IResponsFilter> => {
 export const axiosGetReccomendationsBook = async (data: {
   bookId: number;
 }): Promise<IBook[]> => {
-  const response = await axiosDefault.get<IBook[]>(
-    constant.RECOMMENDATIONS,
-    { params: data }
-  );
+  const response = await axiosDefault.get<IBook[]>(constant.RECOMMENDATIONS, {
+    params: data,
+  });
   return response.data;
 };
 

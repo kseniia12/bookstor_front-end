@@ -1,5 +1,5 @@
 import constant from "../lib/constants/constants";
-import { IAddBookToCart, ICartSlice, IGetBookToCart } from "../lib/types/types";
+import { IAddBookToCart, IGetBookToCart } from "../lib/types/types";
 import { axiosDefault } from "./axiosDefault";
 
 export const axiosAddBookToCart = async (
@@ -18,7 +18,7 @@ export const axiosGetBookToCart = async (): Promise<IGetBookToCart> => {
 };
 
 export const axiosDeleteBookFromCart = async (bookId: {
-  id: number;
+  id: number[];
 }): Promise<{
   totalPrice: number;
 }> => {

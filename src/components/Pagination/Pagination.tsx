@@ -4,9 +4,11 @@ import { StylesWrapper } from "./style";
 import { useAppSelector } from "../../hooks";
 import forwardArrow from "../../assets/Forward.png";
 import backdArrow from "../../assets/Vector.png";
+import { IMeta } from "../../lib/types/types";
+
 
 const PaginationLink = () => {
-  const meta = useAppSelector((state) => state.book.meta);
+  const meta = useAppSelector((state) => state.book.meta) as IMeta;
   const [state, setState] = useState(meta.currentPage);
   const [forwardArrowState, setForwardArrowState] = useState(true);
   const [backdArrowState, setBackArrowState] = useState(true);
@@ -43,8 +45,8 @@ const PaginationLink = () => {
 
   return (
     <StylesWrapper
-      forwardArrowState={forwardArrowState}
-      backdArrowState={backdArrowState}
+      $forwardArrowState={forwardArrowState}
+      $backdArrowState={backdArrowState}
     >
       <img
         src={backdArrow}

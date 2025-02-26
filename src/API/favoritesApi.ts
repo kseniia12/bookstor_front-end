@@ -1,8 +1,5 @@
 import constant from "../lib/constants/constants";
-import {
-  IAddBookToCart,
-  IBook,
-} from "../lib/types/types";
+import { IAddBookToCart, IBook } from "../lib/types/types";
 import { axiosDefault } from "./axiosDefault";
 
 export const axiosAddBookToFavorites = async (

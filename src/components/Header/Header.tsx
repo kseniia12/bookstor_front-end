@@ -4,24 +4,31 @@ import search from "../../assets/search.png";
 import { StylesWrapper } from "./style";
 import Input from "../Input/Input";
 import Button from "../Button/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import constant from "../../lib/constants/constants";
 import cart from "../../assets/Cart.png";
 import userProfile from "../../assets/user_profile.png";
 import heart from "../../assets/Heart.png";
-import { useAppSelector } from "../../hooks";
+import { useAppSelector, useConverterObjectToArray } from "../../hooks";
 
 const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const user = useAppSelector((state) => state.users.user);
-  const countBookWithCart = useAppSelector((state) => state.cart.book);
-  const countBookWithFavorites = useAppSelector(
+
+  const countBookWithCart = useConverterObjectToArray(
+    (state) => state.cart.book
+  );
+
+  const countBookWithFavorites = useConverterObjectToArray(
     (state) => state.favorites.book
   );
+
   const handleButtonClick = () => {
-    window.location.pathname === constant.SIGN_IN
-      ? navigate(constant.SIGN_UP)
-      : navigate(constant.SIGN_IN);
+    if (location.pathname !== constant.SIGN_IN) {
+      return navigate(constant.SIGN_IN);
+    }
+    return navigate(constant.SIGN_UP);
   };
 
   return (
@@ -40,7 +47,7 @@ const Header = () => {
           <div className="menu__cart">
             <div className="menu__cart-container">
               <div className="menu__count-heart">
-                {Object.keys(countBookWithCart).length}
+                {countBookWithCart.length}
               </div>
               <Link to={constant.CART}>
                 <Button className="menu__button cart" />
@@ -52,7 +59,7 @@ const Header = () => {
           </Link>
           <div className="menu__cart-favorites">
             <div className="menu__count-favorites">
-              {Object.keys(countBookWithFavorites).length}
+              {countBookWithFavorites.length}
             </div>
             <Link to={constant.FAVORITES}>
               <Button className="menu__button heart" />

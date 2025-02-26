@@ -5,13 +5,12 @@ import { rateBookThunk } from "../../store/book/thunkBook";
 
 interface IPropsRating {
   bookId: number;
+  rating: string;
 }
 
 const RatingBook: React.FC<IPropsRating> = (props) => {
   const bookId = props.bookId;
-  const rating = useAppSelector((state) => state.users.ratingBook);
-  const ratingBook = rating[bookId];
-  const [rate, setRate] = React.useState(ratingBook?.rate ?? 0);
+  const [rate, setRate] = React.useState(Number(props.rating));
   const user = useAppSelector((state) => state.users.user);
   const dispatch = useAppDispatch();
 

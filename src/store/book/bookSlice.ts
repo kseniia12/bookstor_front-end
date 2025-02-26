@@ -14,13 +14,7 @@ const initialState: IResponsBook = {
     hasNextPage: true,
     hasPrevPage: true,
   },
-  filters: {
-    genre: [""],
-    maxPrice: "0.0",
-    minPrice: "40.0",
-    page: "1",
-    sort: "price",
-  },
+  filters: null,
 };
 
 interface IBooksObject {
@@ -36,13 +30,10 @@ const bookSlice = createSlice({
       state.filters = action.payload.filters;
       state.meta = action.payload.meta;
       state.books = action.payload.book;
-      const booksObject = action.payload.book.reduce(
-        (acc, book) => {
-          acc[book.id] = book;
-          return acc;
-        },
-        {} as IBooksObject
-      );
+      const booksObject = action.payload.book.reduce((acc, book) => {
+        acc[book.id] = book;
+        return acc;
+      }, {} as IBooksObject);
       state.bookNormalized = booksObject;
       state.price = action.payload.price;
     });

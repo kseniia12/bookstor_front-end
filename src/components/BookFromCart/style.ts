@@ -39,6 +39,7 @@ export const StylesWrapper = styled.div`
       height: 32px;
       border-radius: 50%;
       text-align: center;
+      cursor: pointer;
     }
   }
   .cart {

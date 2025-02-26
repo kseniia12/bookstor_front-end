@@ -3,7 +3,7 @@ import Book from "../../components/Book/Book";
 import { StylesWrapper } from "./style";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { getBooksThunk, getFilterThunk } from "../../store/book/thunkBook";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import PaginationLink from "../../components/Pagination/Pagination";
 import FilterByGenre from "../../components/FilterByGenre/FilterByGenre";
 import FilterByPrice from "../../components/FilterByPrice/FilterByPrice";
@@ -13,6 +13,7 @@ import Authorization from "../../components/AuthorizationBanner/AuthorizationBan
 
 const CatalogBooks = () => {
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const books = useAppSelector((state) => state.book.books);
   const user = useAppSelector((state) => state.users.user);
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ const CatalogBooks = () => {
   const sort = searchParams.get("sort") || "price";
   const maxPrice = searchParams.get("max");
   const minPrice = searchParams.get("min");
+
   const data = {
     page: page,
     genre: genre,
@@ -32,7 +34,7 @@ const CatalogBooks = () => {
   useEffect(() => {
     dispatch(getBooksThunk(data));
     dispatch(getFilterThunk());
-  }, [dispatch, window.location.href]);
+  }, [dispatch, location]);
 
   return (
     <StylesWrapper>
@@ -46,12 +48,14 @@ const CatalogBooks = () => {
         </div>
       </div>
       <div className="books">
-        {books.map((bookId) => {
-          return <Book book={bookId} />;
-        })}
+        {books.map((book) => (
+          <div key={book.id} >
+            <Book book={book} />
+          </div>
+        ))}
       </div>
       <PaginationLink />
-      {user ? <Authorization /> : ""}
+      {!user ? <Authorization /> : ""}
     </StylesWrapper>
   );
 };

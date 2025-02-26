@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks";
+import {
+  useAppDispatch,
+  useAppSelector,
+  useConverterObjectToArray,
+} from "../../hooks";
 import { StylesWrapper } from "./style";
 import BookFromCart from "../../components/BookFromCart/BookFromCart";
 import EmptyCartComponent from "../../components/EmptyCartComponent/EmptyCartComponent";
@@ -7,15 +11,12 @@ import Button from "../../components/Button/Button";
 import { useNavigate } from "react-router-dom";
 import constant from "../../lib/constants/constants";
 import CheckoutModal from "../../components/CheckoutModal/CheckoutModal";
-import {
-  deleteBookToCartThunk,
-  getBookToCartThunk,
-} from "../../store/cart/thunkCart";
+import { deleteBookToCartThunk } from "../../store/cart/thunkCart";
 
 const Cart = () => {
-  const books = useAppSelector((state) => state.cart.book);
+  const books = useConverterObjectToArray((state) => state.cart.book);
   const totalPrice = useAppSelector((state) => state.cart.totalPrice);
-
+  const bookIds = books.map((book) => book.id);
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const dispatch = useAppDispatch();
@@ -24,16 +25,13 @@ const Cart = () => {
     navigate(constant.CATALOG_BOOKS);
   };
 
-  const proceedToCheckout = () => {
+  const proceedToCheckout = async () => {
+    await dispatch(deleteBookToCartThunk({ id: bookIds }));
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
-    Object.keys(books).map((bookId) => {
-      return dispatch(deleteBookToCartThunk({ id: Number(bookId) }));
-    });
-    dispatch(getBookToCartThunk());
   };
 
   return (
@@ -42,20 +40,14 @@ const Cart = () => {
       {totalPrice !== 0 ? (
         <div>
           <div>
-            {Object.keys(books).map((bookId, index) => {
-              return (
-                <>
-                  <BookFromCart
-                    books={books[bookId]}
-                    key={bookId}
-                    className={""}
-                  />
-                  {index !== Object.keys(books).length - 1 && (
-                    <div className="dividing-line"></div>
-                  )}
-                </>
-              );
-            })}
+            {books.map((book, index) => (
+              <React.Fragment key={book.id}>
+                <BookFromCart books={book} className={""} />
+                {index !== books.length - 1 && (
+                  <div className="dividing-line"></div>
+                )}
+              </React.Fragment>
+            ))}
           </div>
           <div className="result">
             <div className="result__totalPrice">
@@ -68,7 +60,7 @@ const Cart = () => {
             />
             <Button
               className="base-text result__сhekout"
-              text="Chekout"
+              text="Checkout"
               onClick={proceedToCheckout}
             />
           </div>

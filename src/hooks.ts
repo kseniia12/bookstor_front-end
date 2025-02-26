@@ -25,3 +25,13 @@ export const useMultiselect = (initialValue: string[]) => {
 
   return { selected, isSelected, onChange, active, setActive, setSelected };
 };
+
+export const useConverterObjectToArray = (
+  selectorFn: (state: RootState) => unknown
+) => {
+  const nestedProperty = useSelector(selectorFn);
+  if (typeof nestedProperty === "object" && nestedProperty !== null) {
+    return Object.values(nestedProperty);
+  }
+  return [];
+};

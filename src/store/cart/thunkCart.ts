@@ -34,8 +34,8 @@ export const deleteBookToCartThunk = createAsyncThunk<
   {
     totalPrice: number;
   },
-  { id: number }
->("deleteBookToCartThunk/dBook", async (bookId: { id: number }) => {
+  { id: number[] }
+>("deleteBookToCartThunk/dBook", async (bookId: { id: number[] }) => {
   const response = await axiosDeleteBookFromCart(bookId);
   return response;
 });

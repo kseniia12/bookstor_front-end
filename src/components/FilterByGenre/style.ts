@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StylesWrapper = styled.div<{ open: boolean }>`
+  cursor: pointer;
   .container {
     background-color: ${({ theme }) => theme.colors.light};
     padding: 10px 12px 10px 15px;

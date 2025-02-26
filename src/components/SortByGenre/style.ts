@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StylesWrapper = styled.div<{ active: boolean }>`
+export const StylesWrapper = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.light};
   top: 72px;

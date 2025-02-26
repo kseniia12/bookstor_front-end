@@ -18,7 +18,7 @@ const Comments: React.FC<propsComments> = ({ bookId }) => {
       setComments(comments);
     }
     getCommentsBook();
-  }, []);
+  }, [dispatch, bookId]);
 
   const calculateDaysDifference = (dateString: string) => {
     const commentDate = new Date(dateString);
@@ -30,26 +30,26 @@ const Comments: React.FC<propsComments> = ({ bookId }) => {
 
   return (
     <StylesWrapper>
-      {comments ? <div className="big-title title">Comments</div> : ""}
-      {comments?.map((comment) => (
-        <div className="comment">
-          <div className="comment__photo">
-            <img
-              className="comment__photo--user"
-              src={comment.user.photo}
-              alt={comment.user.photo}
-            />
-          </div>
-          <div>
-            <div className="comment__user">{comment.user.fullName}</div>
-            <div className="comment__date">
-              {calculateDaysDifference(comment.date)} days ago
-            </div>
-            <div className="comment__text">{comment.comment}</div>
-          </div>
+    {comments ? <div className="big-title title">Comments</div> : ""}
+    {comments?.map((comment) => (
+      <div className="comment" key={comment.id}>
+        <div className="comment__photo">
+          <img
+            className="comment__photo--user"
+            src={comment.user.photo}
+            alt={comment.user.photo}
+          />
         </div>
-      ))}
-    </StylesWrapper>
+        <div>
+          <div className="comment__user">{comment.user.fullName}</div>
+          <div className="comment__date">
+            {calculateDaysDifference(comment.date)} days ago
+          </div>
+          <div className="comment__text">{comment.comment}</div>
+        </div>
+      </div>
+    ))}
+  </StylesWrapper>
   );
 };
 

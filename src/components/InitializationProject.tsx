@@ -15,7 +15,7 @@ const InitializationProject: React.FC<PropsWithChildren> = ({ children }) => {
         setInitialization(true);
       }
       try {
-        dispatch(getUserThunk());
+       await dispatch(getUserThunk());
       } catch (error) {
         console.error("Initialization failed:", error);
       } finally {

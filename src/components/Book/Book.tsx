@@ -2,11 +2,11 @@ import React from "react";
 import { StyledRating, StylesWrapper } from "./style";
 import Button from "../Button/Button";
 import { IBook } from "../../lib/types/types";
-import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { addBookToFavoritesThunk } from "../../store/favorites/thunkFavorites";
 import { addBookToCartThunk } from "../../store/cart/thunkCart";
 import constant from "../../lib/constants/constants";
+import { useNavigate } from "react-router-dom";
 
 export interface IBookProps {
   book: IBook;
@@ -19,17 +19,16 @@ const Book: React.FC<IBookProps> = ({ book }) => {
   const favoritesBook = useAppSelector((state) => state.favorites.book);
   const dispatch = useAppDispatch();
   const bookId = Number(book.id);
-  const navigate = useNavigate();
   const isBookInCart = cart[book.id];
   const isBookInFavorites = book.id ? !!favoritesBook[book.id] : false;
-
-
-  const AddOrRemoveFavorites = () => {
+  const navigate = useNavigate();
+  
+  const toggleFavorites = () => {
     dispatch(addBookToFavoritesThunk({ bookId }));
   };
 
-  const sendBookId = () => {
-    navigate(`/book/${book.id}`);
+  const goToBookPage = (bookId: any) => {
+    navigate(`/books/${bookId}`);
   };
 
   const addBookToCart = () => {
@@ -39,18 +38,17 @@ const Book: React.FC<IBookProps> = ({ book }) => {
   };
 
   return (
-    <StylesWrapper isBookInFavorites={isBookInFavorites}>
-      <div className="book">
-        <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
+    <StylesWrapper $isBookInFavorites={isBookInFavorites}>
+      <div className="book" onClick={() => goToBookPage(book.id)}>
+        <Button className="book__favorites" onClick={toggleFavorites} />
         <img
           className="book__img"
           src={`${constant.PATH_TO_FOLDER}/${book.cover}`}
           alt="Book"
-          onClick={sendBookId}
         />
       </div>
       {book.bestseller ? <div className="bestseller">Bestseller</div> : ""}
-      <div onClick={sendBookId}>
+      <div>
         <div className="genre">{book.name}</div>
         <div className="author">{book.author.name}</div>
         <div className="rating-block">

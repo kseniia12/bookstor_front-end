@@ -4,7 +4,7 @@ import heartNoSave from "../../assets/HeartNotSave.png";
 import { Rating } from "@mui/material";
 
 export const StylesWrapper = styled.div<{
-  isBookInFavorites: boolean;
+  $isBookInFavorites: boolean;
   // isBookInCart: boolean;
 }>`
   display: flex;
@@ -25,14 +25,14 @@ export const StylesWrapper = styled.div<{
       position: absolute;
       top: 20px;
       left: 20px;
-      background-image: url(${({ isBookInFavorites }) => (isBookInFavorites ? heartNoSave : heartSave )});
+      background-image: url(${({ $isBookInFavorites }) => ($isBookInFavorites ? heartNoSave : heartSave )});
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 50%;
       padding: 11px;
       background-color: ${({ theme }) => theme.colors.darkBlue};
-      opacity: ${({ isBookInFavorites }) =>
-        isBookInFavorites === true ? "1" : "0.5"};
+      opacity: ${({ $isBookInFavorites }) =>
+        $isBookInFavorites === true ? "1" : "0.5"};
       width: 48px;
       height: 48px;
       background-size: 26px;

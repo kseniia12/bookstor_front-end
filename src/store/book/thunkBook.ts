@@ -12,7 +12,6 @@ import {
   IReqBook,
   IResponsBookPagination,
   IResponsFilter,
-  IResponsRecommendations,
   IStateUser,
 } from "../../lib/types/types";
 

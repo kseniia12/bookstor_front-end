@@ -1,35 +1,39 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useAppSelector, useMultiselect } from "../../hooks";
 import { StylesWrapper } from "./style";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { IFilters } from "../../lib/types/types";
+
 
 const SortByGenre = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const filters = useAppSelector((state) => state.filter.filter);
-  const activeFilter = useAppSelector((state) => state.book.filters);
+  const activeFilter = useAppSelector((state) => state.book.filters) as IFilters;
   const genres = activeFilter.genre;
-  const params = new URLSearchParams(window.location.search);
+  const params = new URLSearchParams(location.search);
 
   const initialSelected = Array.from(params.keys())
     .filter((key) => key.startsWith("genre"))
     .map((key) => params.get(key))
     .filter((value): value is string => value !== null);
 
-  const { selected, isSelected, onChange, active } =
+  const { selected, isSelected, onChange } =
     useMultiselect(initialSelected);
 
-  const updateURL = () => {
-    const params = new URLSearchParams();
-    selected.forEach((index) => params.append("genre", index.toString()));
-    navigate(`/?${params.toString()}`);
-  };
+    useEffect(() => {
+      const updateURL = () => {
+        const params = new URLSearchParams();
+        selected.forEach((index) => params.append("genre", index.toString()));
+        navigate(`/?${params.toString()}`);
+      };
+  
+      updateURL();
+    }, [selected, navigate]);
 
-  useMemo(() => {
-    updateURL();
-  }, [selected]);
 
   return (
-    <StylesWrapper active={active}>
+    <StylesWrapper>
       <ul className="filter-list">
         {filters.map((filter) => (
           <li key={filter.id.toString()} className="filter-list__item">

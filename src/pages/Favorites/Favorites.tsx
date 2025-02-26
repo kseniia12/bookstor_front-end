@@ -1,16 +1,16 @@
 import React from "react";
 import Book from "../../components/Book/Book";
-import { useAppSelector } from "../../hooks";
+import { useConverterObjectToArray } from "../../hooks";
 import { StylesWrapper } from "./style";
 import EmptyCartComponent from "../../components/EmptyCartComponent/EmptyCartComponent";
 
 const Favorites = () => {
-  const books = useAppSelector((state) => state.favorites.book);
+  const books = useConverterObjectToArray((state) => state.favorites.book);
   return (
     <StylesWrapper>
-      {Object.keys(books).length !== 0 ? (
-        Object.keys(books).map((bookId) => (
-          <Book book={books[bookId]} key={bookId} className="books__book" />
+      {books.length !== 0 ? (
+        books.map((book, index) => (
+          <Book book={book} key={index} className="books__book" />
         ))
       ) : (
         <EmptyCartComponent />

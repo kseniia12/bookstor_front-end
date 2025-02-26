@@ -2,8 +2,8 @@ import styled from "styled-components";
 import heartSave from "../../assets/Heart.png";
 import heartNoSave from "../../assets/HeartNotSave.png";
 export const StylesWrapper = styled.div<{
-  isBookInFavorites: boolean;
-  isBookInCart: boolean;
+  $isBookInFavorites: boolean;
+  $isBookInCart: boolean;
 }>`
   display: flex;
   gap: 128px;
@@ -21,13 +21,13 @@ export const StylesWrapper = styled.div<{
       position: absolute;
       top: 30px;
       right: 30px;
-      background-image: url(${({ isBookInFavorites }) => (isBookInFavorites ? heartNoSave :  heartSave)});
+      background-image: url(${({ $isBookInFavorites }) => ($isBookInFavorites ? heartNoSave :  heartSave)});
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 50%;
       padding: 11px;
       background-color: ${({ theme }) => theme.colors.darkBlue};
-      opacity: ${({ isBookInFavorites }) => (isBookInFavorites === true ? "1" : "0.5")};
+      opacity: ${({ $isBookInFavorites }) => ($isBookInFavorites === true ? "1" : "0.5")};
       width: 48px;
       height: 48px;
       background-size: 26px;
@@ -57,10 +57,10 @@ export const StylesWrapper = styled.div<{
       color: ${({ theme }) => theme.colors.darkBlue};
     }
     &__cart {
-      background-color: ${({ isBookInCart, theme }) =>
-        isBookInCart ? theme.colors.white : theme.colors.darkBlue};
-      color: ${({ isBookInCart, theme }) =>
-        isBookInCart ? theme.colors.dark : theme.colors.white};
+      background-color: ${({ $isBookInCart, theme }) =>
+        $isBookInCart ? theme.colors.white : theme.colors.darkBlue};
+      color: ${({ $isBookInCart, theme }) =>
+        $isBookInCart ? theme.colors.dark : theme.colors.white};
       border: 1px solid ${({ theme }) => theme.colors.darkBlue};
     }
   }

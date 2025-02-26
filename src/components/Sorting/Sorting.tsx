@@ -1,34 +1,34 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useAppSelector, useMultiselect } from "../../hooks";
 import arrowToOpenForm from "../../assets/arrowToOpenForm.png";
 import { StylesWrapper } from "./style";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FilterByAuthor = () => {
   const options = ["Price", "Name", "Author name", "Rating", "Date of issue"];
   const popupRef = useRef<HTMLDivElement | null>(null);
   const { selected, setSelected, active, setActive } = useMultiselect([]);
   const filter = useAppSelector((state) => state.book.filters);
-  const sort = filter.sort;
-
+  const sort = filter ? filter.sort : "";
+  const navigate = useNavigate();
+  const location = useLocation()
   const handleChange = (event: { target: { value: any } }) => {
     const selectedOption = event.target.value;
     setSelected([selectedOption]);
   };
-  const navigate = useNavigate();
+  
+  useEffect(() => {
+    const updateURL = () => {
+      const params = new URLSearchParams(location.search);
+      selected.forEach((option) => {
+        const firstWord = option.split(" ")[0];
+        params.set("sort", firstWord.toLowerCase());
+      });
+      navigate({ search: params.toString() });
+    };
 
-  const updateURL = () => {
-    const params = new URLSearchParams(window.location.search);
-    selected.forEach((option) => {
-      const firstWord = option.split(" ")[0];
-      params.set("sort", firstWord.toLowerCase());
-    });
-    navigate({ search: params.toString() });
-  };
-
-  useMemo(() => {
     updateURL();
-  }, [selected]);
+  }, [selected, navigate]);
 
   const handleClickOutside = (event: MouseEvent) => {
     if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
@@ -84,61 +84,3 @@ const FilterByAuthor = () => {
 };
 
 export default FilterByAuthor;
-
-// import React, { useState, useEffect } from "react";
-// import arrowToOpenForm from "../../assets/arrowToOpenForm.png";
-// import { StylesWrapper } from "./style";
-// import { useNavigate } from "react-router-dom";
-// import { useAppSelector } from "../../hooks";
-
-// const FilterByAuthor = () => {
-//   const filters = useAppSelector((state) => state.book.filters);
-//   const [open, setOpen] = useState<boolean>(false);
-//   const navigate = useNavigate();
-//   const params = new URLSearchParams(window.location.search);
-//   const initialSelectedOption = params.get("sort") || filters.sort;
-//   const [selectedOption, setSelectedOption] = useState<string>(
-//     initialSelectedOption
-//   );
-
-//   const changeStateForm = () => {
-//     setOpen(!open);
-//   };
-
-//   const handleSelectChange = (event: {
-//     target: { value: React.SetStateAction<string> };
-//   }) => {
-//     setSelectedOption(event.target.value);
-//   };
-
-//   useEffect(() => {
-//     if (selectedOption) {
-//       params.set("sort", selectedOption);
-//       navigate({ search: params.toString() });
-//     }
-//   }, [selectedOption, navigate]);
-
-//   return (
-//     <StylesWrapper open={open} onClick={changeStateForm}>
-
-//         <div className="container">
-//           <div>Sort by</div>
-//           <select
-//             className="container__select"
-//             value={selectedOption}
-//             onChange={handleSelectChange}
-//           >
-//             <option value="1">Price</option>
-//             <option value="2">Name</option>
-//             <option value="3">Author name</option>
-//             <option value="4">Rating</option>
-//             <option value="5">Date of issue</option>
-//           </select>
-//         </div>
-//         <img src={arrowToOpenForm} alt="Arrow to open form" className="arrow" />
-
-//     </StylesWrapper>
-//   );
-// };
-
-// export default FilterByAuthor;

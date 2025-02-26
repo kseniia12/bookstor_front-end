@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StylesWrapper = styled.div<{
-  isEditable: boolean;
-  changePassword: boolean;
+  $isEditable: boolean;
+  $changePassword: boolean;
 }>`
   display: flex;
   padding: 60px 0px 110px 0px;
@@ -23,6 +23,7 @@ export const StylesWrapper = styled.div<{
       left: 237px;
       width: 48px;
       height: 48px;
+      cursor: pointer;
     }
   }
   .form {
@@ -43,17 +44,17 @@ export const StylesWrapper = styled.div<{
     }
     &__input {
       &.info {
-        pointer-events: ${({ isEditable }) =>
-          isEditable === true ? "" : "none"};
+        pointer-events: ${({ $isEditable }) =>
+          $isEditable === true ? "" : "none"};
         background-color: ${({ theme }) => theme.colors.light};
-        opacity: ${({ isEditable }) => (isEditable === true ? "1" : "0.5")};
+        opacity: ${({ $isEditable }) => ($isEditable === true ? "1" : "0.5")};
       }
       &.password {
-        pointer-events: ${({ changePassword }) =>
-          changePassword === true ? "" : "none"};
+        pointer-events: ${({ $changePassword }) =>
+          $changePassword === true ? "" : "none"};
         background-color: ${({ theme }) => theme.colors.light};
-        opacity: ${({ changePassword }) =>
-          changePassword === true ? "1" : "0.5"};
+        opacity: ${({ $changePassword }) =>
+          $changePassword === true ? "1" : "0.5"};
       }
     }
     &__editing {
@@ -63,7 +64,7 @@ export const StylesWrapper = styled.div<{
     }
   }
   .item {
-    display: ${({ changePassword }) => (changePassword === true ? "" : "none")};
+    display: ${({ $changePassword }) => ($changePassword === true ? "" : "none")};
     &__text {
       &.error {
         color: red;

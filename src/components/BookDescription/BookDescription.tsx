@@ -15,7 +15,7 @@ const BookDescription = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
   const bookId = Number(id);
-  const [book, setBook] = useState<IBook | null>(null)
+  const [book, setBook] = useState<IBook | null>(null);
 
   const cart = useAppSelector((state) => state.cart.book);
   const favoritesBook = useAppSelector((state) => state.favorites.book);
@@ -27,34 +27,30 @@ const BookDescription = () => {
   useEffect(() => {
     async function getBook() {
       const book = await dispatch(getBookByIdThunk({ bookId })).unwrap();
-      setBook(book[0])
+      setBook(book[0]);
     }
-    getBook()
-  }, []);
+    getBook();
+  }, [bookId, dispatch]);
 
   const AddOrRemoveFavorites = () => {
     dispatch(addBookToFavoritesThunk({ bookId }));
   };
 
   const addBookToCart = () => {
-    if (!user.id) {
+    if (!user) {
       return;
     }
     dispatch(addBookToCartThunk({ bookId }));
   };
- 
+
   return (
     <StylesWrapper
-      isBookInFavorites={isBookInFavorites}
-      isBookInCart={isBookInCart}
+      $isBookInFavorites={isBookInFavorites}
+      $isBookInCart={isBookInCart}
     >
       <div className="book">
         <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
-        <img
-          className="book__img"
-          src={book?.cover}
-          alt={book?.name}
-        />
+        <img className="book__img" src={book?.cover} alt={book?.name} />
       </div>
       <div>
         <p className="big-title">{book?.name}</p>
@@ -66,7 +62,7 @@ const BookDescription = () => {
               {id !== undefined && user[id] ? user[id].rate.toFixed(1) : "0.0"}
             </div>
           </div>
-          <RatingBookForUser bookId={Number(book?.id)} />
+          <RatingBookForUser bookId={Number(book?.id)} rating={id !== undefined && user[id] ? user[id].rate.toFixed(1) : "0.0"}/>
           <div className="rating__book">
             <img src={rateBook} alt="rating" />
             <div className="rating__title">Rate this book</div>

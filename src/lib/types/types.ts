@@ -93,43 +93,35 @@ export interface IPrice {
   maxValue: number;
 }
 
+export interface IFilters {
+  genre: string[];
+  maxPrice: string;
+  minPrice: string;
+  page: string;
+  sort: string;
+}
+
+export interface IMeta {
+  totalBooks: number;
+  totalPages: number;
+  currentPage: number;
+  hasNextPage: boolean;
+  hasPrevPage: boolean;
+}
+
 export interface IResponsBook {
   bookNormalized: { [key: string]: IBook };
   books: IBook[];
   price: IPrice | null;
-  meta: {
-    totalBooks: number;
-    totalPages: number;
-    currentPage: number;
-    hasNextPage: boolean;
-    hasPrevPage: boolean;
-  };
-  filters: {
-    genre: string[];
-    maxPrice: string;
-    minPrice: string;
-    page: string;
-    sort: string;
-  };
+  meta: IMeta | null;
+  filters: IFilters | null;
 }
 
 export interface IResponsBookPagination {
   book: IBook[];
   price: IPrice;
-  meta: {
-    totalBooks: number;
-    totalPages: number;
-    currentPage: number;
-    hasNextPage: boolean;
-    hasPrevPage: boolean;
-  };
-  filters: {
-    genre: string[];
-    maxPrice: string;
-    minPrice: string;
-    page: string;
-    sort: string;
-  };
+  meta: IMeta;
+  filters: IFilters;
 }
 
 export interface IResponsRecommendations {
@@ -172,6 +164,7 @@ export interface IPropsComment {
 }
 
 export interface IComment {
+  id: string;
   comment: string;
   date: string;
   user: { fullName: string; photo: string };

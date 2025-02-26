@@ -19,5 +19,6 @@ export const StylesWrapper = styled.div`
     flex-wrap: wrap;
     gap: 60px 20px;
     padding-top: 38px;
+    cursor: pointer;
   }
 `;

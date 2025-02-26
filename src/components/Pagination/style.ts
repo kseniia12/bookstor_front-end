@@ -1,7 +1,7 @@
 import styled from "styled-components";
 export const StylesWrapper = styled.div<{
-  backdArrowState: boolean;
-  forwardArrowState: boolean;
+  $backdArrowState: boolean;
+  $forwardArrowState: boolean;
 }>`
   padding-top: 78px;
   margin: 0 auto;
@@ -19,9 +19,9 @@ export const StylesWrapper = styled.div<{
     background-color: black;
   }
   .forwardArrowState {
-    opacity: ${({ forwardArrowState }) => (forwardArrowState ? "1" : "0.5")};
+    opacity: ${({ $forwardArrowState }) => ($forwardArrowState ? "1" : "0.5")};
   }
   .backdArrowState {
-    opacity: ${({ backdArrowState }) => (backdArrowState ? "1" : "0.5")};
+    opacity: ${({ $backdArrowState }) => ($backdArrowState ? "1" : "0.5")};
   }
 `;

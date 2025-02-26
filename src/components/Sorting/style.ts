@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const StylesWrapper = styled.div<{ open: boolean }>`
   position: relative;
   background-color: ${({ theme }) => theme.colors.white};
-  padding: 10px 8px 10px 15px;
+  padding: 3px 8px 10px 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,9 +35,11 @@ export const StylesWrapper = styled.div<{ open: boolean }>`
   }
   .title {
     background-color: ${({ theme }) => theme.colors.white};
+    cursor: pointer;
   }
   .label {
     color: ${({ theme }) => theme.colors.darkGrey};
+    cursor: pointer;
   }
   .label.selected {
     color: ${({ theme }) => theme.colors.darkBlue};

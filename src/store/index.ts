@@ -4,7 +4,6 @@ import filterSlice from "./filter/filterSlice";
 import bookSlice from "./book/bookSlice";
 import cartSlice from "./cart/cartSlice";
 import favoritesSlice from "./favorites/favoritesSlice";
-import commentsSlice from "./comments/commentsSlice";
 
 
 const store = configureStore({
@@ -14,7 +13,6 @@ const store = configureStore({
     filter: filterSlice,
     cart: cartSlice,
     favorites: favoritesSlice,
-    comments: commentsSlice,
   },
 });
 

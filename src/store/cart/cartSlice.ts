@@ -18,36 +18,37 @@ const cartSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(addBookToCartThunk.fulfilled, (state, action) => {
-        const booksObject = action.payload.book.reduce((acc, book) => {
-          acc[book.id] = book;
-          return acc;
-        }, {} as Record<string, IBook>);
-        state.book = booksObject;
-        state.totalPrice = action.payload.totalPrice;
+      const booksObject = action.payload.book.reduce((acc, book) => {
+        acc[book.id] = book;
+        return acc;
+      }, {} as Record<string, IBook>);
+      state.book = booksObject;
+      state.totalPrice = action.payload.totalPrice;
     });
     builder.addCase(getBookToCartThunk.fulfilled, (state, action) => {
-        const booksObject = action.payload.book.reduce((acc, book) => {
-          acc[book.id] = book;
-          return acc;
-        }, {} as Record<string, IBook>);
-        state.book = booksObject;
-        state.totalPrice = action.payload.totalPrice;
+      const booksObject = action.payload.book.reduce((acc, book) => {
+        acc[book.id] = book;
+        return acc;
+      }, {} as Record<string, IBook>);
+      state.book = booksObject;
+      state.totalPrice = action.payload.totalPrice;
     });
     builder.addCase(deleteBookToCartThunk.fulfilled, (state, action) => {
-      const bookId = action.meta.arg.id;
-      if (state.book.hasOwnProperty(bookId)) {
-        delete state.book[bookId];
+      for (const bookId of action.meta.arg.id) {
+        if (state.book[bookId]) {
+          delete state.book[bookId];
+          state.totalPrice = 0;
+        }
       }
     });
     builder.addCase(changeCountBooksThunk.fulfilled, (state, action) => {
-        const booksObject = action.payload.book.reduce((acc, book) => {
-          acc[book.id] = book;
-          return acc;
-        }, {} as Record<string, IBook>);
-        state.book = booksObject;
-        state.totalPrice = action.payload.totalPrice;
-      }
-    );
+      const booksObject = action.payload.book.reduce((acc, book) => {
+        acc[book.id] = book;
+        return acc;
+      }, {} as Record<string, IBook>);
+      state.book = booksObject;
+      state.totalPrice = action.payload.totalPrice;
+    });
   },
 });
 

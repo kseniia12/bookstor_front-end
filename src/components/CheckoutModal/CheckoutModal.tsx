@@ -22,7 +22,11 @@ const CheckoutModal: React.FC<IPropsCheckoutModal> = ({ onClose }) => {
       <div className="modal-content">
         <div className="big-title">Order sent successfully</div>
         <div className="normal-title">Our manager will contact you shortly</div>
-        <Button onClick={onClose} text="Close window" className="modal-content__button" />
+        <Button
+          onClick={onClose}
+          text="Close window"
+          className="modal-content__button"
+        />
       </div>
     </StylesWrapper>
   );
