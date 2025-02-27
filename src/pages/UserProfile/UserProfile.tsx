@@ -29,7 +29,7 @@ const UserProfile = () => {
   const foto = lastSegmentPathUserPhoto === "null" ? userPhoto : user.photo;
 
   const dispatch = useAppDispatch();
-  
+
   const {
     watch,
     register: registerPassword,
@@ -55,11 +55,7 @@ const UserProfile = () => {
   const handleUpdateAvatar = async (e: ChangeEvent<HTMLInputElement>) => {
     const photo = e.target.files?.[0];
     if (photo) {
-      try {
-        await dispatch(uploadPhotoThunk({ photo })).unwrap();
-      } catch (error) {
-        console.error("Error uploading avatar:", error);
-      }
+      await dispatch(uploadPhotoThunk({ photo })).unwrap();
     }
   };
 

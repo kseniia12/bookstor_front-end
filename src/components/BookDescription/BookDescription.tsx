@@ -32,15 +32,15 @@ const BookDescription = () => {
     getBook();
   }, [bookId, dispatch]);
 
-  const AddOrRemoveFavorites = () => {
-    dispatch(addBookToFavoritesThunk({ bookId }));
+  const AddOrRemoveFavorites = async () => {
+    await dispatch(addBookToFavoritesThunk({ bookId }));
   };
 
-  const addBookToCart = () => {
+  const addBookToCart = async () => {
     if (!user) {
       return;
     }
-    dispatch(addBookToCartThunk({ bookId }));
+    await dispatch(addBookToCartThunk({ bookId }));
   };
 
   return (

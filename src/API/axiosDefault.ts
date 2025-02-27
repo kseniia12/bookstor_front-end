@@ -1,5 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import constant from "../lib/constants/constants";
+import { IToken } from "../lib/types/types";
 
 const errorHandler = (error: {
   response: { status: number; data: { detail: any } };
@@ -15,7 +17,6 @@ const errorHandler = (error: {
       progress: 0,
     });
   }
-
   return Promise.reject({ ...error });
 };
 
@@ -30,7 +31,27 @@ axiosDefault.interceptors.response.use(
   (response) => {
     return response;
   },
-  (error) => errorHandler(error)
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response.status === 401 || 403) {
+      const refresh = localStorage.getItem("refresh");
+      if (!refresh) {
+        return;
+      }
+      const newTokens = await axiosDefault.post<IToken>(
+        constant.REFRESH_TOKEN,
+        { refresh: refresh }
+      );
+      localStorage.setItem("token", newTokens.data.accessToken);
+      localStorage.setItem("refresh", newTokens.data.refreshToken);
+      const token = newTokens.data.accessToken;
+      originalRequest.headers["Authorization"] = `Bearer ${token}`;
+
+      return axiosDefault(originalRequest);
+    }
+
+    return errorHandler(error);
+  }
 );
 
 axiosDefault.interceptors.request.use(

@@ -28,7 +28,8 @@ export const createUserThunk = createAsyncThunk<IAxiosResponse, IFormInput>(
       password,
       fullName,
     });
-    localStorage.setItem("token", response.token);
+    localStorage.setItem("token", response.token.accessToken);
+    localStorage.setItem("refresh", response.token.refreshToken);
     return response;
   }
 );
@@ -40,7 +41,8 @@ export const loginUserThunk = createAsyncThunk<IAxiosResponse, IFormInput>(
       email,
       password,
     });
-    localStorage.setItem("token", response.token);
+    localStorage.setItem("token", response.token.accessToken);
+    localStorage.setItem("refresh", response.token.refreshToken);
     return response;
   }
 );

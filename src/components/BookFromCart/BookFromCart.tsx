@@ -8,7 +8,6 @@ import {
   deleteBookToCartThunk,
   getBookToCartThunk,
 } from "../../store/cart/thunkCart";
-import constant from "../../lib/constants/constants";
 
 export interface IBookProps {
   books: IBook;
@@ -24,7 +23,7 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
   };
 
   const increaseCountBooks = () => {
-    if (books.count !== undefined && books.count <= books.countHard) {
+    if (books.count !== undefined && books.count < books.countHard) {
       dispatch(
         changeCountBooksThunk({
           count: books.count + 1,
@@ -50,7 +49,7 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
       <div className="book">
         <img
           className="book__img"
-          src={`${constant.PATH_TO_FOLDER}/${books.cover}`}
+          src={books.cover}
           alt="Book"
         />
       </div>
@@ -61,11 +60,21 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
         </div>
         <div className="counter">
           <div className="counter__controls">
-            <div className="counter__button" onClick={reduceCountBooks}>
+            <div
+              className={`counter__button ${
+                books.count !== 1 ? "" : "not-active"
+              }`}
+              onClick={reduceCountBooks}
+            >
               -
             </div>
             <div>{books.count}</div>
-            <div className="counter__button" onClick={increaseCountBooks}>
+            <div
+              className={`counter__button ${
+                books.count !== books.countHard ? "" : "not-active"
+              }`}
+              onClick={increaseCountBooks}
+            >
               +
             </div>
           </div>

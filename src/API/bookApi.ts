@@ -4,6 +4,7 @@ import {
   IRateBook,
   IReqBook,
   IResponsBookPagination,
+  IResponse,
   IResponsFilter,
   IStateUser,
 } from "../lib/types/types";
@@ -42,8 +43,8 @@ export const axiosGetReccomendationsBook = async (data: {
   return response.data;
 };
 
-export const axiosRateBook = async (data: IRateBook): Promise<IStateUser> => {
-  const response = await axiosDefault.patch<IStateUser>(
+export const axiosRateBook = async (data: IRateBook): Promise<IResponse> => {
+  const response = await axiosDefault.patch<IResponse>(
     constant.RATE_BOOK,
     data
   );

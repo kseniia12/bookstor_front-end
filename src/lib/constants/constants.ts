@@ -16,7 +16,7 @@ const constant = {
   RECOMMENDATIONS: "/books/recommendations",
   RATE_BOOK: "/books/rating",
   FAVORITES: "/favorites",
-  PATH_TO_FOLDER: "http://localhost:4000/upload/",
+  REFRESH_TOKEN: "/auth/refresh-token",
 } as const;
 
 export default constant;

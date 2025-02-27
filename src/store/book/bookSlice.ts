@@ -7,13 +7,7 @@ const initialState: IResponsBook = {
   bookNormalized: {},
   books: [],
   price: null,
-  meta: {
-    totalBooks: 0,
-    totalPages: 1,
-    currentPage: 1,
-    hasNextPage: true,
-    hasPrevPage: true,
-  },
+  meta: null,
   filters: null,
 };
 

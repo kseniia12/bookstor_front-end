@@ -5,7 +5,6 @@ import { getRecommendationsBookThunk } from "../../store/book/thunkBook";
 import { useParams } from "react-router-dom";
 import Book from "../../components/Book/Book";
 import { StylesWrapper } from "./style";
-import FormForComments from "../../components/FormComments/FormComments";
 import Comments from "../../components/Comments/Comments";
 import Authorization from "../../components/AuthorizationBanner/AuthorizationBanner";
 import { IBook } from "../../lib/types/types";
@@ -31,7 +30,6 @@ const BookPage = () => {
     <StylesWrapper>
       <BookDescription />
       <Comments bookId={bookId} />
-      {user ? <FormForComments bookId={bookId} /> : ""}
       {!user ? <Authorization /> : ""}
       <div className="recommendations">
         <div className="big-title recommendations__title">Recommendations</div>

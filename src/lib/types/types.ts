@@ -5,8 +5,13 @@ export interface IFormInput {
   fullName?: string;
 }
 
+export interface IToken {
+  accessToken: string;
+  refreshToken: string;
+}
+
 export interface IAxiosResponse {
-  token: string;
+  token: IToken;
   user: { id: number; fullName: string; email: string; photo?: string };
 }
 
@@ -42,7 +47,7 @@ export interface IRouterProps {
 
 export interface IResponse {
   user: { id: number; fullName: string; email: string; photo: string };
-  ratingBook: IRateBook;
+  ratingBook: IRateBook[];
 }
 
 export interface IAxiosRes {
@@ -109,6 +114,12 @@ export interface IMeta {
   hasPrevPage: boolean;
 }
 
+export interface IRateBookUser {
+  [key: string]: {
+    bookId: number;
+    rate: number;
+  };
+}
 export interface IResponsBook {
   bookNormalized: { [key: string]: IBook };
   books: IBook[];

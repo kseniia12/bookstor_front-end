@@ -11,6 +11,7 @@ import {
   IRateBook,
   IReqBook,
   IResponsBookPagination,
+  IResponse,
   IResponsFilter,
   IStateUser,
 } from "../../lib/types/types";
@@ -52,9 +53,9 @@ export const getRecommendationsBookThunk = createAsyncThunk<
   }
 );
 
-export const rateBookThunk = createAsyncThunk<IStateUser, IRateBook>(
+export const rateBookThunk = createAsyncThunk<IResponse, IRateBook>(
   "rateBook/dBook",
-  async (data: IRateBook): Promise<IStateUser> => {
+  async (data: IRateBook): Promise<IResponse> => {
     const response = await axiosRateBook(data);
     return response;
   }

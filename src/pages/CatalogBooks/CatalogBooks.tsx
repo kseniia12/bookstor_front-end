@@ -49,7 +49,7 @@ const CatalogBooks = () => {
       </div>
       <div className="books">
         {books.map((book) => (
-          <div key={book.id} >
+          <div key={book.id}>
             <Book book={book} />
           </div>
         ))}

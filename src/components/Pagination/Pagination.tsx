@@ -4,21 +4,19 @@ import { StylesWrapper } from "./style";
 import { useAppSelector } from "../../hooks";
 import forwardArrow from "../../assets/Forward.png";
 import backdArrow from "../../assets/Vector.png";
-import { IMeta } from "../../lib/types/types";
-
 
 const PaginationLink = () => {
-  const meta = useAppSelector((state) => state.book.meta) as IMeta;
-  const [state, setState] = useState(meta.currentPage);
+  const meta = useAppSelector((state) => state.book.meta);
+  const [state, setState] = useState(meta ? meta.currentPage : 1);
   const [forwardArrowState, setForwardArrowState] = useState(true);
   const [backdArrowState, setBackArrowState] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
-    setState(meta.currentPage);
-    setForwardArrowState(meta.hasNextPage);
-    setBackArrowState(meta.hasPrevPage);
-  }, [meta.currentPage, meta.hasNextPage, meta.hasPrevPage]);
+    setState(meta? meta.currentPage : 1);
+    setForwardArrowState(meta? meta.hasNextPage : false);
+    setBackArrowState(meta? meta.hasPrevPage : false);
+  }, [meta?.currentPage, meta?.hasNextPage, meta?.hasPrevPage]);
 
   const goToPage = (page: number) => {
     navigate(`?page=${page}`);
@@ -26,7 +24,7 @@ const PaginationLink = () => {
   };
 
   const goToNextPage = (currentPage: number) => {
-    if (meta.hasNextPage) {
+    if (meta?.hasNextPage) {
       setForwardArrowState(true);
       goToPage(currentPage + 1);
     } else {
@@ -35,7 +33,7 @@ const PaginationLink = () => {
   };
 
   const goToPrevPage = (currentPage: number) => {
-    if (meta.hasPrevPage) {
+    if (meta?.hasPrevPage) {
       setBackArrowState(true);
       goToPage(currentPage - 1);
     } else {
@@ -52,23 +50,23 @@ const PaginationLink = () => {
         src={backdArrow}
         className="backdArrowState"
         alt="backdArrowState"
-        onClick={() => goToPrevPage(meta.currentPage)}
+        onClick={() => goToPrevPage(meta? meta.currentPage : 1)}
       />
       <div
         className={`circle ${state === 1 ? "active" : ""}`}
         onClick={() => goToPage(1)}
       ></div>
-      {meta.totalPages > 1 ? (
+      {meta && meta.totalPages > 1 ? (
         <div
           className={`circle ${
-            state !== 1 && state !== meta.totalPages ? "active" : ""
+            state !== 1 && state !== meta?.totalPages ? "active" : ""
           }`}
           onClick={() => goToPage(2)}
         ></div>
       ) : (
         ""
       )}
-      {meta.totalPages > 2 ? (
+      {meta && meta.totalPages > 2 ? (
         <div
           className={`circle ${state === meta.totalPages ? "active" : ""}`}
           onClick={() => goToPage(meta.totalPages)}
@@ -80,7 +78,7 @@ const PaginationLink = () => {
         src={forwardArrow}
         alt="forwardArrowState"
         className="forwardArrowState"
-        onClick={() => goToNextPage(meta.currentPage)}
+        onClick={() => goToNextPage(meta? meta.currentPage : 1)}
       />
     </StylesWrapper>
   );

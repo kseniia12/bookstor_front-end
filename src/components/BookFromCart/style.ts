@@ -22,7 +22,6 @@ export const StylesWrapper = styled.div`
     }
     &__price {
       font-size: 36px;
-      
     }
   }
   .counter {
@@ -41,6 +40,9 @@ export const StylesWrapper = styled.div`
       text-align: center;
       cursor: pointer;
     }
+  }
+  .counter__button.not-active {
+    opacity: 0.5;
   }
   .cart {
     height: 20px;

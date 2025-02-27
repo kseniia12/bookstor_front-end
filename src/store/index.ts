@@ -5,7 +5,6 @@ import bookSlice from "./book/bookSlice";
 import cartSlice from "./cart/cartSlice";
 import favoritesSlice from "./favorites/favoritesSlice";
 
-
 const store = configureStore({
   reducer: {
     users: userSlice,

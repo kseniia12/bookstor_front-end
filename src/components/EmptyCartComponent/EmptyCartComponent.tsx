@@ -7,9 +7,11 @@ import { StylesWrapper } from "./style";
 
 const EmptyCartComponent = () => {
   const navigate = useNavigate();
+  
   const handleGoToCatalog = () => {
     navigate(constant.CATALOG_BOOKS);
   };
+
   return (
     <StylesWrapper>
       <div className="image">

@@ -5,7 +5,6 @@ import { IBook } from "../../lib/types/types";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { addBookToFavoritesThunk } from "../../store/favorites/thunkFavorites";
 import { addBookToCartThunk } from "../../store/cart/thunkCart";
-import constant from "../../lib/constants/constants";
 import { useNavigate } from "react-router-dom";
 
 export interface IBookProps {
@@ -22,7 +21,7 @@ const Book: React.FC<IBookProps> = ({ book }) => {
   const isBookInCart = cart[book.id];
   const isBookInFavorites = book.id ? !!favoritesBook[book.id] : false;
   const navigate = useNavigate();
-  
+
   const toggleFavorites = () => {
     dispatch(addBookToFavoritesThunk({ bookId }));
   };
@@ -39,11 +38,12 @@ const Book: React.FC<IBookProps> = ({ book }) => {
 
   return (
     <StylesWrapper $isBookInFavorites={isBookInFavorites}>
-      <div className="book" onClick={() => goToBookPage(book.id)}>
+      <div className="book">
         <Button className="book__favorites" onClick={toggleFavorites} />
         <img
+          onClick={() => goToBookPage(book.id)}
           className="book__img"
-          src={`${constant.PATH_TO_FOLDER}/${book.cover}`}
+          src={book.cover}
           alt="Book"
         />
       </div>

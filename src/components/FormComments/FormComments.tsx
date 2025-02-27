@@ -7,21 +7,18 @@ import { addCommentBookThunk } from "../../store/comments/thunkComment";
 
 interface PropsComments {
   bookId: number;
+  onCommentAdded: () => void ;
 }
-const FormForComments: React.FC<PropsComments> = ({ bookId }) => {
+
+const FormForComments: React.FC<PropsComments> = ({ bookId, onCommentAdded }) => {
   const dispatch = useAppDispatch();
-  const { handleSubmit, register, reset } = useForm<{
-    comment: string;
-  }>();
+  const { handleSubmit, register, reset } = useForm<{ comment: string }>();
   const date = new Date();
 
-  const onSubmit: SubmitHandler<{
-    comment: string;
-  }> = async (data) => {
+  const onSubmit: SubmitHandler<{ comment: string }> = async (data) => {
     if (data.comment !== "") {
-      await dispatch(
-        addCommentBookThunk({ comment: data.comment, date, bookId })
-      );
+      await dispatch(addCommentBookThunk({ comment: data.comment, date, bookId }));
+      onCommentAdded();
     }
     reset();
   };

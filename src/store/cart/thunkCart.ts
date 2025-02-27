@@ -1,9 +1,5 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import {
-  IAddBookToCart,
-  ICartSlice,
-  IGetBookToCart,
-} from "../../lib/types/types";
+import { IAddBookToCart, IGetBookToCart } from "../../lib/types/types";
 import {
   axiosAddBookToCart,
   axiosChangeCountBooks,

@@ -41,12 +41,12 @@ const Cart = () => {
         <div>
           <div>
             {books.map((book, index) => (
-              <React.Fragment key={book.id}>
+              <div key={book.id}>
                 <BookFromCart books={book} className={""} />
                 {index !== books.length - 1 && (
                   <div className="dividing-line"></div>
                 )}
-              </React.Fragment>
+              </div>
             ))}
           </div>
           <div className="result">
