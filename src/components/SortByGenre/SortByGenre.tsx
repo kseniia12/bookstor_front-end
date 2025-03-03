@@ -1,61 +1,29 @@
-import React, { useEffect, useMemo } from "react";
+import React from "react";
 import { useAppSelector, useMultiselect } from "../../hooks";
 import { StylesWrapper } from "./style";
-import { useLocation, useNavigate } from "react-router-dom";
-import { IFilters } from "../../lib/types/types";
+import FilterListByGenre from "./FilterListByGenre";
 
+interface i {
+  data: string[];
 
-const SortByGenre = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
+}
+
+const SortByGenre: React.FC<i> = ({ data
+ }) => {
   const filters = useAppSelector((state) => state.filter.filter);
-  const activeFilter = useAppSelector((state) => state.book.filters) as IFilters;
-  const genres = activeFilter.genre;
-  const params = new URLSearchParams(location.search);
-
-  const initialSelected = Array.from(params.keys())
-    .filter((key) => key.startsWith("genre"))
-    .map((key) => params.get(key))
-    .filter((value): value is string => value !== null);
-
-  const { selected, isSelected, onChange } =
-    useMultiselect(initialSelected);
-
-    useEffect(() => {
-      const updateURL = () => {
-        const params = new URLSearchParams();
-        selected.forEach((index) => params.append("genre", index.toString()));
-        navigate(`/?${params.toString()}`);
-      };
-  
-      updateURL();
-    }, [selected, navigate]);
-
+  const { onChange } = useMultiselect([]);
 
   return (
     <StylesWrapper>
       <ul className="filter-list">
         {filters.map((filter) => (
-          <li key={filter.id.toString()} className="filter-list__item">
-            <input
-              className="filter-list__checkbox"
-              id={filter.id.toString()}
-              type="checkbox"
-              value={filter.id}
-              checked={
-                (genres &&
-                  genres.length > 0 &&
-                  genres.some((genre) =>
-                    genre.includes(filter.id.toString())
-                  )) ||
-                isSelected(filter.id.toString())
-              }
-              onChange={onChange}
-            />
-            <label htmlFor={filter.name} className="filter-list__label">
-              {filter.name}
-            </label>
-          </li>
+          <FilterListByGenre
+            key={filter.id}
+            id={filter.id}
+            onChange={onChange}
+            name={filter.name}
+            checked={data.includes(filter.id.toString())}
+          />
         ))}
       </ul>
     </StylesWrapper>
@@ -63,3 +31,40 @@ const SortByGenre = () => {
 };
 
 export default SortByGenre;
+
+// import React from "react";
+// import { useAppSelector } from "../../hooks";
+// import { StylesWrapper } from "./style";
+// import { useSearchParams } from "react-router-dom";
+// import queryString from "query-string";
+// import FilterListByGenre from "./FilterListByGenre";
+
+// const SortByGenre = () => {
+//   const filters = useAppSelector((state) => state.filter.filter);
+//   const [_, setSearchParams] = useSearchParams();
+
+//   const updateURL = (genre: number) => {
+//     const genreQueryString = queryString.stringify({ genre });
+//     if (!genreQueryString){
+//       setSearchParams(genreQueryString);
+//     }
+//     setSearchParams("")
+//   };
+
+//   return (
+//     <StylesWrapper>
+//       <ul className="filter-list">
+//         {filters.map((filter) => (
+//           <FilterListByGenre
+//             key={filter.id}
+//             onChange={() => updateURL(filter.id)}
+//             name={filter.name}
+//             id={filter.id}
+//           />
+//         ))}
+//       </ul>
+//     </StylesWrapper>
+//   );
+// };
+
+// export default SortByGenre;

@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const StylesWrapper = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.light};
-  top: 72px;
-  left: 0px;
+  top: 690px;
+  left: 665px;
   z-index: 2;
   width: 305px;
   padding: 15px;

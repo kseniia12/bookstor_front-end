@@ -2,8 +2,8 @@ import styled from "styled-components";
 
 export const StylesWrapper = styled.div`
   position: absolute;
-  top: 72px;
-  left: 216px;
+  top: 690px;
+  left: 880px;
   z-index: 2;
   background-color: ${({ theme }) => theme.colors.light};
   width: 413px;

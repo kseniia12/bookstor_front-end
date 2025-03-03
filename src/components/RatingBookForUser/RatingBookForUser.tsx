@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { StyledRating, StylesWrapper } from "./style";
 import { rateBookThunk } from "../../store/book/thunkBook";
@@ -9,25 +9,21 @@ interface IPropsRating {
 }
 
 const RatingBook: React.FC<IPropsRating> = (props) => {
-  const bookId = props.bookId;
-  const [rate, setRate] = React.useState(Number(props.rating));
   const user = useAppSelector((state) => state.users.user);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (rate > 0) {
-      dispatch(rateBookThunk({ bookId, rate }));
-    }
-  }, [rate, bookId, dispatch]);
+  const rateBook = (newValue: number) => {
+    dispatch(rateBookThunk({ bookId: props.bookId, rate: newValue }));
+  };
 
   return (
     <StylesWrapper>
       <StyledRating
         className="simple-controlled"
-        value={rate}
-        onChange={(event, newValue) => {
-          if (newValue != null) {
-            setRate(newValue);
+        value={Number(props.rating)}
+        onChange={(_, newValue) => {
+          if (newValue) {
+            rateBook(newValue);
           }
         }}
         readOnly={!user}

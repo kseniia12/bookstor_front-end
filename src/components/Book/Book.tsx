@@ -28,6 +28,7 @@ const Book: React.FC<IBookProps> = ({ book }) => {
 
   const goToBookPage = (bookId: any) => {
     navigate(`/books/${bookId}`);
+    window.scrollTo(0, 0);
   };
 
   const addBookToCart = () => {

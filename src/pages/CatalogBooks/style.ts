@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StylesWrapper = styled.div`
+position: relative;
   display: flex;
   flex-direction: column;
   padding-top: 110px;
@@ -9,7 +10,6 @@ export const StylesWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     &__filter {
-      position: relative;
       display: flex;
       gap: 20px;
     }

@@ -11,18 +11,7 @@ const FilterBySort = () => {
     setOpen((prev) => !prev);
   };
 
-  const handleClickOutside = (event: MouseEvent) => {
-    if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
-      setOpen(false);
-    }
-  };
 
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
 
   return (
     <StylesWrapper open={open} ref={popupRef}>
@@ -30,7 +19,7 @@ const FilterBySort = () => {
         <div className="container__title">Price</div>
         <img src={arrowToOpenForm} alt="Arrow to open form" className="arrow" />
       </div>
-      {open && <Price />}
+      {/* {open && <Price />} */}
     </StylesWrapper>
   );
 };

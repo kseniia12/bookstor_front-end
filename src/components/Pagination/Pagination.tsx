@@ -33,12 +33,11 @@ const PaginationLink = () => {
   };
 
   const goToPrevPage = (currentPage: number) => {
-    if (meta?.hasPrevPage) {
-      setBackArrowState(true);
-      goToPage(currentPage - 1);
-    } else {
+    if (!meta?.hasPrevPage) {
       setBackArrowState(false);
-    }
+    } 
+    setBackArrowState(true);
+    goToPage(currentPage - 1);
   };
 
   return (

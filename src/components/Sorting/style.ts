@@ -1,14 +1,17 @@
 import styled from "styled-components";
 
-export const StylesWrapper = styled.div<{ open: boolean }>`
-  position: relative;
-  background-color: ${({ theme }) => theme.colors.white};
+export const StylesWrapper = styled.div<{ open: true }>`
+  position: absolute;
+  top: 690px;
+  left: 1100px;
+  background-color: ${({ theme }) => theme.colors.light};
   padding: 3px 8px 10px 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: 16px;
   width: 197px;
+  z-index: 2;
   .img {
     display: block;
     transform: ${({ open }) =>
@@ -17,11 +20,7 @@ export const StylesWrapper = styled.div<{ open: boolean }>`
     height: 24px;
   }
   .menu {
-    position: absolute;
     background-color: ${({ theme }) => theme.colors.light};
-    top: 72px;
-    left: 0px;
-    z-index: 2;
     width: 197px;
     padding: 15px;
     border-radius: 16px;

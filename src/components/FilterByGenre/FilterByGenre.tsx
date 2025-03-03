@@ -30,7 +30,7 @@ const FilterByGenre = () => {
         <div className="container__title">Genre</div>
         <img className="arrow" src={arrowToOpenForm} alt="Arrow to open form" />
       </div>
-      {open && <SortByGenre />}
+      {/* {open && <SortByGenre />} */}
     </StylesWrapper>
   );
 };

@@ -15,6 +15,7 @@ const Comments: React.FC<propsComments> = ({ bookId }) => {
   const user = useAppSelector((state) => state.users.user);
   const [comments, setComments] = useState<IComment[] | null>(null);
   const dispatch = useAppDispatch();
+  
   const getCommentsBook = async () => {
     const fetchedComments = await dispatch(
       getCommentBookThunk({ bookId })
