@@ -1,18 +1,29 @@
 import React from "react";
 import arrowToOpenForm from "../../assets/arrowToOpenForm.png";
 import { StylesWrapper } from "./style";
+import classNames from "classnames";
 
 interface IPropsFilter {
-  open: any;
-  onClick: any;
+  onClick: () => void;
   text: string;
+  className: string;
+  isOpen: boolean;
 }
 
-const FilterButton: React.FC<IPropsFilter> = ({ open, onClick, text }) => {
+const FilterButton: React.FC<IPropsFilter> = ({
+  onClick,
+  text,
+  className,
+  isOpen,
+}) => {
   return (
-    <StylesWrapper open={open} onClick={onClick}>
-      <button className="title">{text}</button>
-      <img src={arrowToOpenForm} alt="Arrow" className="img" />
+    <StylesWrapper onClick={onClick} className={className}>
+      <span className="title">{text}</span>
+      <img
+        src={arrowToOpenForm}
+        alt="Arrow"
+        className={`arrow ${isOpen ? "active" : ""}`}
+      />
     </StylesWrapper>
   );
 };

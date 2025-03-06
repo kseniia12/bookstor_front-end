@@ -2,9 +2,9 @@ import React from "react";
 
 interface IPropsFilter {
   id: number;
-  onChange: any;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
   name: string;
-  checked: any;
+  checked: boolean;
 }
 
 const FilterListByGenre: React.FC<IPropsFilter> = ({

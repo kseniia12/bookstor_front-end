@@ -21,7 +21,7 @@ export const axiosGetBooks = async (
 };
 
 export const axiosGetBookById = async (data: {
-  bookId: number;
+  bookId: string;
 }): Promise<IBook[]> => {
   const response = await axiosDefault.get<IBook[]>(constant.GET_BOOK_ID, {
     params: data,

@@ -17,7 +17,7 @@ const Header = () => {
   const user = useAppSelector((state) => state.users.user);
 
   const countBookWithCart = useConverterObjectToArray(
-    (state) => state.cart.book
+    (state) => state.cart.books
   );
 
   const countBookWithFavorites = useConverterObjectToArray(

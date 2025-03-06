@@ -2,26 +2,50 @@ import React from "react";
 import { StylesWrapper } from "./style";
 import SortList from "./SortList";
 
-type Item = {
+export interface Item {
   label: string;
   shortLabel: string;
-  value: string | number;
-};
+  value: string;
+}
 
-const options = ["Price", "Name", "Author name", "Rating", "Dates of issue"];
+const items: Item[] = [
+  {
+    label: "Price",
+    shortLabel: "price",
+    value: "price",
+  },
+  {
+    label: "Name",
+    shortLabel: "name",
+    value: "name",
+  },
+  {
+    label: "Author name",
+    shortLabel: "author",
+    value: "author",
+  },
+  {
+    label: "Rating",
+    shortLabel: "rating",
+    value: "rating",
+  },
+  {
+    label: "Date of issue",
+    shortLabel: "date",
+    value: "date",
+  },
+];
 
-const FilterByAuthor = () => {
-
-
+const Sorting = () => {
   return (
     <StylesWrapper open={true}>
       <ul className="menu">
-        {options.map((option) => (
-          <SortList option={option} />
+        {items.map((option) => (
+          <SortList option={option} key={option.value} />
         ))}
       </ul>
     </StylesWrapper>
   );
 };
 
-export default FilterByAuthor;
+export default Sorting;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StylesWrapper = styled.div`
-  padding: 118px 165px 148px 108px;
+  padding: 99px 165px 46px 108px;
   display: flex;
   gap: 109px;
   .image {

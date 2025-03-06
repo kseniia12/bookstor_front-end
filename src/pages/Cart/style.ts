@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const StylesWrapper = styled.div`
-  padding-bottom: 114px;
-  padding-top: 20px;
+padding-top: 20px;
+padding-bottom: 114px;
   .result {
     &__totalPrice {
       padding-top: 10px;

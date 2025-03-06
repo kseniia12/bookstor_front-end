@@ -8,8 +8,12 @@ import { IPrice } from "../../lib/types/types";
 const Price = () => {
   const price = useAppSelector((state) => state.book.price) as IPrice;
   const [searchParams, setSearchParams] = useSearchParams();
-  const initialMin = Number(searchParams.get("min")) ?? price.minValue;
-  const initialMax = Number(searchParams.get("max")) ?? price.maxValue;
+  const initialMin = Number(searchParams.get("min"))
+    ? Number(searchParams.get("min"))
+    : price.minValue;
+  const initialMax = Number(searchParams.get("max"))
+    ? Number(searchParams.get("max"))
+    : price.maxValue;
   const [value, setValue] = React.useState<number[]>([initialMin, initialMax]);
 
   const handleChangeCommitted = (_: any, newValue: number | number[]) => {

@@ -140,7 +140,7 @@ export interface IResponsRecommendations {
 }
 
 export interface ICartSlice {
-  book: { [key: string]: IBook };
+  books: { [key: string]: IBook };
   totalPrice: number;
 }
 
@@ -154,12 +154,15 @@ export interface IResponsFilter {
 }
 
 export interface IReqBook {
-  page?: number;
+  page?: string;
   genre?: string[];
+  sort: string | null,
+  maxPrice: string | null,
+  minPrice: string | null,
 }
 
 export interface IAddBookToCart {
-  bookId: number;
+  bookId: string;
   count?: number;
 }
 

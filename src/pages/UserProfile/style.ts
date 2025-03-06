@@ -5,7 +5,7 @@ export const StylesWrapper = styled.div<{
   $changePassword: boolean;
 }>`
   display: flex;
-  padding: 60px 0px 110px 0px;
+  padding: 66px 0px 110px 0px;
   gap: 128px;
   .button {
     margin-top: 50px;

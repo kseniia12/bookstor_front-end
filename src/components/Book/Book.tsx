@@ -13,11 +13,11 @@ export interface IBookProps {
 }
 
 const Book: React.FC<IBookProps> = ({ book }) => {
-  const cart = useAppSelector((state) => state.cart.book);
+  const cart = useAppSelector((state) => state.cart.books);
   const user = useAppSelector((state) => state.users.user);
   const favoritesBook = useAppSelector((state) => state.favorites.book);
   const dispatch = useAppDispatch();
-  const bookId = Number(book.id);
+  const bookId = book.id;
   const isBookInCart = cart[book.id];
   const isBookInFavorites = book.id ? !!favoritesBook[book.id] : false;
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const Book: React.FC<IBookProps> = ({ book }) => {
     dispatch(addBookToFavoritesThunk({ bookId }));
   };
 
-  const goToBookPage = (bookId: any) => {
+  const goToBookPage = (bookId: string) => {
     navigate(`/books/${bookId}`);
     window.scrollTo(0, 0);
   };

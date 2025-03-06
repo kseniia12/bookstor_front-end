@@ -14,10 +14,10 @@ import { IBook } from "../../lib/types/types";
 const BookDescription = () => {
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const bookId = Number(id);
+  const bookId = id || "";
   const [book, setBook] = useState<IBook | null>(null);
 
-  const cart = useAppSelector((state) => state.cart.book);
+  const cart = useAppSelector((state) => state.cart.books);
   const favoritesBook = useAppSelector((state) => state.favorites.book);
   const user = useAppSelector((state) => state.users.ratingBook);
 

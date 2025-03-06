@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAppSelector, useMultiselect } from "../../hooks";
 import { StylesWrapper } from "./style";
 import FilterListByGenre from "./FilterListByGenre";
+import { useSearchParams } from "react-router-dom";
 
-interface i {
+interface IPropsSort {
   data: string[];
-
 }
 
-const SortByGenre: React.FC<i> = ({ data
- }) => {
+const SortByGenre: React.FC<IPropsSort> = ({ data }) => {
   const filters = useAppSelector((state) => state.filter.filter);
-  const { onChange } = useMultiselect([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { selected, onChange } = useMultiselect(searchParams.getAll("genre"));
+
+  const isInitianRender = React.useRef(true);
+
+  useEffect(() => {
+    if (isInitianRender.current) {
+      isInitianRender.current = false;
+      return;
+    }
+    const newParams = new URLSearchParams(searchParams.toString());
+    newParams.delete("genre");
+    selected.forEach((item) => {
+      newParams.append("genre", item);
+    });
+    setSearchParams(newParams);
+  }, [selected]);
 
   return (
     <StylesWrapper>
@@ -31,40 +46,3 @@ const SortByGenre: React.FC<i> = ({ data
 };
 
 export default SortByGenre;
-
-// import React from "react";
-// import { useAppSelector } from "../../hooks";
-// import { StylesWrapper } from "./style";
-// import { useSearchParams } from "react-router-dom";
-// import queryString from "query-string";
-// import FilterListByGenre from "./FilterListByGenre";
-
-// const SortByGenre = () => {
-//   const filters = useAppSelector((state) => state.filter.filter);
-//   const [_, setSearchParams] = useSearchParams();
-
-//   const updateURL = (genre: number) => {
-//     const genreQueryString = queryString.stringify({ genre });
-//     if (!genreQueryString){
-//       setSearchParams(genreQueryString);
-//     }
-//     setSearchParams("")
-//   };
-
-//   return (
-//     <StylesWrapper>
-//       <ul className="filter-list">
-//         {filters.map((filter) => (
-//           <FilterListByGenre
-//             key={filter.id}
-//             onChange={() => updateURL(filter.id)}
-//             name={filter.name}
-//             id={filter.id}
-//           />
-//         ))}
-//       </ul>
-//     </StylesWrapper>
-//   );
-// };
-
-// export default SortByGenre;

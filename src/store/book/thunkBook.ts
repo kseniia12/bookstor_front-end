@@ -24,9 +24,9 @@ export const getBooksThunk = createAsyncThunk<IResponsBookPagination, IReqBook>(
   }
 );
 
-export const getBookByIdThunk = createAsyncThunk<IBook[], { bookId: number }>(
+export const getBookByIdThunk = createAsyncThunk<IBook[], { bookId: string }>(
   "book/dBook",
-  async (data: { bookId: number }): Promise<IBook[]> => {
+  async (data: { bookId: string }): Promise<IBook[]> => {
     const response = await axiosGetBookById(data);
     return response;
   }

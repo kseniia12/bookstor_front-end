@@ -1,19 +1,21 @@
 import styled from "styled-components";
 
-export const StylesWrapper = styled.div<{ open: true }>`
+export const StylesWrapper = styled.div`
   background-color: ${({ theme }) => theme.colors.light};
-  padding: 3px 8px 10px 15px;
+  padding: 10px 8px 10px 15px;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   border-radius: 16px;
-  width: 197px;
-  .img {
+  cursor: pointer;
+  .arrow {
     display: block;
-    transform: ${({ open }) =>
-    open === true ? "rotate(90deg)" : "rotate(360deg)"};
+    transform: rotate(360deg);
     width: 24px;
     height: 24px;
+  }
+  .arrow.active {
+    transform: rotate(90deg);
   }
   .title {
     background-color: ${({ theme }) => theme.colors.light};

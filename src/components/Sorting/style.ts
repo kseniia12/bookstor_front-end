@@ -4,8 +4,6 @@ export const StylesWrapper = styled.div<{ open: true }>`
   position: absolute;
   top: 690px;
   left: 1100px;
-  background-color: ${({ theme }) => theme.colors.light};
-  padding: 3px 8px 10px 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;

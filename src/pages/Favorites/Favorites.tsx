@@ -10,7 +10,7 @@ const Favorites = () => {
     <StylesWrapper>
       {books.length !== 0 ? (
         books.map((book, index) => (
-          <Book book={book} key={index} className="books__book" />
+          <Book book={book} key={index} className="books" />
         ))
       ) : (
         <EmptyCartComponent />

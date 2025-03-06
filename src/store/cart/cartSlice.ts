@@ -8,7 +8,7 @@ import {
 } from "./thunkCart";
 
 const initialState: ICartSlice = {
-  book: {},
+  books: {},
   totalPrice: 0,
 };
 
@@ -22,7 +22,7 @@ const cartSlice = createSlice({
         acc[book.id] = book;
         return acc;
       }, {} as Record<string, IBook>);
-      state.book = booksObject;
+      state.books = booksObject;
       state.totalPrice = action.payload.totalPrice;
     });
     builder.addCase(getBookToCartThunk.fulfilled, (state, action) => {
@@ -30,13 +30,13 @@ const cartSlice = createSlice({
         acc[book.id] = book;
         return acc;
       }, {} as Record<string, IBook>);
-      state.book = booksObject;
+      state.books = booksObject;
       state.totalPrice = action.payload.totalPrice;
     });
     builder.addCase(deleteBookToCartThunk.fulfilled, (state, action) => {
       for (const bookId of action.meta.arg.id) {
-        if (state.book[bookId]) {
-          delete state.book[bookId];
+        if (state.books[bookId]) {
+          delete state.books[bookId];
           state.totalPrice = 0;
         }
       }
@@ -46,7 +46,7 @@ const cartSlice = createSlice({
         acc[book.id] = book;
         return acc;
       }, {} as Record<string, IBook>);
-      state.book = booksObject;
+      state.books = booksObject;
       state.totalPrice = action.payload.totalPrice;
     });
   },

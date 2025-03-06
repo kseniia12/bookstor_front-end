@@ -27,7 +27,7 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
       dispatch(
         changeCountBooksThunk({
           count: books.count + 1,
-          bookId: Number(books.id),
+          bookId: books.id,
         })
       );
     }
@@ -38,7 +38,7 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
       dispatch(
         changeCountBooksThunk({
           count: books.count - 1,
-          bookId: Number(books.id),
+          bookId: books.id,
         })
       );
     }

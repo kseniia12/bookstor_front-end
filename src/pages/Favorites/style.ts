@@ -1,8 +1,10 @@
 import styled from "styled-components";
 
 export const StylesWrapper = styled.div`
-  padding: 56px 0px;
+padding-top: 38px;
+padding-bottom: 96px;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 30px 20px;
+  
 `;

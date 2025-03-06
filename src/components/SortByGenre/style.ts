@@ -4,7 +4,7 @@ export const StylesWrapper = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.light};
   top: 690px;
-  left: 665px;
+  left: 655px;
   z-index: 2;
   width: 305px;
   padding: 15px;

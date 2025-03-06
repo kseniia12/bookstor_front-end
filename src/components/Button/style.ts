@@ -6,4 +6,5 @@ export const StylesWrapper = styled.button`
   font-size: 16px;
   border-radius: 16px;
   cursor: pointer;
+  border: 1px solid ${({ theme }) => theme.colors.darkBlue};
 `;

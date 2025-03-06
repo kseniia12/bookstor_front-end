@@ -12,6 +12,7 @@ export const StylesWrapper = styled.div<{
   gap: 30px;
   width: 305px;
   position: relative;
+  cursor: pointer;
   .book {
     width: 305px;
     height: 448px;

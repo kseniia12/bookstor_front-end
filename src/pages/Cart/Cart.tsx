@@ -14,7 +14,7 @@ import CheckoutModal from "../../components/CheckoutModal/CheckoutModal";
 import { deleteBookToCartThunk } from "../../store/cart/thunkCart";
 
 const Cart = () => {
-  const books = useConverterObjectToArray((state) => state.cart.book);
+  const books = useConverterObjectToArray((state) => state.cart.books);
   const totalPrice = useAppSelector((state) => state.cart.totalPrice);
   const bookIds = books.map((book) => book.id);
   const navigate = useNavigate();
@@ -37,18 +37,16 @@ const Cart = () => {
   return (
     <StylesWrapper>
       {isModalOpen && <CheckoutModal onClose={closeModal} />}
-      {totalPrice !== 0 ? (
+      {books.length !== 0 ? (
         <div>
-          <div>
-            {books.map((book, index) => (
-              <div key={book.id}>
-                <BookFromCart books={book} className={""} />
-                {index !== books.length - 1 && (
-                  <div className="dividing-line"></div>
-                )}
-              </div>
-            ))}
-          </div>
+          {books.map((book, index) => (
+            <div key={book.id}>
+              <BookFromCart books={book} className={""} />
+              {index !== books.length - 1 && (
+                <div className="dividing-line"></div>
+              )}
+            </div>
+          ))}
           <div className="result">
             <div className="result__totalPrice">
               Total: <p className="big-title">{totalPrice.toFixed(2)}</p>

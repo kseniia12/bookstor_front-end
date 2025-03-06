@@ -8,45 +8,50 @@ import PaginationLink from "../../components/Pagination/Pagination";
 import Banner from "../../components/Banner/Banner";
 import Authorization from "../../components/AuthorizationBanner/AuthorizationBanner";
 import FilterButton from "../../components/FilterButton/FilterButton";
-import FilterByAuthor from "../../components/Sorting/Sorting";
+import Sorting from "../../components/Sorting/Sorting";
 import SortByGenre from "../../components/SortByGenre/SortByGenre";
 import Price from "../../components/Price/Price";
 
 const CatalogBooks = () => {
   const [searchParams] = useSearchParams();
-  const [open, setOpen] = useState("");
+  const [openForm, setOpenForm] = useState<string>("");
   const books = useAppSelector((state) => state.book.books);
   const user = useAppSelector((state) => state.users.user);
   const dispatch = useAppDispatch();
-  const popupRef = useRef<HTMLDivElement | null>(null);
-  
-  const data = {
-    page: Number(searchParams.get("page")) || 1,
-    genre: searchParams.getAll("genre"),
-    sort: searchParams.get("sort") || "price",
-    maxPrice: searchParams.get("max"),
-    minPrice: searchParams.get("min"),
-  };
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  const handleClickOutside = (formId: string) => {
-    setOpen(formId);
+  const openFormByClicking = (buttonTitle: string) => {
+    setOpenForm(buttonTitle);
   };
-
-  const handleClickOutsidea = (event: MouseEvent) => {
-    if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
-      setOpen("");
-    }
-  };
-
 
   useEffect(() => {
-    document.addEventListener("click", handleClickOutsidea);
-    dispatch(getBooksThunk(data));
     dispatch(getFilterThunk());
-    return () => {
-      document.removeEventListener("click", handleClickOutsidea);
-    };
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(
+      getBooksThunk({
+        page: searchParams.get("page") || "1",
+        genre: searchParams.getAll("genre"),
+        sort: searchParams.get("sort"),
+        maxPrice: searchParams.get("max"),
+        minPrice: searchParams.get("min"),
+      })
+    );
   }, [dispatch, searchParams]);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (ref.current && !ref.current.contains(e.target as Node)) {
+      setOpenForm("");
+    }
+  };
 
   return (
     <StylesWrapper>
@@ -56,24 +61,31 @@ const CatalogBooks = () => {
         <div className="container__filter">
           <FilterButton
             text="Genre"
-            open={open}
-            onClick={() => handleClickOutside("genre")}
+            onClick={() => openFormByClicking("genre")}
+            className={"button-filter"}
+            isOpen={openForm === "genre"}
           />
           <FilterButton
             text="Price"
-            open={open}
-            onClick={() => handleClickOutside("price")}
+            onClick={() => openFormByClicking("price")}
+            className={"button-filter"}
+            isOpen={openForm === "price"}
           />
           <FilterButton
-            text={`Sort by ${data.sort}`}
-            open={open}
-            onClick={() => handleClickOutside("sort")}
+            text={`Sort by ${searchParams.get("sort") || "price"}`}
+            onClick={() => openFormByClicking("sort")}
+            className={"button-sort"}
+            isOpen={openForm === "sort"}
           />
         </div>
       </div>
-      {open === "genre" && <SortByGenre data={data.genre} />}
-      {open === "price" && <Price />}
-      {open === "sort" && <FilterByAuthor />}
+      <div ref={ref}>
+        {openForm === "genre" && (
+          <SortByGenre data={searchParams.getAll("genre")} />
+        )}
+        {openForm === "price" && <Price />}
+        {openForm === "sort" && <Sorting />}
+      </div>
       <div className="books">
         {books.map((book) => (
           <div key={book.id}>

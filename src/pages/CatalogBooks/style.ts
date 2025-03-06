@@ -21,4 +21,18 @@ position: relative;
     padding-top: 38px;
     cursor: pointer;
   }
+  .button-filter {
+    width: 196px;
+    height: 48px;
+    color:  ${({ theme }) => theme.colors.darkBlue};
+  }
+  .button-sort {
+    width: 196px;
+    height: 48px;
+    background-color: ${({ theme }) => theme.colors.white};
+    .title {
+    background-color: ${({ theme }) => theme.colors.white};
+   
+  }
+  }
 `;
