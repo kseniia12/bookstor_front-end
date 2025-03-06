@@ -13,7 +13,6 @@ import {
   IResponsBookPagination,
   IResponse,
   IResponsFilter,
-  IStateUser,
 } from "../../lib/types/types";
 
 export const getBooksThunk = createAsyncThunk<IResponsBookPagination, IReqBook>(

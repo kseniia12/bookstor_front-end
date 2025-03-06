@@ -9,13 +9,13 @@ const Banner = () => {
     <StylesWrapper>
       <div className="content">
         <div className="big-title">Build your library with us</div>
-        <div className="content__subtitle">
+        <div className="normal-title content__description">
           Buy two books and get one for free
         </div>
         <Button text="Choose a book" />
       </div>
       <img src={book} alt="Book" className="img__book" />
-      <img src={girlWithBook} alt="Girl With Book" className="img" />
+      <img src={girlWithBook} alt="Girl With Book" className="img__girl" />
     </StylesWrapper>
   );
 };

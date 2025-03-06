@@ -26,7 +26,7 @@ const SortByGenre: React.FC<IPropsSort> = ({ data }) => {
       newParams.append("genre", item);
     });
     setSearchParams(newParams);
-  }, [selected]);
+  }, [selected, searchParams, setSearchParams]);
 
   return (
     <StylesWrapper>

@@ -62,7 +62,7 @@ const Book: React.FC<IBookProps> = ({ book }) => {
         </div>
       </div>
       <Button
-        className={isBookInCart ? "button" : ""}
+        className={isBookInCart ? "button" : "f"}
         text={isBookInCart ? "Added to cart" : `$${book.priceHard} USD`}
         onClick={addBookToCart}
       />

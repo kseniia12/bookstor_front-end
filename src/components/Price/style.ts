@@ -9,6 +9,11 @@ export const StylesWrapper = styled.div`
   width: 413px;
   height: 151px;
   border-radius: 16px;
+  ${({ theme }) => theme.media.tablet} {
+    width: 290px;
+    left: 218px;
+    }
+
   .wrapper {
     padding: 40px 20px;
   }

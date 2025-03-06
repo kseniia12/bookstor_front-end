@@ -18,7 +18,7 @@ const AuthorizationBanner = () => {
       <img src={castle} alt="castle" className="img" />
       <div className="content">
         <div className="big-title">Authorize now</div>
-        <div className="content__subtitle">
+        <div className="normal-title content__subtitle">
           Authorize now and discover the fabulous world of books
         </div>
         <Button text="Log In/ Sing Up" onClick={navigateToPageResistration} />

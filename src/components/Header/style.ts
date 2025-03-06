@@ -8,10 +8,17 @@ export const StylesWrapper = styled.div<{
   align-items: center;
   grid-template-columns: auto 1fr auto;
   gap: 43px;
+  ${({ theme }) => theme.media.tablet} {
+    gap: 52px;
+  }
+
   .logo {
     display: flex;
     align-items: center;
     gap: 128px;
+    ${({ theme }) => theme.media.tablet} {
+      gap: 51px;
+    }
     &__page {
       color: ${({ theme }) => theme.colors.dark};
       text-decoration: none;

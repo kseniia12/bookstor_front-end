@@ -9,6 +9,11 @@ export const StylesWrapper = styled.div`
   width: 305px;
   padding: 15px;
   border-radius: 16px;
+  ${({ theme }) => theme.media.tablet} {
+    top: 690px;
+    left: 0px;
+    width: 290px;
+    }
   .filter-list {
     display: flex;
     flex-direction: column;

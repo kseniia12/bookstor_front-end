@@ -1,7 +1,6 @@
 import React from "react";
 import arrowToOpenForm from "../../assets/arrowToOpenForm.png";
 import { StylesWrapper } from "./style";
-import classNames from "classnames";
 
 interface IPropsFilter {
   onClick: () => void;

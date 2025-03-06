@@ -6,7 +6,6 @@ import {
   IResponsBookPagination,
   IResponse,
   IResponsFilter,
-  IStateUser,
 } from "../lib/types/types";
 import { axiosDefault } from "./axiosDefault";
 

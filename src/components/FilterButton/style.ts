@@ -8,6 +8,9 @@ export const StylesWrapper = styled.div`
   align-items: center;
   border-radius: 16px;
   cursor: pointer;
+  ${({ theme }) => theme.media.tablet} {
+    padding: 10px 8px 10px 15px;
+  }
   .arrow {
     display: block;
     transform: rotate(360deg);

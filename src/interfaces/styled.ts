@@ -11,5 +11,9 @@ export interface ITheme {
     errorDefault: string;
     errorDark: string;
     errorLight: string;
-  };
+  },
+  media: {
+    tablet: string,
+    mobile: string,
+  },
 }

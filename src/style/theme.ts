@@ -1,4 +1,9 @@
 import { ITheme } from "../interfaces/styled";
+
+const getMediaQueryByMax = (width: number) => {
+  return `@media screen and (max-width: ${width}px)`;
+};
+
 export const baseTheme: ITheme = {
   colors: {
     darkBlue: "#344966",
@@ -12,5 +17,9 @@ export const baseTheme: ITheme = {
     errorDefault: "#ED2E7E",
     errorDark: "#C30052",
     errorLight: "#FFF2F7",
+  },
+  media: {
+    tablet: getMediaQueryByMax(1279),
+    mobile: getMediaQueryByMax(789),
   },
 };

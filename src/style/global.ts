@@ -26,12 +26,32 @@ export default createGlobalStyle`
     font-weight: 700;
     line-height: 60px;
     text-align: left;
+    ${({ theme }) => theme.media.tablet} {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 48px;
+    }
+    ${({ theme }) => theme.media.mobile} {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 27px;
+    }
   }
   .normal-title{
     font-size: 20px;
     font-weight: 400;
     line-height: 30px;
     text-align: left;
+    ${({ theme }) => theme.media.tablet} {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 24px;
+    }
+    ${({ theme }) => theme.media.mobile} {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 21px;
+    }
   }
   .base-text{
     font-size: 16px;

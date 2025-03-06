@@ -10,6 +10,10 @@ export const StylesWrapper = styled.div<{ open: true }>`
   border-radius: 16px;
   width: 197px;
   z-index: 2;
+  ${({ theme }) => theme.media.tablet} {
+    width: 290px;
+    left: 450px;
+    }
   .img {
     display: block;
     transform: ${({ open }) =>

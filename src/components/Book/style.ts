@@ -5,7 +5,6 @@ import { Rating } from "@mui/material";
 
 export const StylesWrapper = styled.div<{
   $isBookInFavorites: boolean;
-  // isBookInCart: boolean;
 }>`
   display: flex;
   flex-direction: column;
@@ -13,20 +12,32 @@ export const StylesWrapper = styled.div<{
   width: 305px;
   position: relative;
   cursor: pointer;
+  ${({ theme }) => theme.media.tablet} {
+    width: 254px;
+  }
+  ${({ theme }) => theme.media.mobile} {
+    width: 135px;
+  }
   .book {
-    width: 305px;
-    height: 448px;
     &__img {
+      width: 100%;
+      border-radius: 16px;
       width: 305px;
       height: 448px;
-      max-width: 100%;
-      border-radius: 16px;
+      ${({ theme }) => theme.media.tablet} {
+        width: 254px;
+        height: 372px;
+      }
+      ${({ theme }) => theme.media.mobile} {
+        width: 135px;
+        height: 192px;
+      }
     }
     &__favorites {
       position: absolute;
       top: 20px;
       left: 20px;
-      background-image: url(${({ $isBookInFavorites }) => ($isBookInFavorites ? heartNoSave : heartSave )});
+      background-image: url(${({ $isBookInFavorites }) => $isBookInFavorites ? heartNoSave : heartSave});
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 50%;
@@ -36,6 +47,10 @@ export const StylesWrapper = styled.div<{
         $isBookInFavorites === true ? "1" : "0.5"};
       width: 48px;
       height: 48px;
+      ${({ theme }) => theme.media.tablet} {
+        width: 38px;
+        height: 38px;
+      }
       background-size: 26px;
     }
   }
@@ -54,19 +69,45 @@ export const StylesWrapper = styled.div<{
     background-color: ${({ theme }) => theme.colors.white};
     color: ${({ theme }) => theme.colors.dark};
     border: 1px solid ${({ theme }) => theme.colors.darkBlue};
+    ${({ theme }) => theme.media.mobile} {
+      padding: 3px 17px;
+      font-size: 14px;
+    }
+  }
+  .f {
+    ${({ theme }) => theme.media.mobile} {
+      padding: 3px 22px;
+      font-size: 14px;
+    }
   }
   .rating-block {
     display: flex;
     gap: 24px;
     align-items: center;
     font-size: 16px;
+    ${({ theme }) => theme.media.tablet} {
+      gap: 34px;
+    }
+    ${({ theme }) => theme.media.mobile} {
+      gap: 12px;
+    }
     &__star {
       display: flex;
       gap: 30px;
       color: ${({ theme }) => theme.colors.green};
+      ${({ theme }) => theme.media.tablet} {
+        gap: 24px;
+      }
+      ${({ theme }) => theme.media.mobile} {
+        gap: 7px;
+      }
     }
     &__value {
       color: ${({ theme }) => theme.colors.darkGrey};
+      font-size: 16px;
+      ${({ theme }) => theme.media.mobile} {
+        font-size: 13px;
+      }
     }
   }
   .bestseller {
@@ -79,6 +120,16 @@ export const StylesWrapper = styled.div<{
     color: ${({ theme }) => theme.colors.white};
     font-style: italic;
     font-size: 16px;
+    ${({ theme }) => theme.media.tablet} {
+      left: 16px;
+      top: 320px;
+    }
+    ${({ theme }) => theme.media.mobile} {
+      left: 12px;
+      top: 153px;
+      padding: 10px 29px;
+      font-size: 10px;
+    }
   }
 `;
 
@@ -86,5 +137,11 @@ export const StyledRating = styled(Rating)`
   & .MuiRating-icon {
     font-size: 26px;
     color: ${({ theme }) => theme.colors.green};
+    ${({ theme }) => theme.media.tablet} {
+      font-size: 20px;
+    }
+    ${({ theme }) => theme.media.tablet} {
+      font-size: 15px;
+    }
   }
 `;
