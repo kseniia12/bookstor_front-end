@@ -35,13 +35,14 @@ const Header = () => {
     <StylesWrapper src={{ cart, userProfile, heart }}>
       <div className="logo">
         <Link to="/">
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt="Logo" className="logo__img" />
         </Link>
         <Link className="logo__page" to="/">
           Catalog
         </Link>
       </div>
       <Input className="input" icon={search} placeholder="Search" type="text" />
+      <div className="dkjk">
       {user ? (
         <div className="menu">
           <div className="menu__cart">
@@ -67,8 +68,10 @@ const Header = () => {
           </div>
         </div>
       ) : (
-        <Button text="Log In/ Sing Up" onClick={handleButtonClick} />
+        <Button text="Log In/ Sing Up" onClick={handleButtonClick} className="button__authorization"/>
       )}
+      </div>
+     
     </StylesWrapper>
   );
 };

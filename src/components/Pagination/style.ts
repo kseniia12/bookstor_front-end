@@ -9,6 +9,9 @@ export const StylesWrapper = styled.div<{
   align-items: center;
   gap: 50px;
   cursor: pointer;
+  ${({ theme }) => theme.media.mobile} {
+    padding-top: 40px;
+    }
   .circle {
     border: 2px solid black;
     width: 14px;

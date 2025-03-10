@@ -25,7 +25,7 @@ const App: React.FC = () => {
       <InitializationProject>
         <BrowserRouter>
           <StylesWrapper>
-            {/* <Header /> */}
+            <Header />
             <Routes>
               <Route path={constant.SIGN_IN} element={<Login />} />
               <Route path={constant.SIGN_UP} element={<Registration />} />
@@ -38,7 +38,7 @@ const App: React.FC = () => {
               </Route>
             </Routes>
           </StylesWrapper>
-          {/* <Footer /> */}
+          <Footer />
         </BrowserRouter>
       </InitializationProject>
     </ThemeProvider>

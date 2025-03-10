@@ -47,11 +47,17 @@ export const StylesWrapper = styled.div<{
         $isBookInFavorites === true ? "1" : "0.5"};
       width: 48px;
       height: 48px;
+      background-size: 26px;
       ${({ theme }) => theme.media.tablet} {
         width: 38px;
         height: 38px;
+        background-size: 21px;
       }
-      background-size: 26px;
+      ${({ theme }) => theme.media.mobile} {
+        width: 25px;
+        height: 25px;
+        background-size: 14px;
+      }
     }
   }
   .genre {

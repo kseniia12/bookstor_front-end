@@ -38,7 +38,7 @@ const Login = () => {
   return (
     <StylesWrapper>
       <div>
-        <h1 className="title">Log In</h1>
+        <h1 className="big-title title">Log In</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="item">
             <Input

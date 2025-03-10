@@ -13,5 +13,8 @@ export const StyledRating = styled(Rating)`
   & .MuiRating-icon {
     font-size: 30px;
     color: ${({ theme }) => theme.colors.green};
+    ${({ theme }) => theme.media.mobile} {
+      font-size: 15px;
+    }
   }
 `;

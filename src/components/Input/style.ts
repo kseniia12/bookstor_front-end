@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StylesWrapper = styled.div`
+
   .icon {
     display: block;
     width: 24px;

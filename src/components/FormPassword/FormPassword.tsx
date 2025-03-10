@@ -26,7 +26,7 @@ const FormPassword: React.FC<ChangePasswordFormProps> = ({
       </div>
       <Input
         type="password"
-        className="form__input password"
+        className="form__input-info"
         placeholder="Your password"
         icon={searchIcon}
         register={registerPassword("user.password")}

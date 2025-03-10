@@ -33,7 +33,7 @@ const Registration = () => {
   return (
     <StylesWrapper>
       <div>
-        <h1 className="title">Sign Up</h1>
+        <h1 className="big-title title">Sign Up</h1>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="item">
             <Input
@@ -90,7 +90,7 @@ const Registration = () => {
         </form>
       </div>
       <div>
-        <img src={imgMan} alt="Logo" className="search_icon" />
+        <img src={imgMan} alt="Logo" className="search__icon" />
       </div>
     </StylesWrapper>
   );

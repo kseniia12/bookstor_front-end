@@ -4,13 +4,26 @@ export const StylesWrapper = styled.div`
   .recommendations {
     padding-top: 108px;
     padding-bottom: 150px;
+    ${({ theme }) => theme.media.tablet} {
+      padding-top: 90px;
+      padding-bottom: 100px;
+    }
+    ${({ theme }) => theme.media.mobile} {
+      padding-top: 60px;
+      padding-bottom: 100px;
+    }
     &__title {
-      font-size: 40px;
       padding-bottom: 50px;
+      ${({ theme }) => theme.media.mobile} {
+        padding-bottom: 30px;
+      }
     }
     &__books {
       display: flex;
       gap: 20px;
+      ${({ theme }) => theme.media.mobile} {
+        gap: 18px;
+      }
     }
   }
 `;

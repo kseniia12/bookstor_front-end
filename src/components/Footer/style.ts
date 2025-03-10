@@ -14,16 +14,29 @@ export const StylesWrapper = styled.div`
       max-width: 803px;
       padding-bottom: 79px;
     }
+    ${({ theme }) => theme.media.mobile} {
+      max-width: 291px;
+      padding-bottom: 30px;
+      flex-direction: column;
+      gap: 40px;
+    }
     &__contact {
       flex-direction: column;
       padding-top: 40px;
       gap: 5px;
+      ${({ theme }) => theme.media.tablet} {
+        padding-top: 30px;
+      }
     }
     &___item {
       flex-direction: column;
       gap: 5px;
       ${({ theme }) => theme.media.tablet} {
         gap: 11px;
+      }
+      ${({ theme }) => theme.media.mobile} {
+        gap: 11px;
+        font-size: 16px;
       }
     }
     &___map {

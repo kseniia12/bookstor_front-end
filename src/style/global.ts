@@ -19,7 +19,6 @@ export default createGlobalStyle`
     input {outline:none;}
     font-family: "Poppins", sans-serif;
     font-weight: medium;
-    font-size: 20px;
   }
   .big-title{
     font-size: 40px;

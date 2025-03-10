@@ -12,6 +12,14 @@ export const StylesWrapper = styled.div`
     display: flex;
     gap: 20px;
     border-radius: 16px;
+    ${({ theme }) => theme.media.tablet} {
+      margin-right: 137px;
+
+    }
+    ${({ theme }) => theme.media.mobile} {
+      margin-right: 0px;
+
+    }
     &__photo {
       width: 60px;
       height: 60px;

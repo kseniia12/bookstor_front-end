@@ -15,13 +15,13 @@ const AuthorizationBanner = () => {
 
   return (
     <StylesWrapper>
-      <img src={castle} alt="castle" className="img" />
+      <img src={castle} alt="Castle" className="img__castle" />
       <div className="content">
         <div className="big-title">Authorize now</div>
         <div className="normal-title content__subtitle">
           Authorize now and discover the fabulous world of books
         </div>
-        <Button text="Log In/ Sing Up" onClick={navigateToPageResistration} />
+        <Button text="Log In/ Sing Up" onClick={navigateToPageResistration} className="button"/>
       </div>
       <img src={fairy} alt="fairy" className="img__fairy" />
     </StylesWrapper>

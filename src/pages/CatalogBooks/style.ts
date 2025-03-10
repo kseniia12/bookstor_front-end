@@ -6,6 +6,13 @@ export const StylesWrapper = styled.div`
   flex-direction: column;
   padding-top: 40px;
   padding-bottom: 150px;
+  ${({ theme }) => theme.media.tablet} {
+    padding-bottom: 100px;
+  }
+  ${({ theme }) => theme.media.mobile} {
+    padding-bottom: 70px;
+  }
+
   .container {
     margin-top: 110px;
     display: flex;

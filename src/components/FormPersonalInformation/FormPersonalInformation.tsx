@@ -36,7 +36,7 @@ const FormPersonalInformation: React.FC<ChangePasswordFormProps> = ({
       </div>
       <Input
         type="text"
-        className="form__input info"
+        className="form__input-info"
         placeholder="Your name"
         icon={userProfile}
         register={register("user.fullName")}
@@ -44,7 +44,7 @@ const FormPersonalInformation: React.FC<ChangePasswordFormProps> = ({
       />
       <Input
         type="email"
-        className="form__input info"
+        className="form__input-info"
         icon={emailIcon}
         placeholder="Your email"
         register={register("user.email")}

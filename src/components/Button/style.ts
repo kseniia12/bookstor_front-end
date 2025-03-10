@@ -7,5 +7,7 @@ export const StylesWrapper = styled.button`
   border-radius: 16px;
   cursor: pointer;
   border: 1px solid ${({ theme }) => theme.colors.darkBlue};
-
+  ${({ theme }) => theme.media.tablet} {
+    padding: 10px 17px;
+    }
 `;

@@ -33,7 +33,7 @@ const FormForComments: React.FC<PropsComments> = ({ bookId, onCommentAdded }) =>
             {...register("comment")}
           />
         </div>
-        <Button text="Post a comment" />
+        <Button text="Post a comment" className="button"/>
       </form>
     </StylesWrapper>
   );
