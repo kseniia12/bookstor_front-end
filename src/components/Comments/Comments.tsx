@@ -15,7 +15,7 @@ const Comments: React.FC<propsComments> = ({ bookId }) => {
   const user = useAppSelector((state) => state.users.user);
   const [comments, setComments] = useState<IComment[] | null>(null);
   const dispatch = useAppDispatch();
-  
+
   const getCommentsBook = async () => {
     const fetchedComments = await dispatch(
       getCommentBookThunk({ bookId })
@@ -39,21 +39,21 @@ const Comments: React.FC<propsComments> = ({ bookId }) => {
     <StylesWrapper>
       {comments ? <div className="big-title title">Comments</div> : ""}
       {comments?.map((comment) => (
-        <div className="comment" key={comment.id}>
-          <div className="comment__photo">
+        <div className="comment">
+          <div className="comment__container" key={comment.id}>
             <img
-              className="comment__photo--user"
+              className="comment__photo"
               src={comment.user.photo ? comment.user.photo : userPhoto}
               alt={comment.user.photo}
             />
-          </div>
-          <div>
-            <div className="comment__user">{comment.user.fullName}</div>
-            <div className="comment__date">
-              {calculateDaysDifference(comment.date)} days ago
+            <div>
+              <div className="comment__user">{comment.user.fullName}</div>
+              <div className="comment__date">
+                {calculateDaysDifference(comment.date)} days ago
+              </div>
             </div>
-            <div className="comment__text">{comment.comment}</div>
           </div>
+          <div className="comment__text">{comment.comment}</div>
         </div>
       ))}
       {user ? (

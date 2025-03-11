@@ -41,9 +41,11 @@ const Header = () => {
           Catalog
         </Link>
       </div>
+
       <Input className="input" icon={search} placeholder="Search" type="text" />
-      <div className="dkjk">
-      {user ? (
+
+       <div className="dsd">
+       {user ? (
         <div className="menu">
           <div className="menu__cart">
             <div className="menu__cart-container">
@@ -68,10 +70,14 @@ const Header = () => {
           </div>
         </div>
       ) : (
-        <Button text="Log In/ Sing Up" onClick={handleButtonClick} className="button__authorization"/>
+        <Button
+          text="Log In/ Sing Up"
+          onClick={handleButtonClick}
+          className="button__authorization"
+        />
       )}
-      </div>
-     
+       </div>
+   
     </StylesWrapper>
   );
 };

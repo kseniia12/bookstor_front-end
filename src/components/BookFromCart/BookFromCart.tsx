@@ -48,7 +48,7 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
     <StylesWrapper>
       <div className="book">
         <img
-          className="book__img"
+          className="book"
           src={books.cover}
           alt="Book"
         />
@@ -76,16 +76,17 @@ const BookFromCart: React.FC<IBookProps> = ({ books }) => {
               onClick={increaseCountBooks}
             >
               +
+             
             </div>
           </div>
-          <div>
+    
             <img
               className="cart"
               src={cart}
               alt="cart"
               onClick={() => deleteBookFromCart([Number(books.id)])}
             />
-          </div>
+      
         </div>
         <div className="normal-title info__price">{`$${books.priceHard} USD`}</div>
       </div>

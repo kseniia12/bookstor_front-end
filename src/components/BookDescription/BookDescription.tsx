@@ -48,43 +48,40 @@ const BookDescription = () => {
       $isBookInFavorites={isBookInFavorites}
       $isBookInCart={isBookInCart}
     >
-      <div className="book-info">
-        <div className="book">
-          <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
-          <img className="book__img" src={book?.cover} alt={book?.name} />
-        </div>
-        <div>
-          <p className="big-title">{book?.name}</p>
-          <p className="author">{book?.author.name}</p>
-          <div className="rating">
-            <div className="rating__section-value">
-              <img src={rating} alt="rating" className="rating__img" />
-              <div className="rating__value">
-                {id !== undefined && user[id]
-                  ? user[id].rate.toFixed(1)
-                  : "0.0"}
-              </div>
+      <div className="book">
+        <Button className="book__favorites" onClick={AddOrRemoveFavorites} />
+        <img className="book__img" src={book?.cover} alt={book?.name} />
+      </div>
+      <div>
+        <p className="big-title">{book?.name}</p>
+        <p className="author">{book?.author.name}</p>
+        <div className="rating">
+          <div className="rating__section-value">
+            <img src={rating} alt="rating" className="rating__img" />
+            <div className="rating__value">
+              {id !== undefined && user[id] ? user[id].rate.toFixed(1) : "0.0"}
             </div>
-            <RatingBookForUser
-              bookId={Number(book?.id)}
-              rating={
-                id !== undefined && user[id] ? user[id].rate.toFixed(1) : "0.0"
-              }
-            />
           </div>
-          <div className="rating__book">
-            <img src={rateBook} alt="rating" className="rating__book-img" />
-            <div className="rating__title">Rate this book</div>
-          </div>
+          <RatingBookForUser
+            bookId={Number(book?.id)}
+            rating={
+              id !== undefined && user[id] ? user[id].rate.toFixed(1) : "0.0"
+            }
+          />
+        </div>
+        <div className="rating__book">
+          <img src={rateBook} alt="rating" className="rating__book-img" />
+          <div className="rating__title">Rate this book</div>
         </div>
       </div>
+
       <div className="description-container">
         <p className="description">Description</p>
         <p className="description__text">{book?.description}</p>
         <div className="button">
           <div>
             <p className="base-text button__title">Paperback</p>
-            <Button text={`$${book?.priceSoft} USD`} className="button__cart"/>
+            <Button text={`$${book?.priceSoft} USD`} className="button__cart" />
           </div>
           <div>
             <p className=" base-text button__title">Hardcover</p>

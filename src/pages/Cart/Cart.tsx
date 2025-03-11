@@ -51,6 +51,7 @@ const Cart = () => {
             <div className="result__totalPrice">
               Total: <p className="big-title">{totalPrice.toFixed(2)}</p>
             </div>
+            <div className="result__button">
             <Button
               className="base-text result__continue-shopping"
               text="Continue shopping"
@@ -61,6 +62,8 @@ const Cart = () => {
               text="Checkout"
               onClick={proceedToCheckout}
             />
+            </div>
+            
           </div>
         </div>
       ) : (

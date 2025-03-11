@@ -76,8 +76,6 @@ export const StylesWrapper = styled.div<{
       }
     }
     &__input-info {
-
-     
         pointer-events: ${({ $isEditable }) =>
     $isEditable === true ? "" : "none"};
         background-color: ${({ theme }) => theme.colors.light};
@@ -90,6 +88,16 @@ export const StylesWrapper = styled.div<{
         }
         ${({ theme }) => theme.media.mobile} {
           width: 290px;
+          height: 47px;
+        }
+        .label {
+          background-color:  ${({ theme }) => theme.colors.light};
+          width: 100%;
+          ${({ theme }) => theme.media.mobile} {
+            font-size: 14px;
+        }
+         
+
         }
     }
     &__editing {

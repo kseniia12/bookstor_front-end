@@ -5,27 +5,36 @@ export const StylesWrapper = styled.div<{
   $isBookInFavorites: boolean;
   $isBookInCart: boolean;
 }>`
-  display: flex;
-  gap: 128px;
+  display: grid;
+  grid-template-columns: 522px 630px;
+  grid-template-rows: 193px 586fr;
+  grid-column-gap: 128px;
   padding-top: 60px;
   padding-bottom: 110px;
   ${({ theme }) => theme.media.tablet} {
-    gap: 21px;
+    grid-column-gap: 21px;
+    grid-template-columns: 391px 392px;
+    grid-template-rows: 197px 474fr;
   }
   ${({ theme }) => theme.media.mobile} {
     flex-direction: column;
     padding-top: 48px;
     padding-bottom: 50px;
-  }
-  .book-info {
-    ${({ theme }) => theme.media.mobile} {
-      display: flex;
-      gap: 20px;
-    }
+    grid-column-gap: 20px;
+    grid-template-columns: 135px 135px;
+    grid-template-rows: 226px 426fr;
   }
   .book {
     position: relative;
     border-radius: 16px;
+    grid-template-columns: 552px;
+    grid-template-rows: 779px;
+    grid-row: 1/3;
+    ${({ theme }) => theme.media.mobile} {
+      grid-template-columns: 135px;
+      grid-template-rows: 202px;
+      grid-row: 1/2;
+    }
     &__img {
       width: 552px;
       height: 779px;
@@ -43,21 +52,19 @@ export const StylesWrapper = styled.div<{
       position: absolute;
       top: 30px;
       right: 30px;
-      background-image: url(${({ $isBookInFavorites }) =>
-        $isBookInFavorites ? heartNoSave : heartSave});
+      background-image: url(${({ $isBookInFavorites }) => $isBookInFavorites ? heartNoSave : heartSave});
       background-position: center;
       background-repeat: no-repeat;
       border-radius: 50%;
       padding: 11px;
       background-color: ${({ theme }) => theme.colors.darkBlue};
       opacity: ${({ $isBookInFavorites }) =>
-        $isBookInFavorites === true ? "1" : "0.5"};
+    $isBookInFavorites === true ? "1" : "0.5"};
       width: 48px;
       height: 48px;
       background-size: 26px;
       ${({ theme }) => theme.media.mobile} {
-        opacity: 0;
-        cursor: default;
+        display: none;
       }
     }
   }
@@ -73,11 +80,14 @@ export const StylesWrapper = styled.div<{
       padding-bottom: 21px;
     }
   }
+  .description-container {
+    ${({ theme }) => theme.media.mobile} {
+      grid-area: 2 / 1 / 3 / 3;
+    }
+  }
   .description {
     font-size: 24px;
-    padding-top: 30px;
     ${({ theme }) => theme.media.mobile} {
-      padding-top: 20px;
       padding-bottom: 15px;
       font-size: 14px;
     }
@@ -89,7 +99,7 @@ export const StylesWrapper = styled.div<{
         padding-top: 0px;
         padding-bottom: 15px;
         font-size: 12px;
-    }
+      }
     }
   }
   .button {
@@ -104,18 +114,18 @@ export const StylesWrapper = styled.div<{
       color: ${({ theme }) => theme.colors.darkBlue};
       ${({ theme }) => theme.media.mobile} {
         padding-bottom: 17px;
-    }
+      }
     }
     &__cart {
       background-color: ${({ $isBookInCart, theme }) =>
-        $isBookInCart ? theme.colors.white : theme.colors.darkBlue};
+    $isBookInCart ? theme.colors.white : theme.colors.darkBlue};
       color: ${({ $isBookInCart, theme }) =>
-        $isBookInCart ? theme.colors.dark : theme.colors.white};
+    $isBookInCart ? theme.colors.dark : theme.colors.white};
       border: 1px solid ${({ theme }) => theme.colors.darkBlue};
       ${({ theme }) => theme.media.mobile} {
         padding: 10px 31px;
         font-size: 12px;
-    }
+      }
     }
   }
   .rating {

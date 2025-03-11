@@ -40,6 +40,11 @@ export const StylesWrapper = styled.div`
     &__input {
       background-color: ${({ theme }) => theme.colors.light};
       width: 100%;
+      height: 64px;
+      .label {
+        background-color: ${({ theme }) => theme.colors.light};
+        font-size: 16px;
+      }
     }
     &__text {
       &.error {

@@ -14,17 +14,15 @@ interface IPropsInput {
 
 const Input: React.FC<IPropsInput> = (props) => {
   return (
-    <StylesWrapper>
-      <label className={props.className}>
+    <StylesWrapper className={props.className}>
         <img src={props.icon} alt="Logo" className="icon" />
         <input
           {...props.register}
           type={props.type}
           placeholder={props.placeholder}
-          className={props.className}
+          className={"label"}
           defaultValue={props.value}
         />
-      </label>
     </StylesWrapper>
   );
 };

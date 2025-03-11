@@ -21,8 +21,15 @@ export const StylesWrapper = styled.div`
     &__books {
       display: flex;
       gap: 20px;
+      ${({ theme }) => theme.media.tablet} {
+        gap: 18px;
+        width: 804px;
+        overflow-y: auto;
+      }
       ${({ theme }) => theme.media.mobile} {
         gap: 18px;
+        width: 289px;
+        overflow-y: auto;
       }
     }
   }
