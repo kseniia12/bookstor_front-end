@@ -3,14 +3,19 @@ import styled from "styled-components";
 export const StylesWrapper = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.light};
-  top: 690px;
-  left: 655px;
+  top: 630px;
+  left: 650px;
   z-index: 2;
   width: 305px;
   padding: 15px;
   border-radius: 16px;
   ${({ theme }) => theme.media.tablet} {
-    top: 690px;
+    top: 520px;
+    left: 0px;
+    width: 290px;
+    }
+    ${({ theme }) => theme.media.mobile} {
+    top: 680px;
     left: 0px;
     width: 290px;
     }

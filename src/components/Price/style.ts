@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StylesWrapper = styled.div`
   position: absolute;
-  top: 690px;
+  top: 630px;
   left: 870px;
   z-index: 2;
   background-color: ${({ theme }) => theme.colors.light};
@@ -10,10 +10,15 @@ export const StylesWrapper = styled.div`
   height: 151px;
   border-radius: 16px;
   ${({ theme }) => theme.media.tablet} {
+    top: 520px;
     width: 290px;
-    left: 218px;
-    }
-
+    left: 274px;
+  }
+  ${({ theme }) => theme.media.mobile} {
+    top: 750px;
+    left: 0px;
+    width: 290px;
+  }
   .wrapper {
     padding: 40px 20px;
   }

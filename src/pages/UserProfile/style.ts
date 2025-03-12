@@ -16,6 +16,7 @@ export const StylesWrapper = styled.div<{
   }
   .button {
     margin-top: 50px;
+    padding: 10px 50px;
   }
   .avatar {
     position: relative;
@@ -57,6 +58,9 @@ export const StylesWrapper = styled.div<{
     display: flex;
     flex-direction: column;
     gap: 48px;
+    ${({ theme }) => theme.media.mobile} {
+        padding-top: 30px;
+        }
     &__section {
       display: flex;
       flex-direction: column;
@@ -96,8 +100,6 @@ export const StylesWrapper = styled.div<{
           ${({ theme }) => theme.media.mobile} {
             font-size: 14px;
         }
-         
-
         }
     }
     &__editing {

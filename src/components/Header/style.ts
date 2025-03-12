@@ -40,6 +40,10 @@ export const StylesWrapper = styled.div<{
 
   .input {
     background-color: ${({ theme }) => theme.colors.light};
+    height: 64px;
+    ${({ theme }) => theme.media.mobile} {
+      height: 47px;
+    }
     .label {
       width: 100%;
       background-color: ${({ theme }) => theme.colors.light};

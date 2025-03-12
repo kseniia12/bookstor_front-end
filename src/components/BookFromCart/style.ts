@@ -54,6 +54,7 @@ export const StylesWrapper = styled.div`
     &__controls {
       display: flex;
       gap: 15px;
+      align-items: center;
     }
     &__button {
       background-color: ${({ theme }) => theme.colors.light};

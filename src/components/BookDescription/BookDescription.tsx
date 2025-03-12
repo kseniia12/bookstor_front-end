@@ -55,7 +55,8 @@ const BookDescription = () => {
       <div>
         <p className="big-title">{book?.name}</p>
         <p className="author">{book?.author.name}</p>
-        <div className="rating">
+<div className="rating-section">
+<div className="rating">
           <div className="rating__section-value">
             <img src={rating} alt="rating" className="rating__img" />
             <div className="rating__value">
@@ -73,7 +74,10 @@ const BookDescription = () => {
           <img src={rateBook} alt="rating" className="rating__book-img" />
           <div className="rating__title">Rate this book</div>
         </div>
-      </div>
+</div>
+        
+        </div>
+ 
 
       <div className="description-container">
         <p className="description">Description</p>

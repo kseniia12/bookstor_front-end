@@ -7,7 +7,7 @@ export const StylesWrapper = styled.div<{
 }>`
   display: grid;
   grid-template-columns: 522px 630px;
-  grid-template-rows: 193px 586fr;
+  grid-template-rows: 193px 586px;
   grid-column-gap: 128px;
   padding-top: 60px;
   padding-bottom: 110px;
@@ -128,6 +128,14 @@ export const StylesWrapper = styled.div<{
       }
     }
   }
+  .rating-section {
+    display: flex;
+    gap: 40px;
+    ${({ theme }) => theme.media.mobile} {
+    flex-direction: column;
+    gap: 9px;
+      }
+  }
   .rating {
     display: flex;
     gap: 40px;
@@ -135,7 +143,6 @@ export const StylesWrapper = styled.div<{
     ${({ theme }) => theme.media.mobile} {
       flex-direction: column;
       gap: 20px;
-
       align-items: flex-start;
       padding-bottom: 9px;
     }

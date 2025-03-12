@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const StylesWrapper = styled.div<{ open: true }>`
   position: absolute;
-  top: 690px;
+  top: 630px;
   left: 1100px;
   display: flex;
   align-items: center;
@@ -11,9 +11,15 @@ export const StylesWrapper = styled.div<{ open: true }>`
   width: 197px;
   z-index: 2;
   ${({ theme }) => theme.media.tablet} {
+    width: 255px;
+    left: 560px;
+    top: 520px;
+  }
+  ${({ theme }) => theme.media.mobile} {
+    top: 810px;
+    left: 0px;
     width: 290px;
-    left: 450px;
-    }
+  }
   .img {
     display: block;
     transform: ${({ open }) =>
@@ -29,6 +35,13 @@ export const StylesWrapper = styled.div<{ open: true }>`
     display: flex;
     flex-direction: column;
     gap: 12px;
+    ${({ theme }) => theme.media.tablet} {
+    width: 255px;
+  }
+  ${({ theme }) => theme.media.mobile} {
+
+    width: 290px;
+  }
   }
   .menu .input {
     width: 0;

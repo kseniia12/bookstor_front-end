@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const StylesWrapper = styled.div`
+ margin: 20px 0px 100px 0px;
   .result {
     &__totalPrice {
       padding-top: 10px;
@@ -13,8 +14,15 @@ export const StylesWrapper = styled.div`
         font-size: 24px;
       }
     }
+    &__сhekout {
+      text-align: center;
+      ${({ theme }) => theme.media.tablet} {
+       padding: 10px 50px;
+      }
+    }
     &__button {
       display: flex;
+      gap: 20px;
       ${({ theme }) => theme.media.mobile} {
         flex-direction: column;
         gap: 18px;
@@ -24,6 +32,10 @@ export const StylesWrapper = styled.div`
       background-color: ${({ theme }) => theme.colors.white};
       border: 1px solid black;
       color: black;
+      text-align: center;
+      ${({ theme }) => theme.media.tablet} {
+       padding: 10px 50px;
+      }
     }
   }
   .dividing-line {

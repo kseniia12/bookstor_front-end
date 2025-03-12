@@ -97,7 +97,6 @@ const UserProfile = () => {
           <img src={buttonPhoto} alt="Logo" className="avatar__icon" />
         </label>
       </div>
-
       <div className="form">
         <form onSubmit={handleFormSubmit}>
           <FormPersonalInformation

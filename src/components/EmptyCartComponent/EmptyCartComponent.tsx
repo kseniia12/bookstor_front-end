@@ -14,15 +14,13 @@ const EmptyCartComponent = () => {
 
   return (
     <StylesWrapper>
-      <div className="image">
-        <img src={book} alt="Book" className="cart-empty__book" />
-      </div>
+      <img src={book} alt="Book" className="image" />
       <div className="message">
         <div className="big-title">Your cart is empty</div>
         <div className="description">
           Add items to cart to make a purchase. Go to the catalogue no.
         </div>
-        <Button text="Go to catalog" onClick={handleGoToCatalog} />
+        <Button text="Go to catalog" className="button" onClick={handleGoToCatalog} />
       </div>
     </StylesWrapper>
   );

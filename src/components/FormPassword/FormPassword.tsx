@@ -34,7 +34,7 @@ const FormPassword: React.FC<ChangePasswordFormProps> = ({
       <div className="item">
         <Input
           type="password"
-          className="form__input password"
+          className="form__input-info"
           icon={searchIcon}
           placeholder="New password"
           register={registerPassword("user.newPassword", {
@@ -52,7 +52,7 @@ const FormPassword: React.FC<ChangePasswordFormProps> = ({
       <div className="item">
         <Input
           type="password"
-          className="form__input password"
+          className="form__input-info"
           icon={searchIcon}
           placeholder="Password replay"
           register={registerPassword("user.passwordReplay", {
